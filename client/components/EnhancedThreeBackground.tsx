@@ -344,15 +344,23 @@ export default function EnhancedThreeBackground({
   return (
     <div className={`absolute inset-0 ${className}`} style={{ opacity: intensity }}>
       <Canvas
+        key="enhanced-three-bg"
         camera={{ position: [0, 0, 10], fov: 60 }}
-        gl={{ 
-          antialias: true, 
-          alpha: true, 
+        gl={{
+          antialias: false,
+          alpha: true,
           powerPreference: "high-performance",
-          preserveDrawingBuffer: false
+          preserveDrawingBuffer: false,
+          failIfMajorPerformanceCaveat: false
         }}
-        dpr={Math.min(window.devicePixelRatio, 2)}
-        performance={{ min: 0.5 }}
+        dpr={1}
+        performance={{ min: 0.1 }}
+        onCreated={({ gl }) => {
+          gl.domElement.style.position = 'absolute';
+          gl.domElement.style.top = '0';
+          gl.domElement.style.left = '0';
+          gl.domElement.style.pointerEvents = 'none';
+        }}
       >
         <PerspectiveCamera makeDefault position={[0, 0, 10]} />
         
