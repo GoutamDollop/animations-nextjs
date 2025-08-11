@@ -38,9 +38,23 @@ export default function EnhancedCustomCursor() {
     useState<keyof typeof cursorThemes>("light");
   const [isScrolling, setIsScrolling] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const isInitialized = useRef(false);
 
   useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 1024 || 'ontouchstart' in window);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    // Don't initialize cursor on mobile devices
+    if (window.innerWidth <= 1024 || 'ontouchstart' in window) {
+      return () => window.removeEventListener('resize', checkMobile);
+    }
+
     if (isInitialized.current) return;
     isInitialized.current = true;
 
@@ -80,12 +94,12 @@ export default function EnhancedCustomCursor() {
 
         // Direct positioning for main cursor with fixed positioning
         cursor.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
-        cursor.style.left = '0';
-        cursor.style.top = '0';
+        cursor.style.left = '0px';
+        cursor.style.top = '0px';
 
         follower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;
-        follower.style.left = '0';
-        follower.style.top = '0';
+        follower.style.left = '0px';
+        follower.style.top = '0px';
 
         // Update trail
         updateTrail();
@@ -99,14 +113,14 @@ export default function EnhancedCustomCursor() {
         const theme = cursorThemes[currentTheme];
 
         if (isHovering) {
-          cursor.style.transform += " scale(2)";
-          follower.style.transform += " scale(1.5)";
+          cursor.style.transform = cursor.style.transform.replace('translate3d', 'translate3d') + " scale(2)";
+          follower.style.transform = follower.style.transform.replace('translate3d', 'translate3d') + " scale(1.5)";
           cursor.style.backgroundColor = theme.color;
           follower.style.borderColor = theme.color;
           follower.style.backgroundColor = `${theme.color}20`;
         } else if (isScrolling) {
-          cursor.style.transform += " scale(1.5)";
-          follower.style.transform += " scale(1.2)";
+          cursor.style.transform = cursor.style.transform.replace('translate3d', 'translate3d') + " scale(1.5)";
+          follower.style.transform = follower.style.transform.replace('translate3d', 'translate3d') + " scale(1.2)";
           cursor.style.backgroundColor = "#8b5cf6";
           follower.style.borderColor = "#8b5cf6";
           follower.style.backgroundColor = "#8b5cf620";
@@ -149,6 +163,8 @@ export default function EnhancedCustomCursor() {
             pointer-events: none;
             z-index: 9997;
             mix-blend-mode: ${cursorThemes[currentTheme].mixBlendMode};
+            transform: translateZ(0);
+            will-change: transform;
           `;
 
           trail.appendChild(trailDot);
@@ -430,12 +446,17 @@ export default function EnhancedCustomCursor() {
     };
   }, [currentTheme, isScrolling, isHovering]);
 
+  // Don't render anything on mobile devices
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <>
       {/* Main cursor dot */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] opacity-0 invisible transition-all duration-150 ease-out hidden lg:block"
+        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] opacity-0 invisible transition-all duration-150 ease-out"
         style={{
           willChange: "transform, opacity, background-color",
           backgroundColor: cursorThemes[currentTheme].color,
@@ -446,7 +467,7 @@ export default function EnhancedCustomCursor() {
       {/* Cursor follower */}
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-10 h-10 border-2 rounded-full pointer-events-none z-[9998] opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
+        className="fixed top-0 left-0 w-10 h-10 border-2 rounded-full pointer-events-none z-[9998] opacity-0 invisible transition-all duration-300 ease-out"
         style={{
           willChange: "transform, opacity, border-color, background-color",
           borderColor: cursorThemes[currentTheme].color,
@@ -456,21 +477,16 @@ export default function EnhancedCustomCursor() {
       {/* Trail container */}
       <div
         ref={trailRef}
-        className="fixed inset-0 pointer-events-none z-[9997] opacity-0 invisible hidden lg:block"
+        className="fixed inset-0 pointer-events-none z-[9997] opacity-0 invisible"
         style={{ willChange: "opacity" }}
       />
 
       {/* Scroll indicator */}
       {isScrolling && (
-        <div className="fixed top-4 right-4 z-[9995] bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-80 hidden lg:block">
+        <div className="fixed top-4 right-4 z-[9995] bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-80">
           Scrolling ✨
         </div>
       )}
-
-      {/* Theme indicator */}
-      <div className="fixed bottom-4 right-4 z-[9995] bg-black/20 backdrop-blur-sm text-white px-2 py-1 rounded text-xs opacity-50 hidden lg:block">
-        Cursor: {currentTheme}
-      </div>
     </>
   );
 }
