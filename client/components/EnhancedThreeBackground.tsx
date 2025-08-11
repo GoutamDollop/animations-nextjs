@@ -341,9 +341,9 @@ export default function EnhancedThreeBackground({
   className = "",
   intensity = 0.7
 }: EnhancedThreeBackgroundProps) {
-  const [shouldRender, setShouldRender] = React.useState(true);
+  const [shouldRender, setShouldRender] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Check if WebGL is supported
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
