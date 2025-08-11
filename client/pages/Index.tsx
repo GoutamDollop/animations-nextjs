@@ -169,40 +169,40 @@ export default function Index() {
       </div>
 
       {/* Enhanced CTA Section with Advanced Animations */}
-      <section className="py-24 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 relative overflow-hidden">
-        {/* Advanced Floating Shapes */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="float-fast absolute top-20 left-20 w-32 h-32 bg-yellow-300 rounded-full"></div>
-          <div className="float-slow absolute bottom-32 right-32 w-24 h-24 bg-green-300 rounded-full"></div>
-          <div className="float-medium absolute top-1/2 left-1/4 w-20 h-20 bg-blue-300 rounded-full"></div>
-          <div className="float-fast absolute top-1/3 right-1/4 w-28 h-28 bg-purple-300 rounded-full"></div>
+      <section className="py-24 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 relative overflow-hidden pin-section">
+        {/* Advanced Floating Shapes with Parallax */}
+        <div className="absolute inset-0 opacity-20 parallax-bg">
+          <div className="float-fast absolute top-20 left-20 w-32 h-32 bg-yellow-300 rounded-full morph-shape"></div>
+          <div className="float-slow absolute bottom-32 right-32 w-24 h-24 bg-green-300 rounded-full morph-shape"></div>
+          <div className="float-medium absolute top-1/2 left-1/4 w-20 h-20 bg-blue-300 rounded-full morph-shape"></div>
+          <div className="float-fast absolute top-1/3 right-1/4 w-28 h-28 bg-purple-300 rounded-full morph-shape"></div>
         </div>
 
-        {/* Three.js Background Layer */}
-        <ThreeBackground className="opacity-30" />
+        {/* Enhanced Three.js Background Layer */}
+        <EnhancedThreeBackground className="opacity-40" intensity={0.8} />
 
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-6 md:mb-8 text-white leading-tight scroll-zoom-rotate">
+          <div className="max-w-4xl mx-auto pin-content">
+            <h2 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-6 md:mb-8 text-white leading-tight">
               Ready to Start Your Amazing
               <br className="hidden sm:block" />
-              <span className="text-yellow-300">Educational Journey</span>? 🎓
+              <span className="text-yellow-300 gradient-reveal">Educational Journey</span>? 🎓
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl text-orange-100 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4 scroll-fade-left">
+            <p className="wave-text text-lg md:text-xl lg:text-2xl text-orange-100 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4">
               Join thousands of students who have transformed their lives through our innovative educational programs and supportive community! ✨🚀
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center scroll-stagger-up">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center physics-stagger">
               <Link
                 to="/contact"
-                className="enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-4 bg-white text-orange-600 px-6 md:px-12 py-3 md:py-6 rounded-2xl font-black text-base md:text-xl shadow-2xl transition-all duration-300 magnetic"
+                className="physics-item enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-4 bg-white text-orange-600 px-6 md:px-12 py-3 md:py-6 rounded-2xl font-black text-base md:text-xl shadow-2xl transition-all duration-300 magnetic-scroll"
               >
                 <span className="text-center">Apply Now - Transform Your Future!</span>
                 <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
               </Link>
               <Link
                 to="/events"
-                className="enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-4 bg-transparent border-2 md:border-3 border-white text-white px-6 md:px-12 py-3 md:py-6 rounded-2xl font-black text-base md:text-xl hover:bg-white hover:text-orange-600 transition-all duration-300 magnetic"
+                className="physics-item enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-4 bg-transparent border-2 md:border-3 border-white text-white px-6 md:px-12 py-3 md:py-6 rounded-2xl font-black text-base md:text-xl hover:bg-white hover:text-orange-600 transition-all duration-300 magnetic-scroll"
               >
                 <Calendar className="h-5 w-5 md:h-6 md:w-6" />
                 <span>Upcoming Events</span>
