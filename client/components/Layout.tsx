@@ -38,6 +38,7 @@ export default function Layout({ children }: LayoutProps) {
       <EnhancedCustomCursor />
       <div className="min-h-screen flex flex-col bg-white">
         <Navigation />
+        <ConditionalBreadcrumb />
 
         <main className="flex-grow">{children}</main>
 
