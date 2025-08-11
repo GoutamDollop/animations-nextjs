@@ -5,7 +5,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Play, Calendar } from "lucide-react";
 import ModernHeroSection from "../components/ModernHeroSection";
 import EnhancedThreeBackground from "../components/EnhancedThreeBackground";
-import EnhancedImageSlider from "../components/EnhancedImageSlider";
+import ImageShowcase from "../components/ImageShowcase";
 import PhotoGallery from "../components/PhotoGallery";
 import AdvancedScrollAnimations from "../components/AdvancedScrollAnimations";
 import TextRevealAnimations from "../components/TextRevealAnimations";
