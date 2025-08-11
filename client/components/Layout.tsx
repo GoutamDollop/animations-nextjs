@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Loading from './Loading';
 import ScrollToTop from './ScrollToTop';
 import CustomCursor from './CustomCursor';
+import PerformanceOptimizer from './PerformanceOptimizer';
 
 interface LayoutProps {
   children: React.ReactNode;
