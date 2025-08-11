@@ -344,7 +344,14 @@ export default function EnhancedThreeBackground({
   const [shouldRender, setShouldRender] = useState(true);
 
   useEffect(() => {
-    // Check if WebGL is supported
+    // Check if WebGL is supported and if there are already too many canvases
+    const existingCanvases = document.querySelectorAll('canvas').length;
+    if (existingCanvases > 2) {
+      setShouldRender(false);
+      console.warn('Too many canvases detected, Three.js background disabled');
+      return;
+    }
+
     const canvas = document.createElement('canvas');
     const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
     if (!gl) {
