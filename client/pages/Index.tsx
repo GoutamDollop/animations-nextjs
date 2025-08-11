@@ -109,8 +109,6 @@ export default function Index() {
       {/* Modern Hero Section */}
       <ModernHeroSection />
 
-      {/* Image Showcase - NEW */}
-      <div className="fade-slide-up">{/* <ImageShowcase /> */}</div>
 
       {/* Stats Section with Enhanced Animations - PRESERVED */}
       <div className="fade-slide-left">
