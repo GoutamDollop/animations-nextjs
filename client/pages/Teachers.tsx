@@ -38,9 +38,9 @@ export default function Teachers() {
         </section>
 
         {/* Teachers Grid */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
               {teachersData.teachers.map((teacher, index) => (
                 <TeacherCard key={teacher.id} {...teacher} />
               ))}
