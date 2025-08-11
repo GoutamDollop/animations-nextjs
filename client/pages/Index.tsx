@@ -106,8 +106,8 @@ export default function Index() {
       <AdvancedScrollAnimations />
       <TextRevealAnimations />
 
-      {/* Enhanced Hero Section with Three.js - PRESERVED */}
-      <EnhancedHeroSection />
+      {/* Modern Hero Section */}
+      <ModernHeroSection />
 
       {/* Enhanced Image Slider - NEW */}
       <div className="fade-slide-up">
