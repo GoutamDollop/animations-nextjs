@@ -162,6 +162,9 @@ export default function AnimatedBreadcrumb() {
     }
   };
 
+  // Don't render if on home page
+  if (!shouldShowBreadcrumb) return null;
+
   return (
     <div className="relative bg-gradient-to-r from-slate-50 via-blue-50 to-purple-50 border-b border-gray-200/50 overflow-hidden">
       {/* Background Elements */}
