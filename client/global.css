@@ -393,7 +393,12 @@ img {
 
   /* Text selection styling */
   ::selection {
-    background: linear-gradient(135deg, #f97316, #dc2626);
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+    color: white;
+  }
+
+  ::-moz-selection {
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6);
     color: white;
   }
 
