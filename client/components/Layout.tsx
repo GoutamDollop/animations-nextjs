@@ -33,6 +33,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <SmoothScrollProvider>
       <EnhancedPerformanceOptimizer />
+      <FinalOptimizations />
       <ScrollManager />
       <EnhancedCustomCursor />
       <div className="min-h-screen flex flex-col bg-white">
