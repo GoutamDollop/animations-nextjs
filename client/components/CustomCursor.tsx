@@ -38,7 +38,7 @@ export default function CustomCursor() {
       // Use clientX and clientY for fixed positioning
       mouseX = e.clientX;
       mouseY = e.clientY;
-      
+
       if (!isVisible) {
         isVisible = true;
         if (cursor) cursor.style.opacity = "1";
@@ -82,7 +82,7 @@ export default function CustomCursor() {
     // Add hover effects to interactive elements
     const updateInteractiveElements = () => {
       const interactiveElements = document.querySelectorAll(
-        'a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card, .enhanced-btn, .nav-item, .mobile-nav-item, .form-field input, .form-field textarea, .form-field select, .gallery-item, .testimonial-card, .event-card, .course-card, .teacher-card, .student-card'
+        'a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card, .enhanced-btn, .nav-item, .mobile-nav-item, .form-field input, .form-field textarea, .form-field select, .gallery-item, .testimonial-card, .event-card, .course-card, .teacher-card, .student-card',
       );
 
       interactiveElements.forEach((el) => {
@@ -132,14 +132,14 @@ export default function CustomCursor() {
       <div
         ref={cursorRef}
         className="fixed top-0 left-0 w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full pointer-events-none z-[9999] opacity-0 transition-all duration-150 ease-out hidden lg:block"
-        style={{ willChange: 'transform, opacity' }}
+        style={{ willChange: "transform, opacity" }}
       />
 
       {/* Cursor follower */}
       <div
         ref={followerRef}
         className="fixed top-0 left-0 w-8 h-8 border-2 border-orange-500 rounded-full pointer-events-none z-[9998] opacity-0 transition-all duration-300 ease-out hidden lg:block"
-        style={{ willChange: 'transform, opacity, border-color' }}
+        style={{ willChange: "transform, opacity, border-color" }}
       />
     </>
   );

@@ -5,17 +5,20 @@ A comprehensive, fully responsive educational website built with React, TypeScri
 ## 🚀 Features
 
 ### 📱 **Fully Responsive Design**
+
 - Mobile-first approach with proper breakpoints
 - Optimized for all screen sizes (mobile, tablet, desktop)
 - Touch-friendly interfaces and interactions
 
 ### 🎨 **Modern UI/UX**
+
 - Beautiful gradient designs and animations
 - Hero breadcrumb navigation integrated into page headers
 - Custom cursor effects and smooth scrolling
 - Professional loading states and transitions
 
 ### 📄 **Complete Page Structure**
+
 - **Home**: Hero slider with auto/manual controls, stats, featured content
 - **About**: Company history, values, timeline, achievements
 - **Courses**: Filterable course catalog with detailed information
@@ -27,12 +30,14 @@ A comprehensive, fully responsive educational website built with React, TypeScri
 - **404**: Animated error page with helpful navigation
 
 ### ⚡ **Performance Optimizations**
+
 - Optimized GSAP animations for smooth performance
 - Lazy loading and efficient image handling
 - Throttled scroll events and performance monitoring
 - Clean code architecture with reusable components
 
 ### 🧭 **Enhanced Navigation**
+
 - Responsive navigation bar with mobile menu
 - Hero breadcrumb navigation on all pages
 - Smooth scroll-to-top functionality
@@ -79,16 +84,19 @@ client/
 ## 🚀 Quick Start
 
 1. **Install Dependencies**
+
    ```bash
    npm install
    ```
 
 2. **Start Development Server**
+
    ```bash
    npm run dev
    ```
 
 3. **Build for Production**
+
    ```bash
    npm run build
    ```
@@ -101,24 +109,28 @@ client/
 ## 🎯 Key Features Implemented
 
 ### Navigation & UX
+
 - ✅ Hero breadcrumb navigation integrated into page headers
 - ✅ Responsive mobile navigation with smooth animations
 - ✅ Scroll-to-top functionality with smooth scrolling
 - ✅ Page transition management and scroll position handling
 
 ### Content Management
+
 - ✅ Dynamic content loading from JSON data files
 - ✅ Filterable and searchable content (courses, events, gallery)
 - ✅ Interactive components with manual and auto controls
 - ✅ Comprehensive contact forms with validation
 
 ### Performance & Optimization
+
 - ✅ Optimized animations and smooth performance
 - ✅ Mobile-responsive design with proper touch targets
 - ✅ Clean code architecture with reusable components
 - ✅ Performance monitoring and optimization components
 
 ### Visual Design
+
 - ✅ Modern gradient designs and color schemes
 - ✅ Professional typography and spacing
 - ✅ Consistent design language across all pages
@@ -127,6 +139,7 @@ client/
 ## 📱 Mobile Responsiveness
 
 All components are fully responsive with:
+
 - Mobile-first design approach
 - Proper breakpoints (sm, md, lg, xl)
 - Touch-friendly interface elements
@@ -136,6 +149,7 @@ All components are fully responsive with:
 ## 🎨 Design System
 
 The project uses a consistent design system with:
+
 - **Colors**: Orange, red, pink gradient themes with blue, green, purple accents
 - **Typography**: Modern font hierarchy with proper sizing
 - **Spacing**: Consistent padding and margin system
@@ -144,6 +158,7 @@ The project uses a consistent design system with:
 ## 🔧 Development
 
 The project is built with modern development practices:
+
 - TypeScript for type safety
 - Component-based architecture
 - Separated concerns (data, logic, presentation)

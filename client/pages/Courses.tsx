@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import HeroBreadcrumb from '../components/HeroBreadcrumb';
+import HeroBreadcrumb from "../components/HeroBreadcrumb";
 import {
   BookOpen,
   Clock,
@@ -194,178 +194,180 @@ export default function Courses() {
 
   return (
     <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
-        {/* Hero Section */}
-        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 text-white relative overflow-hidden">
-          <HeroBreadcrumb />
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-            <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-blue-300 rounded-full animate-ping"></div>
-          </div>
+      {/* Hero Section */}
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 text-white relative overflow-hidden">
+        <HeroBreadcrumb />
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
+          <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-blue-300 rounded-full animate-ping"></div>
+        </div>
 
-          <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-            <div className="courses-header max-w-4xl mx-auto">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
-                Our Courses & Programs 📚
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
-                Discover world-class education programs designed to unlock your potential and prepare you for future success.
+        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
+          <div className="courses-header max-w-4xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
+              Our Courses & Programs 📚
+            </h1>
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
+              Discover world-class education programs designed to unlock your
+              potential and prepare you for future success.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Filter Section */}
+      <section className="filter-section py-12 bg-white border-b border-gray-200">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="mb-6 md:mb-0">
+              <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                Explore Our Programs
+              </h2>
+              <p className="text-gray-600">
+                {filteredCourses.length} course
+                {filteredCourses.length !== 1 ? "s" : ""} available
               </p>
             </div>
-          </div>
-        </section>
 
-        {/* Filter Section */}
-        <section className="filter-section py-12 bg-white border-b border-gray-200">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="mb-6 md:mb-0">
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
-                  Explore Our Programs
-                </h2>
-                <p className="text-gray-600">
-                  {filteredCourses.length} course
-                  {filteredCourses.length !== 1 ? "s" : ""} available
-                </p>
-              </div>
-
-              {/* Category Filter */}
-              <div className="flex flex-wrap gap-2 md:gap-3 justify-center md:justify-start">
-                {categories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    className={`px-3 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
-                      selectedCategory === category
-                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
-                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                    }`}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Courses Grid */}
-        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-              {filteredCourses.map((course, index) => (
-                <div
-                  key={course.id}
-                  className="course-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2 md:gap-3 justify-center md:justify-start">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-3 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
+                    selectedCategory === category
+                      ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
+                      : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                  }`}
                 >
-                  {/* Course Image */}
-                  <div className="relative">
-                    <img
-                      src={course.image}
-                      alt={course.title}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="absolute top-4 left-4">
-                      <span
-                        className={`px-3 py-1 rounded-full text-xs font-bold ${getLevelColor(course.level)}`}
-                      >
-                        {course.level}
-                      </span>
-                    </div>
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-                      <span className="text-sm font-bold text-gray-800">
-                        {course.price}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Course Content */}
-                  <div className="p-6">
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm font-semibold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
-                        {course.category}
-                      </span>
-                      <div className="flex items-center space-x-1">
-                        <Star className="h-4 w-4 text-yellow-500 fill-current" />
-                        <span className="text-sm font-bold text-gray-700">
-                          {course.rating}
-                        </span>
-                      </div>
-                    </div>
-
-                    <h3 className="text-xl font-bold text-gray-800 mb-3">
-                      {course.title}
-                    </h3>
-
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      {course.description}
-                    </p>
-
-                    {/* Course Stats */}
-                    <div className="grid grid-cols-2 gap-4 mb-6">
-                      <div className="flex items-center space-x-2">
-                        <Clock className="h-4 w-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">
-                          {course.duration}
-                        </span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Users className="h-4 w-4 text-gray-500" />
-                        <span className="text-sm text-gray-600">
-                          {course.students} students
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Instructor */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div>
-                        <p className="text-sm text-gray-500">Instructor</p>
-                        <p className="font-semibold text-gray-800">
-                          {course.instructor}
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="flex space-x-2 md:space-x-3">
-                      <button className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                        Enroll Now
-                      </button>
-                      <button className="px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-xl hover:border-orange-300 transition-colors duration-300">
-                        <BookOpen className="h-4 w-4 md:h-5 md:w-5 text-gray-600" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
+                  {category}
+                </button>
               ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white">
-          <div className="container mx-auto px-4 lg:px-8 text-center">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 md:mb-6">
-                Ready to Start Learning? 🚀
-              </h2>
-              <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8 leading-relaxed px-4">
-                Join thousands of students who are already transforming their futures with our world-class education programs.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
-                <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white text-orange-600 px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
-                  <span>Apply for Admission</span>
-                  <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
-                </button>
-                <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-transparent border-2 md:border-3 border-white text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl hover:bg-white hover:text-orange-600 transition-all duration-300">
-                  <Calendar className="h-5 w-5 md:h-6 md:w-6" />
-                  <span>Schedule Campus Tour</span>
-                </button>
+      {/* Courses Grid */}
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {filteredCourses.map((course, index) => (
+              <div
+                key={course.id}
+                className="course-card bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden"
+              >
+                {/* Course Image */}
+                <div className="relative">
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-bold ${getLevelColor(course.level)}`}
+                    >
+                      {course.level}
+                    </span>
+                  </div>
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+                    <span className="text-sm font-bold text-gray-800">
+                      {course.price}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Course Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-sm font-semibold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
+                      {course.category}
+                    </span>
+                    <div className="flex items-center space-x-1">
+                      <Star className="h-4 w-4 text-yellow-500 fill-current" />
+                      <span className="text-sm font-bold text-gray-700">
+                        {course.rating}
+                      </span>
+                    </div>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-gray-800 mb-3">
+                    {course.title}
+                  </h3>
+
+                  <p className="text-gray-600 mb-4 leading-relaxed">
+                    {course.description}
+                  </p>
+
+                  {/* Course Stats */}
+                  <div className="grid grid-cols-2 gap-4 mb-6">
+                    <div className="flex items-center space-x-2">
+                      <Clock className="h-4 w-4 text-gray-500" />
+                      <span className="text-sm text-gray-600">
+                        {course.duration}
+                      </span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <Users className="h-4 w-4 text-gray-500" />
+                      <span className="text-sm text-gray-600">
+                        {course.students} students
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Instructor */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <p className="text-sm text-gray-500">Instructor</p>
+                      <p className="font-semibold text-gray-800">
+                        {course.instructor}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex space-x-2 md:space-x-3">
+                    <button className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                      Enroll Now
+                    </button>
+                    <button className="px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-xl hover:border-orange-300 transition-colors duration-300">
+                      <BookOpen className="h-4 w-4 md:h-5 md:w-5 text-gray-600" />
+                    </button>
+                  </div>
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 md:mb-6">
+              Ready to Start Learning? 🚀
+            </h2>
+            <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8 leading-relaxed px-4">
+              Join thousands of students who are already transforming their
+              futures with our world-class education programs.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
+              <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white text-orange-600 px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+                <span>Apply for Admission</span>
+                <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
+              </button>
+              <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-transparent border-2 md:border-3 border-white text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl hover:bg-white hover:text-orange-600 transition-all duration-300">
+                <Calendar className="h-5 w-5 md:h-6 md:w-6" />
+                <span>Schedule Campus Tour</span>
+              </button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
     </div>
   );
 }

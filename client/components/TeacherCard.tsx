@@ -1,14 +1,7 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import {
-  Mail,
-  Phone,
-  Calendar,
-  Award,
-  Users,
-  Star
-} from 'lucide-react';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Mail, Phone, Calendar, Award, Users, Star } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -39,7 +32,7 @@ export default function TeacherCard({
   rating,
   students,
   description,
-  achievements
+  achievements,
 }: TeacherCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +40,8 @@ export default function TeacherCard({
     const card = cardRef.current;
     if (!card) return;
 
-    gsap.fromTo(card,
+    gsap.fromTo(
+      card,
       { y: 40, opacity: 0, scale: 0.95 },
       {
         y: 0,
@@ -58,23 +52,26 @@ export default function TeacherCard({
         scrollTrigger: {
           trigger: card,
           start: "top 85%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          toggleActions: "play none none reverse",
+        },
+      },
     );
 
     // Hover effect
-    card.addEventListener('mouseenter', () => {
+    card.addEventListener("mouseenter", () => {
       gsap.to(card, { y: -5, duration: 0.3, ease: "power2.out" });
     });
-    
-    card.addEventListener('mouseleave', () => {
+
+    card.addEventListener("mouseleave", () => {
       gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" });
     });
   }, []);
 
   return (
-    <div ref={cardRef} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-100 max-w-sm mx-auto">
+    <div
+      ref={cardRef}
+      className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl border border-gray-100 max-w-sm mx-auto"
+    >
       {/* Header with Teacher Image and Basic Info */}
       <div className="relative bg-gradient-to-br from-purple-600 to-blue-600 p-6 text-white">
         <div className="flex items-center space-x-4">
@@ -91,7 +88,9 @@ export default function TeacherCard({
                 <Star
                   key={i}
                   className={`h-3 w-3 ${
-                    i < rating ? 'text-yellow-400 fill-current' : 'text-purple-300'
+                    i < rating
+                      ? "text-yellow-400 fill-current"
+                      : "text-purple-300"
                   }`}
                 />
               ))}
@@ -118,7 +117,9 @@ export default function TeacherCard({
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">{description}</p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
+          {description}
+        </p>
 
         {/* Key Info */}
         <div className="space-y-2 mb-4 text-xs">
@@ -127,7 +128,9 @@ export default function TeacherCard({
             <span className="text-gray-600">{education}</span>
           </div>
           <div>
-            <span className="font-semibold text-gray-800">Specialization: </span>
+            <span className="font-semibold text-gray-800">
+              Specialization:{" "}
+            </span>
             <span className="text-gray-600">{specialization}</span>
           </div>
         </div>
@@ -136,7 +139,9 @@ export default function TeacherCard({
         <div className="mb-4">
           <div className="flex items-start space-x-2 p-3 bg-yellow-50 rounded-xl">
             <Award className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
-            <span className="text-xs text-gray-700 font-medium">{achievements[0]}</span>
+            <span className="text-xs text-gray-700 font-medium">
+              {achievements[0]}
+            </span>
           </div>
         </div>
 

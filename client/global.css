@@ -62,7 +62,9 @@ img {
 
 /* Improve touch targets on mobile */
 @media (max-width: 768px) {
-  button, a, [role="button"] {
+  button,
+  a,
+  [role="button"] {
     min-height: 44px;
     min-width: 44px;
   }

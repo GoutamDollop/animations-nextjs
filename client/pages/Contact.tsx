@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import HeroBreadcrumb from '../components/HeroBreadcrumb';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroBreadcrumb from "../components/HeroBreadcrumb";
 import {
   Mail,
   Phone,
@@ -12,19 +12,19 @@ import {
   MessageSquare,
   Calendar,
   CheckCircle,
-} from 'lucide-react';
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
   const pageRef = useRef<HTMLDivElement>(null);
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: '',
-    inquiryType: 'general'
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+    inquiryType: "general",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -32,96 +32,100 @@ export default function Contact() {
     const ctx = gsap.context(() => {
       // Header animation
       gsap.fromTo(
-        '.contact-header',
+        ".contact-header",
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
       );
 
       // Form animation
       gsap.fromTo(
-        '.contact-form',
+        ".contact-form",
         { x: -100, opacity: 0 },
-        { 
-          x: 0, 
-          opacity: 1, 
-          duration: 1, 
-          ease: 'power3.out',
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: '.contact-form',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          }
-        }
+            trigger: ".contact-form",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Info cards animation
       gsap.fromTo(
-        '.contact-info',
+        ".contact-info",
         { x: 100, opacity: 0 },
-        { 
-          x: 0, 
-          opacity: 1, 
-          duration: 1, 
-          ease: 'power3.out',
+        {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: '.contact-info',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          }
-        }
+            trigger: ".contact-info",
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Form fields animation
       gsap.fromTo(
-        '.form-field',
+        ".form-field",
         { y: 50, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 0.6, 
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6,
           stagger: 0.1,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
-            trigger: '.contact-form',
-            start: 'top 70%',
-            toggleActions: 'play none none reverse'
-          }
-        }
+            trigger: ".contact-form",
+            start: "top 70%",
+            toggleActions: "play none none reverse",
+          },
+        },
       );
     }, pageRef);
 
     return () => ctx.revert();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     setIsSubmitting(false);
     setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      subject: '',
-      message: '',
-      inquiryType: 'general'
+      name: "",
+      email: "",
+      phone: "",
+      subject: "",
+      message: "",
+      inquiryType: "general",
     });
-    
+
     // Show success message
     gsap.fromTo(
-      '.success-message',
+      ".success-message",
       { scale: 0, opacity: 0 },
-      { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }
+      { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.7)" },
     );
   };
 
@@ -130,35 +134,35 @@ export default function Contact() {
       icon: MapPin,
       title: "Visit Our Campus",
       details: ["123 Education Street", "Learning City, LC 12345"],
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
     },
     {
       icon: Phone,
       title: "Call Us",
       details: ["+1 (555) 123-4567", "Mon-Fri: 8AM-6PM"],
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
     },
     {
       icon: Mail,
       title: "Email Us",
       details: ["info@eduverse.edu", "Quick response guaranteed"],
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
     },
     {
       icon: Clock,
       title: "Office Hours",
       details: ["Monday - Friday: 8AM - 6PM", "Saturday: 9AM - 4PM"],
-      color: "from-orange-500 to-red-500"
-    }
+      color: "from-orange-500 to-red-500",
+    },
   ];
 
   const inquiryTypes = [
-    { value: 'general', label: 'General Inquiry' },
-    { value: 'admission', label: 'Admissions' },
-    { value: 'academic', label: 'Academic Programs' },
-    { value: 'financial', label: 'Financial Aid' },
-    { value: 'visit', label: 'Campus Visit' },
-    { value: 'other', label: 'Other' }
+    { value: "general", label: "General Inquiry" },
+    { value: "admission", label: "Admissions" },
+    { value: "academic", label: "Academic Programs" },
+    { value: "financial", label: "Financial Aid" },
+    { value: "visit", label: "Campus Visit" },
+    { value: "other", label: "Other" },
   ];
 
   return (
@@ -179,7 +183,8 @@ export default function Contact() {
               Get In Touch 📞
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
-              Ready to start your educational journey? We're here to help you every step of the way!
+              Ready to start your educational journey? We're here to help you
+              every step of the way!
             </p>
           </div>
         </div>
@@ -197,7 +202,8 @@ export default function Contact() {
                     Send us a Message 💌
                   </h2>
                   <p className="text-gray-600">
-                    Fill out the form below and we'll get back to you within 24 hours.
+                    Fill out the form below and we'll get back to you within 24
+                    hours.
                   </p>
                 </div>
 
@@ -340,7 +346,9 @@ export default function Contact() {
                 <div className="success-message hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl">
                   <div className="flex items-center space-x-2">
                     <CheckCircle className="h-5 w-5 text-green-600" />
-                    <span className="text-green-800 font-semibold">Message sent successfully!</span>
+                    <span className="text-green-800 font-semibold">
+                      Message sent successfully!
+                    </span>
                   </div>
                 </div>
               </div>
@@ -364,7 +372,9 @@ export default function Contact() {
                     className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
                   >
                     <div className="flex items-start space-x-4">
-                      <div className={`p-3 bg-gradient-to-br ${info.color} rounded-xl shadow-lg`}>
+                      <div
+                        className={`p-3 bg-gradient-to-br ${info.color} rounded-xl shadow-lg`}
+                      >
                         <info.icon className="h-6 w-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -385,7 +395,8 @@ export default function Contact() {
                 <div className="bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl p-6 text-white">
                   <h3 className="text-xl font-bold mb-4">Ready to Apply? 🎓</h3>
                   <p className="mb-6">
-                    Start your journey with us today! Our admissions team is ready to guide you.
+                    Start your journey with us today! Our admissions team is
+                    ready to guide you.
                   </p>
                   <div className="space-y-3">
                     <button className="w-full bg-white text-orange-600 py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base hover:shadow-lg transform hover:scale-105 transition-all duration-300">

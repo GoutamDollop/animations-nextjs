@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import HeroBreadcrumb from '../components/HeroBreadcrumb';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroBreadcrumb from "../components/HeroBreadcrumb";
 import {
   Camera,
   Play,
@@ -11,27 +11,27 @@ import {
   Eye,
   Filter,
   Grid3X3,
-  List
-} from 'lucide-react';
+  List,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Gallery() {
   const pageRef = useRef<HTMLDivElement>(null);
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [viewMode, setViewMode] = useState<'grid' | 'masonry'>('grid');
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [viewMode, setViewMode] = useState<"grid" | "masonry">("grid");
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Header animation
       gsap.fromTo(
-        '.gallery-header',
+        ".gallery-header",
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
+        { y: 0, opacity: 1, duration: 1, ease: "power3.out" },
       );
 
       // Gallery items animation
-      gsap.utils.toArray('.gallery-item').forEach((item: any, index) => {
+      gsap.utils.toArray(".gallery-item").forEach((item: any, index) => {
         gsap.fromTo(
           item,
           { y: 80, opacity: 0, scale: 0.9 },
@@ -40,11 +40,11 @@ export default function Gallery() {
             opacity: 1,
             scale: 1,
             duration: 0.8,
-            ease: 'back.out(1.7)',
+            ease: "back.out(1.7)",
             scrollTrigger: {
               trigger: item,
-              start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              start: "top 85%",
+              toggleActions: "play none none reverse",
             },
             delay: index * 0.05,
           },
@@ -55,94 +55,103 @@ export default function Gallery() {
     return () => ctx.revert();
   }, [selectedCategory, viewMode]);
 
-  const categories = ['All', 'Campus', 'Events', 'Students', 'Sports', 'Facilities'];
+  const categories = [
+    "All",
+    "Campus",
+    "Events",
+    "Students",
+    "Sports",
+    "Facilities",
+  ];
 
   const galleryItems = [
     {
       id: 1,
-      title: 'Science Laboratory',
-      category: 'Facilities',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg',
+      title: "Science Laboratory",
+      category: "Facilities",
+      type: "image",
+      url: "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
       likes: 45,
       views: 128,
-      description: 'State-of-the-art science laboratory with modern equipment.'
+      description: "State-of-the-art science laboratory with modern equipment.",
     },
     {
       id: 2,
-      title: 'Basketball Court',
-      category: 'Sports',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg',
+      title: "Basketball Court",
+      category: "Sports",
+      type: "image",
+      url: "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
       likes: 62,
       views: 245,
-      description: 'Our professional basketball court for sports activities.'
+      description: "Our professional basketball court for sports activities.",
     },
     {
       id: 3,
-      title: 'Student Performance',
-      category: 'Events',
-      type: 'video',
-      url: 'https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg',
+      title: "Student Performance",
+      category: "Events",
+      type: "video",
+      url: "https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg",
       likes: 89,
       views: 356,
-      description: 'Annual cultural night performance by our talented students.'
+      description:
+        "Annual cultural night performance by our talented students.",
     },
     {
       id: 4,
-      title: 'Computer Lab',
-      category: 'Facilities',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg',
+      title: "Computer Lab",
+      category: "Facilities",
+      type: "image",
+      url: "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
       likes: 34,
       views: 198,
-      description: 'Modern computer laboratory with latest technology.'
+      description: "Modern computer laboratory with latest technology.",
     },
     {
       id: 5,
-      title: 'Campus Garden',
-      category: 'Campus',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/5274601/pexels-photo-5274601.jpeg',
+      title: "Campus Garden",
+      category: "Campus",
+      type: "image",
+      url: "https://images.pexels.com/photos/5274601/pexels-photo-5274601.jpeg",
       likes: 78,
       views: 289,
-      description: 'Beautiful garden area where students relax and study.'
+      description: "Beautiful garden area where students relax and study.",
     },
     {
       id: 6,
-      title: 'Art Studio',
-      category: 'Facilities',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg',
+      title: "Art Studio",
+      category: "Facilities",
+      type: "image",
+      url: "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
       likes: 56,
       views: 167,
-      description: 'Creative art studio for our artistic students.'
+      description: "Creative art studio for our artistic students.",
     },
     {
       id: 7,
-      title: 'Library Study Area',
-      category: 'Campus',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg',
+      title: "Library Study Area",
+      category: "Campus",
+      type: "image",
+      url: "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
       likes: 91,
       views: 412,
-      description: 'Quiet study areas in our modern library.'
+      description: "Quiet study areas in our modern library.",
     },
     {
       id: 8,
-      title: 'Student Life',
-      category: 'Students',
-      type: 'image',
-      url: 'https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg',
+      title: "Student Life",
+      category: "Students",
+      type: "image",
+      url: "https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg",
       likes: 123,
       views: 598,
-      description: 'Vibrant student life and community activities.'
-    }
+      description: "Vibrant student life and community activities.",
+    },
   ];
 
-  const filteredItems = selectedCategory === 'All' 
-    ? galleryItems 
-    : galleryItems.filter(item => item.category === selectedCategory);
+  const filteredItems =
+    selectedCategory === "All"
+      ? galleryItems
+      : galleryItems.filter((item) => item.category === selectedCategory);
 
   return (
     <div ref={pageRef} className="min-h-screen pt-16 md:pt-20 lg:pt-24">
@@ -154,14 +163,15 @@ export default function Gallery() {
           <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
           <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-green-300 rounded-full animate-ping"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
           <div className="gallery-header max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
               Campus Gallery 📷
             </h1>
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
-              Explore our vibrant campus life, modern facilities, and memorable moments through our photo gallery!
+              Explore our vibrant campus life, modern facilities, and memorable
+              moments through our photo gallery!
             </p>
           </div>
         </div>
@@ -176,7 +186,8 @@ export default function Gallery() {
                 Photo & Video Gallery
               </h2>
               <p className="text-gray-600">
-                {filteredItems.length} item{filteredItems.length !== 1 ? 's' : ''} in gallery
+                {filteredItems.length} item
+                {filteredItems.length !== 1 ? "s" : ""} in gallery
               </p>
             </div>
 
@@ -189,8 +200,8 @@ export default function Gallery() {
                     onClick={() => setSelectedCategory(category)}
                     className={`px-3 md:px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 transform hover:scale-105 ${
                       selectedCategory === category
-                        ? 'bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                        ? "bg-gradient-to-r from-pink-500 to-purple-500 text-white shadow-lg"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
                     {category}
@@ -201,17 +212,17 @@ export default function Gallery() {
               {/* View Mode Toggle */}
               <div className="flex bg-gray-100 rounded-lg p-1">
                 <button
-                  onClick={() => setViewMode('grid')}
+                  onClick={() => setViewMode("grid")}
                   className={`p-2 rounded-md transition-all duration-300 ${
-                    viewMode === 'grid' ? 'bg-white shadow-sm' : ''
+                    viewMode === "grid" ? "bg-white shadow-sm" : ""
                   }`}
                 >
                   <Grid3X3 className="h-4 w-4" />
                 </button>
                 <button
-                  onClick={() => setViewMode('masonry')}
+                  onClick={() => setViewMode("masonry")}
                   className={`p-2 rounded-md transition-all duration-300 ${
-                    viewMode === 'masonry' ? 'bg-white shadow-sm' : ''
+                    viewMode === "masonry" ? "bg-white shadow-sm" : ""
                   }`}
                 >
                   <List className="h-4 w-4" />
@@ -225,16 +236,20 @@ export default function Gallery() {
       {/* Gallery Grid */}
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className={`grid gap-6 ${
-            viewMode === 'grid' 
-              ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4' 
-              : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-          }`}>
+          <div
+            className={`grid gap-6 ${
+              viewMode === "grid"
+                ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+                : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+            }`}
+          >
             {filteredItems.map((item, index) => (
               <div
                 key={item.id}
                 className={`gallery-item group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 overflow-hidden ${
-                  viewMode === 'masonry' && index % 3 === 1 ? 'md:row-span-2' : ''
+                  viewMode === "masonry" && index % 3 === 1
+                    ? "md:row-span-2"
+                    : ""
                 }`}
               >
                 {/* Image/Video Container */}
@@ -244,15 +259,15 @@ export default function Gallery() {
                     alt={item.title}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  
+
                   {/* Type Indicator */}
                   <div className="absolute top-4 left-4">
-                    <div className={`p-2 rounded-full ${
-                      item.type === 'video' 
-                        ? 'bg-red-500' 
-                        : 'bg-blue-500'
-                    } text-white shadow-lg`}>
-                      {item.type === 'video' ? (
+                    <div
+                      className={`p-2 rounded-full ${
+                        item.type === "video" ? "bg-red-500" : "bg-blue-500"
+                      } text-white shadow-lg`}
+                    >
+                      {item.type === "video" ? (
                         <Play className="h-4 w-4" />
                       ) : (
                         <Camera className="h-4 w-4" />
@@ -288,7 +303,7 @@ export default function Gallery() {
                   <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-2">
                     {item.title}
                   </h3>
-                  
+
                   <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                     {item.description}
                   </p>
@@ -321,7 +336,8 @@ export default function Gallery() {
               Want to Be Part of Our Story? 📸
             </h2>
             <p className="text-lg md:text-xl text-purple-100 mb-6 md:mb-8 leading-relaxed px-4">
-              Join our vibrant community and create your own memorable moments at EduVerse Academy!
+              Join our vibrant community and create your own memorable moments
+              at EduVerse Academy!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
               <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white text-purple-600 px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">

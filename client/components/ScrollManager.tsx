@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function ScrollManager() {
   const location = useLocation();
@@ -10,7 +10,7 @@ export default function ScrollManager() {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     };
 
@@ -27,7 +27,7 @@ export default function ScrollManager() {
         window.scrollTo({
           top: 0,
           left: 0,
-          behavior: 'auto' // Instant for page refresh
+          behavior: "auto", // Instant for page refresh
         });
       }
     };
@@ -41,15 +41,15 @@ export default function ScrollManager() {
         window.scrollTo({
           top: 0,
           left: 0,
-          behavior: 'smooth'
+          behavior: "smooth",
         });
       }, 100);
     };
 
-    window.addEventListener('popstate', handlePopState);
-    
+    window.addEventListener("popstate", handlePopState);
+
     return () => {
-      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener("popstate", handlePopState);
     };
   }, []);
 

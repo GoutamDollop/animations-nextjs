@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import Navigation from './Navigation';
-import Footer from './Footer';
-import Loading from './Loading';
-import ScrollToTop from './ScrollToTop';
-import CustomCursor from './CustomCursor';
-import PerformanceOptimizer from './PerformanceOptimizer';
-import ScrollManager from './ScrollManager';
+import React, { useState, useEffect } from "react";
+import Navigation from "./Navigation";
+import Footer from "./Footer";
+import Loading from "./Loading";
+import ScrollToTop from "./ScrollToTop";
+import CustomCursor from "./CustomCursor";
+import PerformanceOptimizer from "./PerformanceOptimizer";
+import ScrollManager from "./ScrollManager";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -35,9 +35,7 @@ export default function Layout({ children }: LayoutProps) {
       <div className="min-h-screen flex flex-col bg-white">
         <Navigation />
 
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
 
         <Footer />
         <ScrollToTop />

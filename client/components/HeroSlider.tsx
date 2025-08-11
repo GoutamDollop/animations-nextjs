@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
-import { gsap } from 'gsap';
-import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
+import React, { useEffect, useRef, useState, useCallback } from "react";
+import { gsap } from "gsap";
+import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 interface SlideData {
   id: number;
@@ -17,16 +17,18 @@ const slides: SlideData[] = [
     image: "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
     title: "Excellence in",
     subtitle: "Education",
-    description: "Interactive classroom experiences with cutting-edge technology",
-    badge: "🎓 Excellence"
+    description:
+      "Interactive classroom experiences with cutting-edge technology",
+    badge: "🎓 Excellence",
   },
   {
     id: 2,
     image: "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
     title: "Building",
     subtitle: "Community",
-    description: "Creating lasting friendships and memories through shared learning",
-    badge: "🌟 Unity"
+    description:
+      "Creating lasting friendships and memories through shared learning",
+    badge: "🌟 Unity",
   },
   {
     id: 3,
@@ -34,8 +36,8 @@ const slides: SlideData[] = [
     title: "Success",
     subtitle: "Stories",
     description: "Celebrating every milestone in your educational journey",
-    badge: "🏆 Success"
-  }
+    badge: "🏆 Success",
+  },
 ];
 
 export default function HeroSlider() {
@@ -44,33 +46,37 @@ export default function HeroSlider() {
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
-  const changeSlide = useCallback((index: number) => {
-    if (index === currentSlide) return;
+  const changeSlide = useCallback(
+    (index: number) => {
+      if (index === currentSlide) return;
 
-    // Enhanced transition animations
-    if (imageRef.current && contentRef.current) {
-      gsap.to([imageRef.current, contentRef.current], {
-        opacity: 0,
-        y: 20,
-        scale: 0.95,
-        duration: 0.4,
-        ease: "power2.inOut",
-        onComplete: () => {
-          setCurrentSlide(index);
-          gsap.fromTo([imageRef.current, contentRef.current],
-            { opacity: 0, y: -20, scale: 1.05 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              duration: 0.6,
-              ease: "back.out(1.7)"
-            }
-          );
-        }
-      });
-    }
-  }, [currentSlide]);
+      // Enhanced transition animations
+      if (imageRef.current && contentRef.current) {
+        gsap.to([imageRef.current, contentRef.current], {
+          opacity: 0,
+          y: 20,
+          scale: 0.95,
+          duration: 0.4,
+          ease: "power2.inOut",
+          onComplete: () => {
+            setCurrentSlide(index);
+            gsap.fromTo(
+              [imageRef.current, contentRef.current],
+              { opacity: 0, y: -20, scale: 1.05 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "back.out(1.7)",
+              },
+            );
+          },
+        });
+      }
+    },
+    [currentSlide],
+  );
 
   const nextSlide = useCallback(() => {
     const next = (currentSlide + 1) % slides.length;
@@ -92,7 +98,7 @@ export default function HeroSlider() {
   useEffect(() => {
     if (sliderRef.current) {
       gsap.fromTo(
-        '.hero-content > *',
+        ".hero-content > *",
         { y: 50, opacity: 0, scale: 0.9 },
         {
           y: 0,
@@ -101,12 +107,12 @@ export default function HeroSlider() {
           duration: 1,
           stagger: 0.2,
           ease: "back.out(1.7)",
-          delay: 0.5
-        }
+          delay: 0.5,
+        },
       );
 
       gsap.fromTo(
-        '.hero-image',
+        ".hero-image",
         { x: 100, opacity: 0, scale: 0.8, rotation: 10 },
         {
           x: 0,
@@ -115,8 +121,8 @@ export default function HeroSlider() {
           rotation: 0,
           duration: 1.2,
           ease: "elastic.out(1, 0.5)",
-          delay: 0.3
-        }
+          delay: 0.3,
+        },
       );
     }
   }, []);
@@ -128,12 +134,15 @@ export default function HeroSlider() {
       {/* Main Slider Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center h-full min-h-[70vh] md:min-h-[80vh]">
         {/* Content Side */}
-        <div ref={contentRef} className="hero-content text-center lg:text-left order-2 lg:order-1 space-y-6 md:space-y-8 px-4 lg:px-0">
+        <div
+          ref={contentRef}
+          className="hero-content text-center lg:text-left order-2 lg:order-1 space-y-6 md:space-y-8 px-4 lg:px-0"
+        >
           <div className="inline-flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 text-orange-600 font-bold text-sm shadow-lg border border-orange-200">
             <Star className="h-4 w-4 text-yellow-500" />
             <span>{currentSlideData.badge}</span>
           </div>
-          
+
           <div className="space-y-3 md:space-y-4">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black leading-tight">
               <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent mb-2">
@@ -144,7 +153,7 @@ export default function HeroSlider() {
               </div>
             </h1>
           </div>
-          
+
           <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
             {currentSlideData.description}
           </p>
@@ -198,8 +207,8 @@ export default function HeroSlider() {
               onClick={() => changeSlide(index)}
               className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-125'
-                  : 'bg-white/50 hover:bg-white/80'
+                  ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
+                  : "bg-white/50 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />

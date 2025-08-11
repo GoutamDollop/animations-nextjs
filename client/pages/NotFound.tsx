@@ -100,8 +100,8 @@ export default function NotFound() {
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
               It looks like you've wandered off the learning path! The page
-              you're looking for doesn't exist, but don't worry - there's
-              plenty more to explore at EduVerse Academy.
+              you're looking for doesn't exist, but don't worry - there's plenty
+              more to explore at EduVerse Academy.
             </p>
           </div>
 

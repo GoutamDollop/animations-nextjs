@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { GraduationCap, BookOpen, Users, Star } from 'lucide-react';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { GraduationCap, BookOpen, Users, Star } from "lucide-react";
 
 export default function Loading() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -9,41 +9,41 @@ export default function Loading() {
     const ctx = gsap.context(() => {
       // Logo animation
       gsap.fromTo(
-        '.loading-logo',
+        ".loading-logo",
         { scale: 0, rotation: -180 },
-        { scale: 1, rotation: 0, duration: 1, ease: 'elastic.out(1, 0.5)' }
+        { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, 0.5)" },
       );
 
       // Text animation
       gsap.fromTo(
-        '.loading-text',
+        ".loading-text",
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: 'power3.out' }
+        { y: 0, opacity: 1, duration: 0.8, delay: 0.5, ease: "power3.out" },
       );
 
       // Floating icons
-      gsap.to('.floating-icon', {
+      gsap.to(".floating-icon", {
         y: -20,
         duration: 2,
         repeat: -1,
         yoyo: true,
-        ease: 'power2.inOut',
-        stagger: 0.3
+        ease: "power2.inOut",
+        stagger: 0.3,
       });
 
       // Progress bar animation
       gsap.fromTo(
-        '.progress-bar',
-        { width: '0%' },
-        { width: '100%', duration: 2, ease: 'power2.inOut', delay: 1 }
+        ".progress-bar",
+        { width: "0%" },
+        { width: "100%", duration: 2, ease: "power2.inOut", delay: 1 },
       );
 
       // Rotating border
-      gsap.to('.rotating-border', {
+      gsap.to(".rotating-border", {
         rotation: 360,
         duration: 3,
         repeat: -1,
-        ease: 'none'
+        ease: "none",
       });
     }, containerRef);
 
@@ -51,7 +51,7 @@ export default function Loading() {
   }, []);
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="fixed inset-0 bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 flex items-center justify-center z-50"
     >
@@ -99,8 +99,14 @@ export default function Loading() {
         {/* Loading Dots */}
         <div className="loading-text flex justify-center space-x-2 mt-8">
           <div className="w-3 h-3 bg-orange-500 rounded-full animate-bounce"></div>
-          <div className="w-3 h-3 bg-red-500 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
-          <div className="w-3 h-3 bg-pink-500 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+          <div
+            className="w-3 h-3 bg-red-500 rounded-full animate-bounce"
+            style={{ animationDelay: "0.1s" }}
+          ></div>
+          <div
+            className="w-3 h-3 bg-pink-500 rounded-full animate-bounce"
+            style={{ animationDelay: "0.2s" }}
+          ></div>
         </div>
       </div>
     </div>
