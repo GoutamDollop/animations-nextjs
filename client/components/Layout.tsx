@@ -6,6 +6,7 @@ import ScrollToTop from "./ScrollToTop";
 import EnhancedCustomCursor from "./EnhancedCustomCursor";
 import AnimatedBreadcrumb from "./AnimatedBreadcrumb";
 import EnhancedPerformanceOptimizer from "./EnhancedPerformanceOptimizer";
+import FinalOptimizations from "./FinalOptimizations";
 import ScrollManager from "./ScrollManager";
 import { SmoothScrollProvider } from "./AdvancedScrollAnimations";
 
