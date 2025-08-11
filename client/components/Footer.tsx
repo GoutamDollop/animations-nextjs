@@ -56,7 +56,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 mt-auto">
+    <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 mt-auto w-full">
       {/* Floating Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full animate-pulse"></div>
