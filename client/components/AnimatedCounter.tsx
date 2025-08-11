@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,12 +12,12 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-export default function AnimatedCounter({ 
-  end, 
-  duration = 2, 
-  suffix = '', 
-  prefix = '',
-  className = ''
+export default function AnimatedCounter({
+  end,
+  duration = 2,
+  suffix = "",
+  prefix = "",
+  className = "",
 }: AnimatedCounterProps) {
   const [count, setCount] = useState(0);
   const counterRef = useRef<HTMLSpanElement>(null);
@@ -31,18 +31,21 @@ export default function AnimatedCounter({
       (entries) => {
         if (entries[0].isIntersecting && !hasAnimated.current) {
           hasAnimated.current = true;
-          
-          gsap.to({ value: 0 }, {
-            value: end,
-            duration,
-            ease: "power2.out",
-            onUpdate: function() {
-              setCount(Math.round(this.targets()[0].value));
-            }
-          });
+
+          gsap.to(
+            { value: 0 },
+            {
+              value: end,
+              duration,
+              ease: "power2.out",
+              onUpdate: function () {
+                setCount(Math.round(this.targets()[0].value));
+              },
+            },
+          );
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.5 },
     );
 
     observer.observe(element);
@@ -52,7 +55,9 @@ export default function AnimatedCounter({
 
   return (
     <span ref={counterRef} className={className}>
-      {prefix}{count.toLocaleString()}{suffix}
+      {prefix}
+      {count.toLocaleString()}
+      {suffix}
     </span>
   );
 }

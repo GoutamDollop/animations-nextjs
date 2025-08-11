@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import TeacherCard from '../components/TeacherCard';
-import CustomCursor from '../components/CustomCursor';
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TeacherCard from "../components/TeacherCard";
+import CustomCursor from "../components/CustomCursor";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Teachers() {
   useEffect(() => {
     gsap.fromTo(
-      '.teachers-header',
+      ".teachers-header",
       { y: 100, opacity: 0, scale: 0.8 },
-      { y: 0, opacity: 1, scale: 1, duration: 1, ease: 'back.out(1.7)' }
+      { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.7)" },
     );
   }, []);
 
@@ -19,7 +19,8 @@ export default function Teachers() {
     {
       name: "Dr. Sarah Johnson",
       position: "Principal & Mathematics Professor",
-      image: "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
+      image:
+        "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
       experience: "15+ Years",
       education: "PhD in Mathematics Education, Harvard University",
       specialization: "Advanced Mathematics & STEM Education",
@@ -27,18 +28,20 @@ export default function Teachers() {
       phone: "+1 (555) 123-4567",
       rating: 5,
       students: 500,
-      description: "Dr. Sarah Johnson is our visionary principal with over 15 years of experience in mathematics education. She has revolutionized our STEM programs and mentored hundreds of students to achieve academic excellence.",
+      description:
+        "Dr. Sarah Johnson is our visionary principal with over 15 years of experience in mathematics education. She has revolutionized our STEM programs and mentored hundreds of students to achieve academic excellence.",
       achievements: [
         "Published 25+ research papers in mathematics education",
         "Recipient of National Teaching Excellence Award 2023",
         "Led the development of innovative STEM curriculum",
-        "Mentored 50+ students into top universities"
-      ]
+        "Mentored 50+ students into top universities",
+      ],
     },
     {
       name: "Prof. Michael Chen",
       position: "Computer Science Department Head",
-      image: "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
+      image:
+        "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
       experience: "12+ Years",
       education: "PhD in Computer Science, MIT",
       specialization: "AI, Machine Learning & Programming",
@@ -46,18 +49,20 @@ export default function Teachers() {
       phone: "+1 (555) 234-5678",
       rating: 5,
       students: 350,
-      description: "Professor Michael Chen brings cutting-edge technology education to our students. His innovative teaching methods in AI and programming have inspired countless students to pursue careers in technology.",
+      description:
+        "Professor Michael Chen brings cutting-edge technology education to our students. His innovative teaching methods in AI and programming have inspired countless students to pursue careers in technology.",
       achievements: [
         "Former Google Senior Software Engineer",
         "Created award-winning programming bootcamp",
         "Published AI research in top-tier journals",
-        "100% student placement rate in tech companies"
-      ]
+        "100% student placement rate in tech companies",
+      ],
     },
     {
       name: "Dr. Emily Rodriguez",
       position: "English Literature & Creative Writing",
-      image: "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
+      image:
+        "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
       experience: "10+ Years",
       education: "PhD in English Literature, Oxford University",
       specialization: "Creative Writing & Literature Analysis",
@@ -65,18 +70,20 @@ export default function Teachers() {
       phone: "+1 (555) 345-6789",
       rating: 5,
       students: 280,
-      description: "Dr. Emily Rodriguez inspires students through the power of words and storytelling. Her dynamic teaching methods have helped students discover their voices and excel in creative expression.",
+      description:
+        "Dr. Emily Rodriguez inspires students through the power of words and storytelling. Her dynamic teaching methods have helped students discover their voices and excel in creative expression.",
       achievements: [
         "Published novelist with 3 bestselling books",
         "Winner of National Creative Writing Award",
         "Established school literary magazine",
-        "90% of students pursue creative writing"
-      ]
+        "90% of students pursue creative writing",
+      ],
     },
     {
       name: "Prof. David Kim",
       position: "Physics & Engineering Sciences",
-      image: "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
+      image:
+        "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
       experience: "8+ Years",
       education: "PhD in Physics, Stanford University",
       specialization: "Quantum Physics & Engineering Design",
@@ -84,14 +91,15 @@ export default function Teachers() {
       phone: "+1 (555) 456-7890",
       rating: 5,
       students: 200,
-      description: "Professor David Kim makes complex physics concepts accessible and exciting. His hands-on approach to teaching has led to numerous student achievements in science competitions.",
+      description:
+        "Professor David Kim makes complex physics concepts accessible and exciting. His hands-on approach to teaching has led to numerous student achievements in science competitions.",
       achievements: [
         "Former NASA research scientist",
         "Students won 15+ science fair awards",
         "Developed innovative physics lab equipment",
-        "Featured in Science Education Journal"
-      ]
-    }
+        "Featured in Science Education Journal",
+      ],
+    },
   ];
 
   return (
@@ -105,14 +113,16 @@ export default function Teachers() {
             <div className="absolute bottom-20 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
             <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-300 rounded-full animate-ping"></div>
           </div>
-          
+
           <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
             <div className="teachers-header">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-6">
                 Meet Our Amazing Teachers 👨‍🏫👩‍🏫
               </h1>
               <p className="text-xl md:text-2xl max-w-4xl mx-auto leading-relaxed">
-                Our passionate educators are dedicated to nurturing young minds and inspiring the next generation of leaders, innovators, and changemakers! ✨
+                Our passionate educators are dedicated to nurturing young minds
+                and inspiring the next generation of leaders, innovators, and
+                changemakers! ✨
               </p>
             </div>
           </div>
@@ -136,7 +146,8 @@ export default function Teachers() {
               Want to Join Our Teaching Team? 🎓
             </h2>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-              We're always looking for passionate educators to join our mission of transforming young lives through education!
+              We're always looking for passionate educators to join our mission
+              of transforming young lives through education!
             </p>
             <button className="inline-flex items-center space-x-3 bg-white text-orange-600 px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
               <span>Apply to Teach</span>

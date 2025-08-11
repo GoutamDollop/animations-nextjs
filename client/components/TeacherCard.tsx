@@ -1,20 +1,20 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Calendar, 
-  Award, 
-  BookOpen, 
-  Users, 
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Calendar,
+  Award,
+  BookOpen,
+  Users,
   Star,
   Facebook,
   Twitter,
   Linkedin,
-  Instagram
-} from 'lucide-react';
+  Instagram,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -45,7 +45,7 @@ export default function TeacherCard({
   rating,
   students,
   description,
-  achievements
+  achievements,
 }: TeacherCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -53,7 +53,8 @@ export default function TeacherCard({
     const card = cardRef.current;
     if (!card) return;
 
-    gsap.fromTo(card,
+    gsap.fromTo(
+      card,
       { y: 100, opacity: 0, scale: 0.9 },
       {
         y: 0,
@@ -64,9 +65,9 @@ export default function TeacherCard({
         scrollTrigger: {
           trigger: card,
           start: "top 85%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          toggleActions: "play none none reverse",
+        },
+      },
     );
   }, []);
 
@@ -74,16 +75,19 @@ export default function TeacherCard({
     { Icon: Facebook, color: "hover:bg-blue-600", href: "#" },
     { Icon: Twitter, color: "hover:bg-sky-500", href: "#" },
     { Icon: Linkedin, color: "hover:bg-blue-700", href: "#" },
-    { Icon: Instagram, color: "hover:bg-pink-600", href: "#" }
+    { Icon: Instagram, color: "hover:bg-pink-600", href: "#" },
   ];
 
   return (
-    <div ref={cardRef} className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 hover:shadow-3xl">
+    <div
+      ref={cardRef}
+      className="bg-white rounded-3xl shadow-2xl overflow-hidden transform hover:-translate-y-4 transition-all duration-500 hover:shadow-3xl"
+    >
       {/* Header with Purple Background */}
       <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-8 text-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-12 -translate-x-12"></div>
-        
+
         <div className="flex items-center space-x-6 relative z-10">
           <div className="relative">
             <img
@@ -95,7 +99,7 @@ export default function TeacherCard({
               <div className="w-2 h-2 bg-white rounded-full"></div>
             </div>
           </div>
-          
+
           <div className="flex-1">
             <h3 className="text-2xl font-bold mb-1">{name}</h3>
             <p className="text-purple-200 font-medium text-lg">{position}</p>
@@ -104,7 +108,9 @@ export default function TeacherCard({
                 <Star
                   key={i}
                   className={`h-4 w-4 ${
-                    i < rating ? 'text-yellow-400 fill-current' : 'text-purple-300'
+                    i < rating
+                      ? "text-yellow-400 fill-current"
+                      : "text-purple-300"
                   }`}
                 />
               ))}
@@ -144,7 +150,7 @@ export default function TeacherCard({
               <div className="text-sm text-gray-600">{education}</div>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-3 p-3 bg-gray-50 rounded-xl">
             <Award className="h-5 w-5 text-orange-600" />
             <div>

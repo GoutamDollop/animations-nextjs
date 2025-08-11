@@ -32,14 +32,21 @@ export default function Navigation() {
     gsap.fromTo(
       ".nav-item",
       { y: -30, opacity: 0, scale: 0.8 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)" }
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: "back.out(1.7)",
+      },
     );
 
     // Logo bounce animation
     gsap.fromTo(
       ".logo",
       { scale: 0, rotation: -180 },
-      { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, 0.5)" }
+      { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, 0.5)" },
     );
   }, []);
 
@@ -50,7 +57,14 @@ export default function Navigation() {
       gsap.fromTo(
         ".mobile-nav-item",
         { x: 100, opacity: 0, rotationY: 90 },
-        { x: 0, opacity: 1, rotationY: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }
+        {
+          x: 0,
+          opacity: 1,
+          rotationY: 0,
+          duration: 0.5,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
       );
     }
   };
@@ -66,7 +80,10 @@ export default function Navigation() {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Enhanced Logo */}
-          <Link to="/" className="logo flex items-center space-x-3 nav-item group">
+          <Link
+            to="/"
+            className="logo flex items-center space-x-3 nav-item group"
+          >
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-orange-400 to-red-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
               <div className="relative p-3 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl transform transition-transform group-hover:scale-110 shadow-lg">
@@ -111,7 +128,9 @@ export default function Navigation() {
             {/* Contact Info */}
             <div className="hidden xl:flex items-center space-x-2 text-sm">
               <Phone className="h-4 w-4 text-orange-600" />
-              <span className="text-gray-600 font-medium">+1 (555) 123-4567</span>
+              <span className="text-gray-600 font-medium">
+                +1 (555) 123-4567
+              </span>
             </div>
 
             {/* CTA Button */}

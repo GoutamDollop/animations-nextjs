@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -23,14 +23,14 @@ export default function CustomCursor() {
         x: mouseX,
         y: mouseY,
         duration: 0.1,
-        ease: "power2.out"
+        ease: "power2.out",
       });
 
       gsap.to(follower, {
         x: mouseX,
         y: mouseY,
         duration: 0.5,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
@@ -39,7 +39,7 @@ export default function CustomCursor() {
       gsap.to([cursor, follower], {
         scale: 1.5,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
@@ -48,7 +48,7 @@ export default function CustomCursor() {
       gsap.to([cursor, follower], {
         scale: 1,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
@@ -57,7 +57,7 @@ export default function CustomCursor() {
       gsap.to([cursor, follower], {
         scale: 0.8,
         duration: 0.2,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
@@ -66,31 +66,33 @@ export default function CustomCursor() {
       gsap.to([cursor, follower], {
         scale: 1,
         duration: 0.2,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     };
 
     // Add event listeners
-    document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('mousedown', handleMouseDown);
-    document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener("mouseup", handleMouseUp);
 
     // Add hover effects to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card');
-    
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter);
-      el.addEventListener('mouseleave', handleMouseLeave);
+    const interactiveElements = document.querySelectorAll(
+      'a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card',
+    );
+
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseEnter);
+      el.addEventListener("mouseleave", handleMouseLeave);
     });
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mousedown', handleMouseDown);
-      document.removeEventListener('mouseup', handleMouseUp);
-      
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter);
-        el.removeEventListener('mouseleave', handleMouseLeave);
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener("mouseup", handleMouseUp);
+
+      interactiveElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
       });
     };
   }, []);
@@ -101,14 +103,14 @@ export default function CustomCursor() {
       <div
         ref={cursorRef}
         className="fixed top-0 left-0 w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full pointer-events-none z-[9999] mix-blend-difference"
-        style={{ transform: 'translate(-50%, -50%)' }}
+        style={{ transform: "translate(-50%, -50%)" }}
       />
-      
+
       {/* Cursor follower */}
       <div
         ref={followerRef}
         className="fixed top-0 left-0 w-8 h-8 border-2 border-orange-500 rounded-full pointer-events-none z-[9998] opacity-60"
-        style={{ transform: 'translate(-50%, -50%)' }}
+        style={{ transform: "translate(-50%, -50%)" }}
       />
     </>
   );

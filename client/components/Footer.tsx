@@ -36,9 +36,9 @@ export default function Footer() {
         scrollTrigger: {
           trigger: ".footer-container",
           start: "top 90%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          toggleActions: "play none none reverse",
+        },
+      },
     );
 
     // Enhanced social icons animation
@@ -49,7 +49,7 @@ export default function Footer() {
       repeat: -1,
       yoyo: true,
       ease: "power2.inOut",
-      stagger: 0.3
+      stagger: 0.3,
     });
 
     // Newsletter form animation
@@ -64,9 +64,9 @@ export default function Footer() {
         scrollTrigger: {
           trigger: ".newsletter-section",
           start: "top 85%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          toggleActions: "play none none reverse",
+        },
+      },
     );
   }, []);
 
@@ -92,7 +92,13 @@ export default function Footer() {
           className="w-full h-24 md:h-32"
         >
           <defs>
-            <linearGradient id="wave-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <linearGradient
+              id="wave-gradient"
+              x1="0%"
+              y1="0%"
+              x2="100%"
+              y2="0%"
+            >
               <stop offset="0%" stopColor="#f97316" />
               <stop offset="25%" stopColor="#ef4444" />
               <stop offset="50%" stopColor="#ec4899" />
@@ -100,12 +106,12 @@ export default function Footer() {
               <stop offset="100%" stopColor="#3b82f6" />
             </linearGradient>
           </defs>
-          <path 
+          <path
             fill="url(#wave-gradient)"
             d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
           />
-          <path 
-            fill="url(#wave-gradient)" 
+          <path
+            fill="url(#wave-gradient)"
             fillOpacity="0.6"
             d="M1200,0V120H0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47Z"
           />
@@ -143,8 +149,9 @@ export default function Footer() {
                 </div>
               </Link>
               <p className="text-orange-100 text-base leading-relaxed">
-                🌟 Empowering minds, shaping futures. Join us in creating tomorrow's
-                leaders through innovative education and boundless opportunities!
+                🌟 Empowering minds, shaping futures. Join us in creating
+                tomorrow's leaders through innovative education and boundless
+                opportunities!
               </p>
               <div className="flex space-x-4">
                 {socialLinks.map(({ Icon, color, label }, index) => (
@@ -175,7 +182,9 @@ export default function Footer() {
                         className="text-orange-100 hover:text-white transition-all duration-300 text-base font-semibold hover:translate-x-3 transform transition-transform inline-block group"
                       >
                         <span className="group-hover:underline">{item}</span>
-                        <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">🚀</span>
+                        <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                          🚀
+                        </span>
                       </Link>
                     </li>
                   ),
@@ -203,7 +212,9 @@ export default function Footer() {
                       className="text-orange-100 hover:text-white transition-all duration-300 text-base font-semibold hover:translate-x-3 transform transition-transform inline-block group"
                     >
                       <span className="group-hover:underline">{item}</span>
-                      <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">📚</span>
+                      <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                        📚
+                      </span>
                     </a>
                   </li>
                 ))}
@@ -285,7 +296,9 @@ export default function Footer() {
                 Stay Updated with EduVerse! 📧
               </h3>
               <p className="text-orange-100 text-xl mb-8 leading-relaxed">
-                Subscribe to our newsletter for the latest updates on courses, events, and educational opportunities that will transform your future! ✨
+                Subscribe to our newsletter for the latest updates on courses,
+                events, and educational opportunities that will transform your
+                future! ✨
               </p>
               <div className="newsletter-form flex flex-col sm:flex-row gap-6 max-w-lg mx-auto">
                 <input

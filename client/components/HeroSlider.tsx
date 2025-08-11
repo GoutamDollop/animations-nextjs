@@ -1,6 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ChevronLeft, ChevronRight, Play, CheckCircle, Heart, Star } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Play,
+  CheckCircle,
+  Heart,
+  Star,
+} from "lucide-react";
 
 interface SlideData {
   id: number;
@@ -17,8 +24,9 @@ const slides: SlideData[] = [
     image: "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
     title: "Happy Learning",
     subtitle: "Students",
-    description: "Interactive classroom experiences with cutting-edge technology",
-    badge: "🎓 Excellence"
+    description:
+      "Interactive classroom experiences with cutting-edge technology",
+    badge: "🎓 Excellence",
   },
   {
     id: 2,
@@ -26,7 +34,7 @@ const slides: SlideData[] = [
     title: "Diverse Community",
     subtitle: "Together",
     description: "Building friendships and memories that last a lifetime",
-    badge: "🌟 Unity"
+    badge: "🌟 Unity",
   },
   {
     id: 3,
@@ -34,7 +42,7 @@ const slides: SlideData[] = [
     title: "Success Stories",
     subtitle: "Achievements",
     description: "Celebrating every milestone in your educational journey",
-    badge: "🏆 Success"
+    badge: "🏆 Success",
   },
   {
     id: 4,
@@ -42,8 +50,8 @@ const slides: SlideData[] = [
     title: "Creative Learning",
     subtitle: "Outdoors",
     description: "Exploring knowledge through hands-on activities and play",
-    badge: "🎨 Creativity"
-  }
+    badge: "🎨 Creativity",
+  },
 ];
 
 export default function HeroSlider() {
@@ -80,16 +88,20 @@ export default function HeroSlider() {
       x: -100,
       opacity: 0,
       duration: 0.5,
-      ease: "power2.inOut"
+      ease: "power2.inOut",
     });
 
     // Animate out current image
-    tl.to(imageRef.current, {
-      scale: 1.1,
-      opacity: 0,
-      duration: 0.5,
-      ease: "power2.inOut"
-    }, "-=0.3");
+    tl.to(
+      imageRef.current,
+      {
+        scale: 1.1,
+        opacity: 0,
+        duration: 0.5,
+        ease: "power2.inOut",
+      },
+      "-=0.3",
+    );
 
     // Change slide
     tl.call(() => {
@@ -97,16 +109,24 @@ export default function HeroSlider() {
     });
 
     // Animate in new image
-    tl.fromTo(imageRef.current, 
+    tl.fromTo(
+      imageRef.current,
       { scale: 0.8, opacity: 0, rotationY: 45 },
-      { scale: 1, opacity: 1, rotationY: 0, duration: 0.8, ease: "elastic.out(1, 0.5)" }
+      {
+        scale: 1,
+        opacity: 1,
+        rotationY: 0,
+        duration: 0.8,
+        ease: "elastic.out(1, 0.5)",
+      },
     );
 
     // Animate in new content
-    tl.fromTo(contentRef.current,
+    tl.fromTo(
+      contentRef.current,
       { x: 100, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.6, ease: "power2.out" },
-      "-=0.3"
+      "-=0.3",
     );
   };
 
@@ -117,13 +137,16 @@ export default function HeroSlider() {
       {/* Main Slider Content */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center h-full">
         {/* Content Side */}
-        <div ref={contentRef} className="text-center lg:text-left order-2 lg:order-1">
+        <div
+          ref={contentRef}
+          className="text-center lg:text-left order-2 lg:order-1"
+        >
           <div className="space-y-6">
             <div className="inline-flex items-center space-x-3 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 text-orange-600 font-bold text-sm shadow-lg border border-orange-200 animate-bounce">
               <Star className="h-5 w-5 text-yellow-500" />
               <span>{currentSlideData.badge}</span>
             </div>
-            
+
             <div className="space-y-3">
               <h2 className="text-6xl md:text-7xl lg:text-8xl font-display font-black leading-tight">
                 <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
@@ -134,7 +157,7 @@ export default function HeroSlider() {
                 </div>
               </h2>
             </div>
-            
+
             <p className="text-xl md:text-2xl text-gray-700 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
               {currentSlideData.description}
             </p>
@@ -180,8 +203,8 @@ export default function HeroSlider() {
               onClick={() => changeSlide(index)}
               className={`w-4 h-4 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-125'
-                  : 'bg-white/50 hover:bg-white/80'
+                  ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
+                  : "bg-white/50 hover:bg-white/80"
               }`}
             />
           ))}
