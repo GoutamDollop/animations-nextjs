@@ -28,14 +28,15 @@ export default function Layout({ children }: LayoutProps) {
 
   return (
     <>
+      <PerformanceOptimizer />
       <CustomCursor />
       <div className="min-h-screen flex flex-col bg-white">
         <Navigation />
-        
+
         <main className="flex-grow">
           {children}
         </main>
-        
+
         <Footer />
         <ScrollToTop />
       </div>
