@@ -2,7 +2,6 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { Home, ArrowLeft, Search, BookOpen, Users, Star } from "lucide-react";
-import CustomCursor from "../components/CustomCursor";
 
 export default function NotFound() {
   const containerRef = useRef<HTMLDivElement>(null);
