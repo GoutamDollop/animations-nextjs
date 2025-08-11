@@ -19,7 +19,11 @@ export default function ScrollToTop() {
   }, []);
 
   const scrollToTop = () => {
-    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power3.out" });
+    // Use native smooth scroll instead of GSAP to avoid ScrollToPlugin issues
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   if (!isVisible) {
