@@ -5,7 +5,6 @@ import Loading from './Loading';
 import ScrollToTop from './ScrollToTop';
 import CustomCursor from './CustomCursor';
 import PerformanceOptimizer from './PerformanceOptimizer';
-import Breadcrumb from './Breadcrumb';
 import ScrollManager from './ScrollManager';
 
 interface LayoutProps {
