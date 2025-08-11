@@ -190,6 +190,7 @@ export default function EnhancedCustomCursor() {
     };
 
     const handleMouseMove = (e: MouseEvent) => {
+      // Use pageX/Y to account for scroll position
       mouseX = e.clientX;
       mouseY = e.clientY;
 
