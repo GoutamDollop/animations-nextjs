@@ -21,31 +21,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   useEffect(() => {
-    // Ensure footer is always visible first
+    // Force immediate visibility and ensure footer always renders
     const footerContainer = document.querySelector(".footer-container");
     if (footerContainer) {
       (footerContainer as HTMLElement).style.visibility = "visible";
+      (footerContainer as HTMLElement).style.opacity = "1";
+      (footerContainer as HTMLElement).style.display = "block";
     }
 
-    // Then apply animations
+    // Apply subtle entrance animations
     const timer = setTimeout(() => {
       gsap.fromTo(
         ".footer-item",
-        { y: 30, opacity: 0 },
+        { y: 20, opacity: 0.8 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ".footer-container",
-            start: "top 90%",
-            toggleActions: "play none none reverse",
+            start: "top 85%",
+            toggleActions: "play none none none",
           },
         },
       );
-    }, 100);
+    }, 150);
 
     return () => clearTimeout(timer);
   }, []);
