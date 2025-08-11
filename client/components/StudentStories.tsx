@@ -299,7 +299,7 @@ export default function StudentStories() {
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`rounded-full transition-all duration-300 cursor-pointer ${
-                  isMobile ? "w-2 h-2" : "w-2.5 h-2.5 md:w-3 md:h-3"
+                  isMobile ? "w-1.5 h-1.5" : "w-2.5 h-2.5 md:w-3 md:h-3"
                 } ${
                   index === currentIndex
                     ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
