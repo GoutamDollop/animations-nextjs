@@ -72,9 +72,14 @@ export default function EnhancedCustomCursor() {
         followerX += (mouseX - followerX) * 0.15;
         followerY += (mouseY - followerY) * 0.15;
 
-        // Direct positioning for main cursor
+        // Direct positioning for main cursor with fixed positioning
         cursor.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
+        cursor.style.position = 'fixed';
+        cursor.style.zIndex = '9999';
+
         follower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;
+        follower.style.position = 'fixed';
+        follower.style.zIndex = '9998';
 
         // Update trail
         updateTrail();
