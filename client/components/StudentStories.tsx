@@ -293,13 +293,13 @@ export default function StudentStories() {
           </div>
 
           {/* Dots Indicator - Now clickable on mobile too */}
-          <div className="flex justify-center space-x-2 mt-6 md:mt-8">
+          <div className="flex justify-center space-x-1.5 md:space-x-2 mt-6 md:mt-8">
             {Array.from({ length: Math.max(1, maxIndex + 1) }, (_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`rounded-full transition-all duration-300 cursor-pointer ${
-                  isMobile ? "w-3 h-3" : "w-3 h-3"
+                  isMobile ? "w-2 h-2" : "w-2.5 h-2.5 md:w-3 md:h-3"
                 } ${
                   index === currentIndex
                     ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
