@@ -200,13 +200,36 @@ export default function ModernHeroSection() {
 
           {/* Right Content - Images */}
           <div ref={imageRef} className="relative">
-            {/* Main Image */}
-            <div className="relative z-10">
-              <img
-                src="https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80"
-                alt="Students learning together"
-                className="w-full h-auto rounded-3xl shadow-2xl object-cover"
-              />
+            {/* Main Image Slider */}
+            <div className="relative z-10 overflow-hidden rounded-3xl shadow-2xl">
+              <div
+                className="flex transition-transform duration-1000 ease-in-out"
+                style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+              >
+                {heroImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Campus image ${index + 1}`}
+                    className="w-full h-auto object-cover flex-shrink-0"
+                  />
+                ))}
+              </div>
+
+              {/* Slider indicators */}
+              <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                {heroImages.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex
+                        ? 'bg-white scale-125'
+                        : 'bg-white/50 hover:bg-white/75'
+                    }`}
+                  />
+                ))}
+              </div>
               
               {/* Floating Cards */}
               <div className="absolute -top-8 -left-8 bg-white p-4 rounded-2xl shadow-xl z-20">
