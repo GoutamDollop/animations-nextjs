@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import React, { useEffect, useRef } from 'react';
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -13,86 +12,65 @@ export default function CustomCursor() {
 
     let mouseX = 0;
     let mouseY = 0;
+    let isHovering = false;
 
-    // Mouse move handler
+    // Throttled mouse move handler for better performance
+    let animationId: number;
+    
+    const updateCursor = () => {
+      if (cursor && follower) {
+        cursor.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
+        follower.style.transform = `translate3d(${mouseX - 16}px, ${mouseY - 16}px, 0)`;
+        
+        if (isHovering) {
+          cursor.style.transform += ' scale(1.5)';
+          follower.style.transform += ' scale(1.5)';
+        }
+      }
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-
-      gsap.to(cursor, {
-        x: mouseX,
-        y: mouseY,
-        duration: 0.1,
-        ease: "power2.out",
-      });
-
-      gsap.to(follower, {
-        x: mouseX,
-        y: mouseY,
-        duration: 0.5,
-        ease: "power2.out",
-      });
+      
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      
+      animationId = requestAnimationFrame(updateCursor);
     };
 
-    // Mouse enter interactive elements
     const handleMouseEnter = () => {
-      gsap.to([cursor, follower], {
-        scale: 1.5,
-        duration: 0.3,
-        ease: "power2.out",
-      });
+      isHovering = true;
+      updateCursor();
     };
 
-    // Mouse leave interactive elements
     const handleMouseLeave = () => {
-      gsap.to([cursor, follower], {
-        scale: 1,
-        duration: 0.3,
-        ease: "power2.out",
-      });
-    };
-
-    // Mouse down
-    const handleMouseDown = () => {
-      gsap.to([cursor, follower], {
-        scale: 0.8,
-        duration: 0.2,
-        ease: "power2.out",
-      });
-    };
-
-    // Mouse up
-    const handleMouseUp = () => {
-      gsap.to([cursor, follower], {
-        scale: 1,
-        duration: 0.2,
-        ease: "power2.out",
-      });
+      isHovering = false;
+      updateCursor();
     };
 
     // Add event listeners
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mousedown", handleMouseDown);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove, { passive: true });
 
     // Add hover effects to interactive elements
-    const interactiveElements = document.querySelectorAll(
-      'a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card',
-    );
-
-    interactiveElements.forEach((el) => {
-      el.addEventListener("mouseenter", handleMouseEnter);
-      el.addEventListener("mouseleave", handleMouseLeave);
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card, .enhanced-btn');
+    
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', handleMouseEnter, { passive: true });
+      el.addEventListener('mouseleave', handleMouseLeave, { passive: true });
     });
 
     return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mousedown", handleMouseDown);
-      document.removeEventListener("mouseup", handleMouseUp);
-
-      interactiveElements.forEach((el) => {
-        el.removeEventListener("mouseenter", handleMouseEnter);
-        el.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener('mousemove', handleMouseMove);
+      
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+      
+      interactiveElements.forEach(el => {
+        el.removeEventListener('mouseenter', handleMouseEnter);
+        el.removeEventListener('mouseleave', handleMouseLeave);
       });
     };
   }, []);
@@ -102,15 +80,13 @@ export default function CustomCursor() {
       {/* Main cursor dot */}
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full pointer-events-none z-[9999] mix-blend-difference"
-        style={{ transform: "translate(-50%, -50%)" }}
+        className="fixed top-0 left-0 w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full pointer-events-none z-[9999] transition-transform duration-150 ease-out hidden lg:block"
       />
-
+      
       {/* Cursor follower */}
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-orange-500 rounded-full pointer-events-none z-[9998] opacity-60"
-        style={{ transform: "translate(-50%, -50%)" }}
+        className="fixed top-0 left-0 w-8 h-8 border-2 border-orange-500 rounded-full pointer-events-none z-[9998] opacity-60 transition-transform duration-300 ease-out hidden lg:block"
       />
     </>
   );
