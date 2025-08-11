@@ -102,19 +102,25 @@ export default function Index() {
 
   return (
     <div ref={heroRef} className="min-h-screen overflow-hidden">
-      {/* Advanced Scroll Animation System */}
-      <ScrollAnimationSystem />
+      {/* Advanced Animation Systems */}
+      <AdvancedScrollAnimations />
+      <TextRevealAnimations />
 
-      {/* Enhanced Hero Section with Three.js */}
+      {/* Enhanced Hero Section with Three.js - PRESERVED */}
       <EnhancedHeroSection />
 
-      {/* Stats Section with Enhanced Animations */}
-      <div className="scroll-fade-left">
+      {/* Enhanced Image Slider - NEW */}
+      <div className="fade-slide-up">
+        <EnhancedImageSlider />
+      </div>
+
+      {/* Stats Section with Enhanced Animations - PRESERVED */}
+      <div className="fade-slide-left">
         <StatsSection />
       </div>
 
-      {/* Student Stories Section with Scroll Animation */}
-      <div className="scroll-scale-up">
+      {/* Student Stories Section with Scroll Animation - PRESERVED */}
+      <div className="scale-rotate">
         <StudentStories />
       </div>
 
