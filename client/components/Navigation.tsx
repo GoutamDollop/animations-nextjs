@@ -19,34 +19,41 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    // Enhanced navigation animations
+    // Simplified navigation animations for better performance
     gsap.fromTo(
       ".nav-item",
-      { y: -30, opacity: 0, scale: 0.8 },
+      { y: -20, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 0.8,
+        duration: 0.6,
         stagger: 0.1,
-        ease: "back.out(1.7)",
+        ease: "power2.out",
       },
     );
 
-    // Logo bounce animation
+    // Simplified logo animation
     gsap.fromTo(
       ".logo",
-      { scale: 0, rotation: -180 },
-      { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, 0.5)" },
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
     );
   }, []);
 
@@ -54,16 +61,16 @@ export default function Navigation() {
     setIsOpen(!isOpen);
 
     if (!isOpen) {
+      // Simplified mobile menu animation for better performance
       gsap.fromTo(
         ".mobile-nav-item",
-        { x: 100, opacity: 0, rotationY: 90 },
+        { x: 30, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          rotationY: 0,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: "back.out(1.7)",
+          duration: 0.4,
+          stagger: 0.08,
+          ease: "power2.out",
         },
       );
     }
@@ -71,7 +78,7 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform ${
         isScrolled
           ? "bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-2xl"
           : "bg-transparent"
@@ -158,7 +165,7 @@ export default function Navigation() {
 
         {/* Enhanced Mobile Navigation */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+          className={`lg:hidden overflow-hidden transition-all duration-300 will-change-transform ${
             isOpen ? "max-h-screen opacity-100 pb-6" : "max-h-0 opacity-0"
           }`}
         >
