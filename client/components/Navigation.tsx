@@ -85,7 +85,7 @@ export default function Navigation() {
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-18 lg:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-18 lg:h-20">
           {/* Enhanced Logo */}
           <Link
             to="/"
