@@ -135,10 +135,6 @@ export default function ImageShowcase() {
           <h2 className="showcase-title text-3xl md:text-5xl font-black mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Experience Our Amazing Campus Life 🎓
           </h2>
-          <p className="showcase-title text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Discover state-of-the-art facilities, innovative learning spaces, and vibrant campus culture 
-            that makes learning an exciting journey.
-          </p>
         </div>
 
         {/* Images Grid */}
