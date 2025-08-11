@@ -1,18 +1,20 @@
-import React, { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  Mail,
-  Phone,
-  Calendar,
-  Award,
-  Users,
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { 
+  Mail, 
+  Phone, 
+  Calendar, 
+  Award, 
+  Users, 
   Star,
-  Facebook,
-  Twitter,
-  Linkedin,
-  Instagram,
-} from "lucide-react";
+  BookOpen,
+  GraduationCap,
+  MapPin,
+  ExternalLink,
+  Heart,
+  MessageCircle
+} from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +45,7 @@ export default function TeacherCard({
   rating,
   students,
   description,
-  achievements,
+  achievements
 }: TeacherCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -51,145 +53,160 @@ export default function TeacherCard({
     const card = cardRef.current;
     if (!card) return;
 
-    gsap.fromTo(
-      card,
-      { y: 50, opacity: 0, scale: 0.95 },
+    gsap.fromTo(card,
+      { y: 60, opacity: 0, scale: 0.95 },
       {
         y: 0,
         opacity: 1,
         scale: 1,
-        duration: 0.8,
+        duration: 1,
         ease: "power3.out",
         scrollTrigger: {
           trigger: card,
           start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-      },
+          toggleActions: "play none none reverse"
+        }
+      }
     );
 
     // Hover effect
-    card.addEventListener("mouseenter", () => {
-      gsap.to(card, { y: -5, duration: 0.3, ease: "power2.out" });
+    card.addEventListener('mouseenter', () => {
+      gsap.to(card, { y: -8, duration: 0.4, ease: "power2.out" });
+      gsap.to(card.querySelector('.teacher-image'), { scale: 1.05, duration: 0.4, ease: "power2.out" });
     });
-
-    card.addEventListener("mouseleave", () => {
-      gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" });
+    
+    card.addEventListener('mouseleave', () => {
+      gsap.to(card, { y: 0, duration: 0.4, ease: "power2.out" });
+      gsap.to(card.querySelector('.teacher-image'), { scale: 1, duration: 0.4, ease: "power2.out" });
     });
   }, []);
 
-  const socialLinks = [
-    { Icon: Facebook, color: "hover:bg-blue-600" },
-    { Icon: Twitter, color: "hover:bg-sky-500" },
-    { Icon: Linkedin, color: "hover:bg-blue-700" },
-    { Icon: Instagram, color: "hover:bg-pink-600" },
-  ];
-
   return (
-    <div
-      ref={cardRef}
-      className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl"
-    >
-      {/* Header */}
-      <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-6 text-white relative">
-        <div className="flex items-center space-x-4">
-          <img
-            src={image}
-            alt={name}
-            className="w-16 h-16 rounded-xl object-cover border-3 border-white shadow-lg"
-          />
-          <div className="flex-1">
-            <h3 className="text-xl font-bold">{name}</h3>
-            <p className="text-purple-200 text-sm">{position}</p>
-            <div className="flex items-center space-x-1 mt-1">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`h-3 w-3 ${
-                    i < rating
-                      ? "text-yellow-400 fill-current"
-                      : "text-purple-300"
-                  }`}
-                />
-              ))}
+    <div ref={cardRef} className="bg-white rounded-3xl shadow-xl overflow-hidden transition-all duration-500 hover:shadow-2xl border border-gray-100">
+      {/* Hero Section with Image */}
+      <div className="relative h-64 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-4 left-4 w-16 h-16 bg-white rounded-full"></div>
+          <div className="absolute bottom-4 right-4 w-12 h-12 bg-yellow-300 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/3 w-8 h-8 bg-pink-300 rounded-full"></div>
+        </div>
+
+        {/* Teacher Image */}
+        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2">
+          <div className="relative">
+            <img
+              src={image}
+              alt={name}
+              className="teacher-image w-24 h-24 rounded-2xl object-cover border-4 border-white shadow-2xl"
+            />
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-3 border-white flex items-center justify-center">
+              <div className="w-2 h-2 bg-white rounded-full"></div>
             </div>
+          </div>
+        </div>
+
+        {/* Rating Badge */}
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 shadow-lg">
+          <div className="flex items-center space-x-1">
+            <Star className="h-4 w-4 text-yellow-500 fill-current" />
+            <span className="text-sm font-bold text-gray-800">{rating}</span>
           </div>
         </div>
       </div>
 
       {/* Content */}
-      <div className="p-6">
-        {/* Stats */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="text-center p-3 bg-orange-50 rounded-lg">
-            <Calendar className="h-4 w-4 text-orange-600 mx-auto mb-1" />
-            <div className="text-lg font-bold text-gray-800">{experience}</div>
-            <div className="text-xs text-gray-600">Experience</div>
+      <div className="pt-16 p-8">
+        {/* Header */}
+        <div className="text-center mb-6">
+          <h3 className="text-2xl font-bold text-gray-800 mb-1">{name}</h3>
+          <p className="text-purple-600 font-semibold text-lg">{position}</p>
+        </div>
+
+        {/* Quick Stats */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="text-center p-4 bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl border border-orange-100">
+            <Calendar className="h-6 w-6 text-orange-600 mx-auto mb-2" />
+            <div className="text-xl font-bold text-gray-800">{experience}</div>
+            <div className="text-xs text-gray-600 font-medium">Experience</div>
           </div>
-          <div className="text-center p-3 bg-blue-50 rounded-lg">
-            <Users className="h-4 w-4 text-blue-600 mx-auto mb-1" />
-            <div className="text-lg font-bold text-gray-800">{students}</div>
-            <div className="text-xs text-gray-600">Students</div>
+          <div className="text-center p-4 bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl border border-blue-100">
+            <Users className="h-6 w-6 text-blue-600 mx-auto mb-2" />
+            <div className="text-xl font-bold text-gray-800">{students}</div>
+            <div className="text-xs text-gray-600 font-medium">Students</div>
           </div>
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">
-          {description}
-        </p>
+        <p className="text-gray-600 text-center leading-relaxed mb-6">{description}</p>
 
         {/* Education & Specialization */}
-        <div className="space-y-2 mb-4">
-          <div className="text-xs">
-            <span className="font-semibold text-gray-800">Education: </span>
-            <span className="text-gray-600">{education}</span>
+        <div className="space-y-3 mb-6">
+          <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-xl">
+            <GraduationCap className="h-5 w-5 text-purple-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <div className="font-semibold text-gray-800 text-sm">Education</div>
+              <div className="text-xs text-gray-600">{education}</div>
+            </div>
           </div>
-          <div className="text-xs">
-            <span className="font-semibold text-gray-800">
-              Specialization:{" "}
-            </span>
-            <span className="text-gray-600">{specialization}</span>
+          
+          <div className="flex items-start space-x-3 p-3 bg-gray-50 rounded-xl">
+            <BookOpen className="h-5 w-5 text-orange-600 mt-0.5 flex-shrink-0" />
+            <div>
+              <div className="font-semibold text-gray-800 text-sm">Specialization</div>
+              <div className="text-xs text-gray-600">{specialization}</div>
+            </div>
           </div>
         </div>
 
         {/* Achievements */}
-        <div className="mb-4">
-          <h4 className="font-semibold text-gray-800 mb-2 text-sm flex items-center">
-            <Award className="h-4 w-4 text-yellow-600 mr-1" />
+        <div className="mb-6">
+          <h4 className="font-bold text-gray-800 mb-3 text-sm flex items-center">
+            <Award className="h-4 w-4 text-yellow-600 mr-2" />
             Key Achievements
           </h4>
-          <ul className="space-y-1">
+          <div className="space-y-2">
             {achievements.slice(0, 2).map((achievement, index) => (
-              <li key={index} className="flex items-start space-x-1">
-                <div className="w-1 h-1 bg-orange-500 rounded-full mt-1.5 flex-shrink-0"></div>
-                <span className="text-xs text-gray-600">{achievement}</span>
-              </li>
+              <div key={index} className="flex items-start space-x-2">
+                <div className="w-1.5 h-1.5 bg-gradient-to-r from-orange-500 to-red-500 rounded-full mt-2 flex-shrink-0"></div>
+                <span className="text-xs text-gray-600 leading-relaxed">{achievement}</span>
+              </div>
             ))}
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div className="space-y-1 mb-4 text-xs">
-          <div className="flex items-center space-x-2">
-            <Mail className="h-3 w-3 text-purple-600" />
-            <span className="text-gray-600">{email}</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Phone className="h-3 w-3 text-green-600" />
-            <span className="text-gray-600">{phone}</span>
           </div>
         </div>
 
-        {/* Social Links */}
-        <div className="flex justify-center space-x-2 pt-3 border-t border-gray-200">
-          {socialLinks.map(({ Icon, color }, index) => (
-            <button
-              key={index}
-              className={`p-2 bg-gray-100 rounded-lg ${color} text-gray-600 hover:text-white transition-all duration-300 transform hover:scale-110`}
-            >
-              <Icon className="h-3 w-3" />
-            </button>
-          ))}
+        {/* Action Buttons */}
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-xl font-semibold text-sm hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+            <MessageCircle className="h-4 w-4" />
+            <span>Message</span>
+          </button>
+          <button className="flex items-center justify-center space-x-2 bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-xl font-semibold text-sm hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+            <ExternalLink className="h-4 w-4" />
+            <span>Profile</span>
+          </button>
+        </div>
+
+        {/* Contact Info */}
+        <div className="space-y-2 text-xs">
+          <div className="flex items-center justify-center space-x-4 p-3 bg-gradient-to-r from-gray-50 to-blue-50 rounded-xl">
+            <div className="flex items-center space-x-2">
+              <Mail className="h-3 w-3 text-purple-600" />
+              <span className="text-gray-600 truncate">{email.split('@')[0]}@...</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Phone className="h-3 w-3 text-green-600" />
+              <span className="text-gray-600">{phone.slice(-4)}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Love Badge */}
+        <div className="text-center mt-4">
+          <div className="inline-flex items-center space-x-1 text-xs text-gray-500">
+            <Heart className="h-3 w-3 text-red-500 fill-current" />
+            <span>Loved by students</span>
+          </div>
         </div>
       </div>
     </div>
