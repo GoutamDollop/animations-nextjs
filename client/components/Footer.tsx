@@ -91,7 +91,7 @@ export default function Footer() {
                 <div className="font-display font-black text-2xl text-white">
                   EduVerse
                 </div>
-                <div className="text-orange-100 text-sm font-bold -mt-1">
+                <div className="text-gray-300 text-sm font-bold -mt-1">
                   Academy
                 </div>
               </div>
@@ -132,7 +132,7 @@ export default function Footer() {
                 <li key={index}>
                   <Link
                     to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
+                    className="text-gray-300 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
                   >
                     <span className="group-hover:underline">{item}</span>
                     <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -161,7 +161,7 @@ export default function Footer() {
                 <li key={index}>
                   <a
                     href="#"
-                    className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
+                    className="text-gray-300 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
                   >
                     <span className="group-hover:underline">{item}</span>
                     <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -182,7 +182,7 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-start space-x-3 p-3 bg-white/10 backdrop-blur-sm rounded-xl">
                 <MapPin className="h-5 w-5 text-yellow-300 mt-1 flex-shrink-0" />
-                <span className="text-orange-100 text-sm leading-relaxed">
+                <span className="text-gray-300 text-sm leading-relaxed">
                   123 Education Street
                   <br />
                   Learning City, LC 12345
@@ -190,13 +190,13 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3 p-3 bg-white/10 backdrop-blur-sm rounded-xl">
                 <Phone className="h-5 w-5 text-yellow-300 flex-shrink-0" />
-                <span className="text-orange-100 text-sm font-medium">
+                <span className="text-gray-300 text-sm font-medium">
                   +1 (555) 123-4567
                 </span>
               </div>
               <div className="flex items-center space-x-3 p-3 bg-white/10 backdrop-blur-sm rounded-xl">
                 <Mail className="h-5 w-5 text-yellow-300 flex-shrink-0" />
-                <span className="text-orange-100 text-sm font-medium">
+                <span className="text-gray-300 text-sm font-medium">
                   info@eduverse.edu
                 </span>
               </div>
@@ -208,22 +208,22 @@ export default function Footer() {
         <div className="footer-item mt-12 pt-8 border-t border-white/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-2 text-center md:text-left">
-              <p className="text-orange-100 text-sm">
+              <p className="text-gray-300 text-sm">
                 © 2024 EduVerse Academy. All rights reserved. Made with
               </p>
               <Heart className="h-4 w-4 text-red-400 animate-pulse" />
-              <p className="text-orange-100 text-sm">for education.</p>
+              <p className="text-gray-300 text-sm">for education.</p>
             </div>
             <div className="flex items-center space-x-6">
               <a
                 href="#"
-                className="text-orange-100 hover:text-white text-sm transition-colors font-medium hover:underline"
+                className="text-gray-300 hover:text-white text-sm transition-colors font-medium hover:underline"
               >
                 Privacy Policy
               </a>
               <a
                 href="#"
-                className="text-orange-100 hover:text-white text-sm transition-colors font-medium hover:underline"
+                className="text-gray-300 hover:text-white text-sm transition-colors font-medium hover:underline"
               >
                 Terms of Service
               </a>
