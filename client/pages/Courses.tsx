@@ -194,20 +194,20 @@ export default function Courses() {
   return (
     <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
+            <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
+            <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-blue-300 rounded-full animate-ping"></div>
           </div>
 
           <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
             <div className="courses-header max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
                 Our Courses & Programs 📚
               </h1>
-              <p className="text-xl md:text-2xl leading-relaxed">
-                Discover world-class education programs designed to unlock your
-                potential and prepare you for future success.
+              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
+                Discover world-class education programs designed to unlock your potential and prepare you for future success.
               </p>
             </div>
           </div>
@@ -248,9 +248,9 @@ export default function Courses() {
         </section>
 
         {/* Courses Grid */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
           <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               {filteredCourses.map((course, index) => (
                 <div
                   key={course.id}
@@ -342,15 +342,14 @@ export default function Courses() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 text-white">
+        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white">
           <div className="container mx-auto px-4 lg:px-8 text-center">
             <div className="max-w-4xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-4 md:mb-6">
                 Ready to Start Learning? 🚀
               </h2>
-              <p className="text-xl text-orange-100 mb-8 leading-relaxed">
-                Join thousands of students who are already transforming their
-                futures with our world-class education programs.
+              <p className="text-lg md:text-xl text-blue-100 mb-6 md:mb-8 leading-relaxed px-4">
+                Join thousands of students who are already transforming their futures with our world-class education programs.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
                 <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white text-orange-600 px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
