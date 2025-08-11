@@ -34,14 +34,17 @@ export default function Footer() {
         scrollTrigger: {
           trigger: ".footer-container",
           start: "top 90%",
-          toggleActions: "play none none reverse",
-        },
-      },
+          toggleActions: "play none none reverse"
+        }
+      }
     );
   }, []);
 
   const scrollToTop = () => {
-    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power3.out" });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
 
   const socialLinks = [
@@ -53,7 +56,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500">
+    <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 mt-auto">
       {/* Floating Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full animate-pulse"></div>
@@ -82,8 +85,8 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-orange-100 text-sm leading-relaxed">
-              🌟 Empowering minds, shaping futures. Join us in creating
-              tomorrow's leaders through innovative education!
+              🌟 Empowering minds, shaping futures. Join us in creating tomorrow's
+              leaders through innovative education!
             </p>
             <div className="flex space-x-3">
               {socialLinks.map(({ Icon, color, label }, index) => (
@@ -106,26 +109,19 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {[
-                "Home",
-                "About",
-                "Courses",
-                "Teachers",
-                "Events",
-                "Contact",
-              ].map((item, index) => (
-                <li key={index}>
-                  <Link
-                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                    className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
-                  >
-                    <span className="group-hover:underline">{item}</span>
-                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      🚀
-                    </span>
-                  </Link>
-                </li>
-              ))}
+              {["Home", "About", "Courses", "Teachers", "Events", "Contact"].map(
+                (item, index) => (
+                  <li key={index}>
+                    <Link
+                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                      className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
+                    >
+                      <span className="group-hover:underline">{item}</span>
+                      <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">🚀</span>
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
           </div>
 
@@ -149,9 +145,7 @@ export default function Footer() {
                     className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
                   >
                     <span className="group-hover:underline">{item}</span>
-                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      📚
-                    </span>
+                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">📚</span>
                   </a>
                 </li>
               ))}
