@@ -125,35 +125,36 @@ export default function Index() {
       </div>
 
       {/* Meet Our Teachers Section with Advanced Animations */}
-      <section className="py-20 bg-white relative overflow-hidden">
-        {/* Floating Background Elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="float-slow parallax-slow absolute top-20 left-20 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20"></div>
+      <section className="py-20 bg-white relative overflow-hidden zoom-section">
+        {/* Enhanced Floating Background Elements */}
+        <div className="absolute inset-0 pointer-events-none parallax-bg">
+          <div className="float-slow absolute top-20 left-20 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-20"></div>
           <div className="float-medium absolute bottom-32 right-32 w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-full opacity-30"></div>
+          <div className="absolute top-1/2 left-1/2 w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-15 -translate-x-1/2 -translate-y-1/2"></div>
         </div>
 
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16 scroll-fade-right">
-            <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 text-reveal">
+        <div className="container mx-auto px-4 lg:px-8 relative z-10">
+          <div className="text-center mb-16 fade-slide-right">
+            <h2 className="section-title text-4xl md:text-5xl font-display font-bold mb-6">
               Meet Our Amazing Teachers 👨‍🏫👩‍🏫
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed scroll-fade-left">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed fade-slide-left">
               Our passionate educators are dedicated to nurturing young minds and inspiring greatness!
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto scroll-stagger-up">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto physics-stagger">
             {featuredTeachers.map((teacher, index) => (
-              <div key={teacher.id} className="magnetic">
+              <div key={teacher.id} className="physics-item magnetic-scroll">
                 <TeacherCard {...teacher} />
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-8 md:mt-12 scroll-bounce-in">
+          <div className="text-center mt-8 md:mt-12 scale-rotate">
             <Link
               to="/teachers"
-              className="enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl transition-all duration-300 magnetic"
+              className="enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl transition-all duration-300 magnetic-scroll"
             >
               <span>Meet All Our Teachers</span>
               <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
@@ -161,6 +162,11 @@ export default function Index() {
           </div>
         </div>
       </section>
+
+      {/* Photo Gallery Section - NEW */}
+      <div className="fade-slide-up">
+        <PhotoGallery />
+      </div>
 
       {/* Enhanced CTA Section with Advanced Animations */}
       <section className="py-24 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 relative overflow-hidden">
