@@ -142,16 +142,12 @@ export default function TeacherCard({
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-2">
-          <button className="flex items-center justify-center space-x-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 rounded-xl font-semibold text-sm hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-            <MessageCircle className="h-3 w-3" />
-            <span>Message</span>
-          </button>
-          <button className="flex items-center justify-center space-x-1 bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 rounded-xl font-semibold text-sm hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-            <ExternalLink className="h-3 w-3" />
-            <span>Profile</span>
-          </button>
+        {/* Additional Info Display */}
+        <div className="text-center">
+          <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-xl font-semibold text-sm shadow-lg">
+            <Award className="h-3 w-3" />
+            <span>Available for Consultation</span>
+          </div>
         </div>
       </div>
     </div>
