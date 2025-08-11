@@ -203,21 +203,24 @@ export default function ModernHeroSection() {
           {/* Right Content - Images */}
           <div ref={imageRef} className="relative">
             {/* Main Image Slider */}
-            <div className="relative z-10 overflow-hidden rounded-3xl shadow-2xl">
-              <div
-                className="flex transition-transform duration-1000 ease-in-out"
-                style={{
-                  transform: `translateX(-${currentImageIndex * 100}%)`,
-                }}
-              >
-                {heroImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Campus image ${index + 1}`}
-                    className="w-full h-auto object-cover flex-shrink-0"
-                  />
-                ))}
+            <div className="relative z-10 overflow-hidden rounded-2xl md:rounded-3xl shadow-xl md:shadow-2xl">
+              <div className="aspect-[4/3] md:aspect-[3/2] lg:aspect-[4/3]">
+                <div
+                  className="flex h-full transition-transform duration-1000 ease-in-out"
+                  style={{
+                    transform: `translateX(-${currentImageIndex * 100}%)`,
+                  }}
+                >
+                  {heroImages.map((image, index) => (
+                    <img
+                      key={index}
+                      src={image}
+                      alt={`Campus image ${index + 1}`}
+                      className="w-full h-full object-cover flex-shrink-0"
+                      loading={index === 0 ? "eager" : "lazy"}
+                    />
+                  ))}
+                </div>
               </div>
 
               {/* Slider indicators */}
@@ -236,54 +239,56 @@ export default function ModernHeroSection() {
               </div>
 
               {/* Floating Cards */}
-              <div className="absolute -top-8 -left-8 bg-white p-4 rounded-2xl shadow-xl z-20">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                    <BookOpen className="w-6 h-6 text-white" />
+              <div className="absolute -top-4 -left-4 md:-top-8 md:-left-8 bg-white/95 backdrop-blur-sm p-3 md:p-4 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl z-20 transform hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center space-x-2 md:space-x-3">
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+                    <BookOpen className="w-4 h-4 md:w-6 md:h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-gray-900">
+                    <div className="text-sm md:text-lg font-bold text-gray-900">
                       50+ Courses
                     </div>
-                    <div className="text-sm text-gray-600">Available Now</div>
+                    <div className="text-xs md:text-sm text-gray-600">Available Now</div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-8 -right-8 bg-white p-4 rounded-2xl shadow-xl z-20">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
-                    <Users className="w-6 h-6 text-white" />
+              <div className="absolute -bottom-4 -right-4 md:-bottom-8 md:-right-8 bg-white/95 backdrop-blur-sm p-3 md:p-4 rounded-xl md:rounded-2xl shadow-lg md:shadow-xl z-20 transform hover:scale-105 transition-transform duration-300">
+                <div className="flex items-center space-x-2 md:space-x-3">
+                  <div className="w-8 h-8 md:w-12 md:h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-full flex items-center justify-center">
+                    <Users className="w-4 h-4 md:w-6 md:h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-gray-900">
+                    <div className="text-sm md:text-lg font-bold text-gray-900">
                       Expert Teachers
                     </div>
-                    <div className="text-sm text-gray-600">World Class</div>
+                    <div className="text-xs md:text-sm text-gray-600">World Class</div>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Secondary Images */}
-            <div className="absolute top-0 right-0 w-1/3 h-1/3 transform translate-x-4 -translate-y-4">
+            <div className="hidden lg:block absolute top-0 right-0 w-1/4 h-1/4 xl:w-1/3 xl:h-1/3 transform translate-x-3 -translate-y-3 xl:translate-x-4 xl:-translate-y-4">
               <img
                 src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80"
                 alt="School facilities"
-                className="w-full h-full object-cover rounded-2xl shadow-lg opacity-80"
+                className="w-full h-full object-cover rounded-xl xl:rounded-2xl shadow-lg opacity-80 hover:opacity-100 transition-opacity duration-300"
+                loading="lazy"
               />
             </div>
 
-            <div className="absolute bottom-0 left-0 w-1/3 h-1/3 transform -translate-x-4 translate-y-4">
+            <div className="hidden lg:block absolute bottom-0 left-0 w-1/4 h-1/4 xl:w-1/3 xl:h-1/3 transform -translate-x-3 translate-y-3 xl:-translate-x-4 xl:translate-y-4">
               <img
                 src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
                 alt="Science lab"
-                className="w-full h-full object-cover rounded-2xl shadow-lg opacity-80"
+                className="w-full h-full object-cover rounded-xl xl:rounded-2xl shadow-lg opacity-80 hover:opacity-100 transition-opacity duration-300"
+                loading="lazy"
               />
             </div>
 
             {/* Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 to-purple-100/20 rounded-3xl transform rotate-3 scale-105 -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-100/20 to-purple-100/20 rounded-2xl md:rounded-3xl transform rotate-1 md:rotate-3 scale-105 -z-10"></div>
           </div>
         </div>
       </div>
