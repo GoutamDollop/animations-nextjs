@@ -228,12 +228,12 @@ export default function Courses() {
               </div>
 
               {/* Category Filter */}
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 md:gap-3 justify-center md:justify-start">
                 {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setSelectedCategory(category)}
-                    className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 ${
+                    className={`px-3 md:px-6 py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base transition-all duration-300 transform hover:scale-105 ${
                       selectedCategory === category
                         ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg"
                         : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -326,12 +326,12 @@ export default function Courses() {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-3">
-                      <button className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <div className="flex space-x-2 md:space-x-3">
+                      <button className="flex-1 bg-gradient-to-r from-orange-500 to-red-500 text-white py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                         Enroll Now
                       </button>
-                      <button className="px-4 py-3 border-2 border-gray-200 rounded-xl hover:border-orange-300 transition-colors duration-300">
-                        <BookOpen className="h-5 w-5 text-gray-600" />
+                      <button className="px-3 md:px-4 py-2 md:py-3 border-2 border-gray-200 rounded-xl hover:border-orange-300 transition-colors duration-300">
+                        <BookOpen className="h-4 w-4 md:h-5 md:w-5 text-gray-600" />
                       </button>
                     </div>
                   </div>
@@ -352,13 +352,13 @@ export default function Courses() {
                 Join thousands of students who are already transforming their
                 futures with our world-class education programs.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <button className="inline-flex items-center space-x-3 bg-white text-orange-600 px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center">
+                <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white text-orange-600 px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
                   <span>Apply for Admission</span>
-                  <ArrowRight className="h-6 w-6" />
+                  <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
                 </button>
-                <button className="inline-flex items-center space-x-3 bg-transparent border-3 border-white text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white hover:text-orange-600 transition-all duration-300">
-                  <Calendar className="h-6 w-6" />
+                <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-transparent border-2 md:border-3 border-white text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl hover:bg-white hover:text-orange-600 transition-all duration-300">
+                  <Calendar className="h-5 w-5 md:h-6 md:w-6" />
                   <span>Schedule Campus Tour</span>
                 </button>
               </div>
