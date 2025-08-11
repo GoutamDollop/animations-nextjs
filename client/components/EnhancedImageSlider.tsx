@@ -4,11 +4,7 @@ import { Navigation, Pagination, Autoplay, EffectFade, Thumbs } from "swiper/mod
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/effect-fade";
-import "swiper/css/thumbs";
+import "swiper/swiper-bundle.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
