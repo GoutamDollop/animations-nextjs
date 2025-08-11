@@ -168,44 +168,38 @@ export default function Index() {
         <PhotoGallery />
       </div>
 
-      {/* Enhanced CTA Section with Advanced Animations */}
-      <section className="py-24 bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 relative overflow-hidden pin-section">
-        {/* Advanced Floating Shapes with Parallax */}
-        <div className="absolute inset-0 opacity-20 parallax-bg">
-          <div className="float-fast absolute top-20 left-20 w-32 h-32 bg-yellow-300 rounded-full morph-shape"></div>
-          <div className="float-slow absolute bottom-32 right-32 w-24 h-24 bg-green-300 rounded-full morph-shape"></div>
-          <div className="float-medium absolute top-1/2 left-1/4 w-20 h-20 bg-blue-300 rounded-full morph-shape"></div>
-          <div className="float-fast absolute top-1/3 right-1/4 w-28 h-28 bg-purple-300 rounded-full morph-shape"></div>
+      {/* Modern CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 left-10 w-24 h-24 bg-white rounded-full"></div>
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-yellow-300 rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 w-16 h-16 bg-pink-300 rounded-full transform -translate-x-1/2 -translate-y-1/2"></div>
         </div>
 
-        {/* Enhanced Three.js Background Layer */}
-        <EnhancedThreeBackground className="opacity-40" intensity={0.8} />
-
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="max-w-4xl mx-auto pin-content">
-            <h2 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-6 md:mb-8 text-white leading-tight">
-              Ready to Start Your Amazing
-              <br className="hidden sm:block" />
-              <span className="text-yellow-300 gradient-reveal">Educational Journey</span>? 🎓
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-white leading-tight">
+              Join Our Educational Community Today! 🎓
             </h2>
-            <p className="wave-text text-lg md:text-xl lg:text-2xl text-orange-100 max-w-3xl mx-auto mb-8 md:mb-12 leading-relaxed px-4">
-              Join thousands of students who have transformed their lives through our innovative educational programs and supportive community! ✨🚀
+            <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Take the first step towards excellence in education and unlock your potential.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center physics-stagger">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/contact"
-                className="physics-item enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-4 bg-white text-orange-600 px-6 md:px-12 py-3 md:py-6 rounded-2xl font-black text-base md:text-xl shadow-2xl transition-all duration-300 magnetic-scroll"
+                className="group inline-flex items-center justify-center space-x-3 bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
-                <span className="text-center">Apply Now - Transform Your Future!</span>
-                <ArrowRight className="h-5 w-5 md:h-6 md:w-6" />
+                <span>Get Started Now</span>
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                to="/events"
-                className="physics-item enhanced-btn inline-flex items-center justify-center space-x-2 md:space-x-4 bg-transparent border-2 md:border-3 border-white text-white px-6 md:px-12 py-3 md:py-6 rounded-2xl font-black text-base md:text-xl hover:bg-white hover:text-orange-600 transition-all duration-300 magnetic-scroll"
+                to="/courses"
+                className="group inline-flex items-center justify-center space-x-3 bg-transparent border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-white hover:text-blue-600 transition-all duration-300"
               >
-                <Calendar className="h-5 w-5 md:h-6 md:w-6" />
-                <span>Upcoming Events</span>
+                <BookOpen className="w-5 h-5" />
+                <span>View Courses</span>
               </Link>
             </div>
           </div>
