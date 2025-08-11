@@ -109,9 +109,9 @@ export default function Index() {
       {/* Modern Hero Section */}
       <ModernHeroSection />
 
-      {/* Enhanced Image Slider - NEW */}
+      {/* Image Showcase - NEW */}
       <div className="fade-slide-up">
-        <EnhancedImageSlider />
+        <ImageShowcase />
       </div>
 
       {/* Stats Section with Enhanced Animations - PRESERVED */}
