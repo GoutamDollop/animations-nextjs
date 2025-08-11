@@ -14,29 +14,48 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     id: 1,
-    image: "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
+    image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
     title: "Excellence in",
     subtitle: "Education",
     description:
-      "Interactive classroom experiences with cutting-edge technology",
+      "State-of-the-art facilities and innovative teaching methods for the best learning experience",
     badge: "🎓 Excellence",
   },
   {
     id: 2,
-    image: "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
-    title: "Building",
-    subtitle: "Community",
+    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    title: "Interactive",
+    subtitle: "Learning",
     description:
-      "Creating lasting friendships and memories through shared learning",
-    badge: "🌟 Unity",
+      "Engaging classroom environments that foster creativity and collaborative learning",
+    badge: "🤝 Community",
   },
   {
     id: 3,
-    image: "https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg",
-    title: "Success",
-    subtitle: "Stories",
-    description: "Celebrating every milestone in your educational journey",
-    badge: "🏆 Success",
+    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    title: "Advanced",
+    subtitle: "Laboratories",
+    description:
+      "Cutting-edge science labs and research facilities for hands-on experiments",
+    badge: "🔬 Innovation",
+  },
+  {
+    id: 4,
+    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
+    title: "Sports &",
+    subtitle: "Recreation",
+    description:
+      "Professional sports facilities promoting physical fitness and team spirit",
+    badge: "🏆 Sports",
+  },
+  {
+    id: 5,
+    image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    title: "Digital",
+    subtitle: "Library",
+    description:
+      "Extensive collection of books and digital resources for comprehensive learning",
+    badge: "📚 Knowledge",
   },
 ];
 
