@@ -1,0 +1,80 @@
+{
+  "teachers": [
+    {
+      "id": 1,
+      "name": "Dr. Sarah Johnson",
+      "position": "Principal & Mathematics Professor",
+      "image": "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
+      "experience": "15+ Years",
+      "education": "PhD in Mathematics, Harvard",
+      "specialization": "Advanced Mathematics & STEM",
+      "email": "sarah.johnson@eduverse.edu",
+      "phone": "+1 (555) 123-4567",
+      "rating": 5,
+      "students": 500,
+      "description": "Visionary principal with 15+ years in mathematics education. Revolutionized STEM programs.",
+      "achievements": [
+        "25+ research papers published",
+        "National Teaching Excellence Award 2023",
+        "Innovative STEM curriculum developer"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Prof. Michael Chen",
+      "position": "Computer Science Head",
+      "image": "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
+      "experience": "12+ Years",
+      "education": "PhD Computer Science, MIT",
+      "specialization": "AI & Machine Learning",
+      "email": "michael.chen@eduverse.edu",
+      "phone": "+1 (555) 234-5678",
+      "rating": 5,
+      "students": 350,
+      "description": "Former Google engineer bringing cutting-edge tech education to students.",
+      "achievements": [
+        "Former Google Senior Engineer",
+        "Award-winning programming bootcamp",
+        "100% student tech placement rate"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Dr. Emily Rodriguez",
+      "position": "English Literature Professor",
+      "image": "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
+      "experience": "10+ Years",
+      "education": "PhD English Literature, Oxford",
+      "specialization": "Creative Writing & Analysis",
+      "email": "emily.rodriguez@eduverse.edu",
+      "phone": "+1 (555) 345-6789",
+      "rating": 5,
+      "students": 280,
+      "description": "Published novelist inspiring students through storytelling and creative expression.",
+      "achievements": [
+        "3 bestselling novels published",
+        "National Creative Writing Award",
+        "School literary magazine founder"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Prof. David Kim",
+      "position": "Physics & Engineering",
+      "image": "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
+      "experience": "8+ Years",
+      "education": "PhD Physics, Stanford",
+      "specialization": "Quantum Physics & Engineering",
+      "email": "david.kim@eduverse.edu",
+      "phone": "+1 (555) 456-7890",
+      "rating": 5,
+      "students": 200,
+      "description": "Former NASA scientist making physics accessible and exciting for all students.",
+      "achievements": [
+        "Former NASA research scientist",
+        "15+ student science fair wins",
+        "Innovative lab equipment developer"
+      ]
+    }
+  ]
+}
