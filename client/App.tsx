@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Index from './pages/Index';
 import About from './pages/About';
 import Courses from './pages/Courses';
+import Teachers from './pages/Teachers';
 import Events from './pages/Events';
 import Gallery from './pages/Gallery';
 import Testimonials from './pages/Testimonials';
