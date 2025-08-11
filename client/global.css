@@ -221,31 +221,31 @@ img {
     --popover-foreground: 210 40% 98%;
 
     --primary: 24 100% 55%;
-    --primary-foreground: 222 20% 8%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 332 100% 65%;
-    --secondary-foreground: 222 20% 8%;
+    --secondary-foreground: 0 0% 100%;
 
     --accent: 46 100% 60%;
     --accent-foreground: 222 20% 8%;
 
     --success: 142 76% 50%;
-    --success-foreground: 222 20% 8%;
+    --success-foreground: 0 0% 100%;
 
     --warning: 38 92% 65%;
     --warning-foreground: 222 20% 8%;
 
     --info: 217 100% 65%;
-    --info-foreground: 222 20% 8%;
+    --info-foreground: 0 0% 100%;
 
     --purple: 280 100% 70%;
-    --purple-foreground: 222 20% 8%;
+    --purple-foreground: 0 0% 100%;
 
     --muted: 217 33% 16%;
-    --muted-foreground: 215 20% 65%;
+    --muted-foreground: 215 20% 75%;
 
     --destructive: 0 84% 70%;
-    --destructive-foreground: 222 20% 8%;
+    --destructive-foreground: 0 0% 100%;
 
     --border: 217 33% 16%;
     --input: 217 33% 16%;
@@ -430,15 +430,29 @@ img {
   }
 
   .swiper-pagination-bullet {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
     display: inline-block;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.5);
     opacity: 0.5;
-    margin: 0 4px;
+    margin: 0 3px;
     cursor: pointer;
     transition: all 0.3s;
+  }
+
+  /* Responsive bullet sizes */
+  @media (max-width: 768px) {
+    .swiper-pagination-bullet {
+      width: 4px;
+      height: 4px;
+      margin: 0 2px;
+    }
+
+    .swiper-pagination-bullet-active {
+      width: 5px;
+      height: 5px;
+    }
   }
 
   .swiper-pagination-bullet-active {
