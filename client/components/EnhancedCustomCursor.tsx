@@ -231,14 +231,14 @@ export default function EnhancedCustomCursor() {
 
     const handleMouseEnter = (e: Event) => {
       const target = e.target as HTMLElement;
-      if (target && (
+      if (target && target.nodeType === Node.ELEMENT_NODE && (
         target.tagName === 'A' ||
         target.tagName === 'BUTTON' ||
-        target.getAttribute('role') === 'button' ||
-        target.classList.contains('interactive-btn') ||
-        target.classList.contains('enhanced-btn') ||
-        target.classList.contains('nav-item') ||
-        target.classList.contains('magnetic') ||
+        (target.getAttribute && target.getAttribute('role') === 'button') ||
+        (target.classList && target.classList.contains('interactive-btn')) ||
+        (target.classList && target.classList.contains('enhanced-btn')) ||
+        (target.classList && target.classList.contains('nav-item')) ||
+        (target.classList && target.classList.contains('magnetic')) ||
         target.closest('button') ||
         target.closest('a') ||
         target.closest('[role="button"]') ||
