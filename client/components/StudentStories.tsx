@@ -1,25 +1,23 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Quote, Award, ChevronLeft, ChevronRight, Play, Pause } from 'lucide-react';
+import { Quote, Award, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import studentsData from '../data/students.json';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function StudentStories() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+  const itemsPerView = 3;
+  const maxIndex = Math.max(0, studentsData.students.length - itemsPerView);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Section entrance animation
       gsap.fromTo(
         ".stories-header",
-        { y: 60, opacity: 0 },
+        { y: 50, opacity: 0 },
         { 
           y: 0, 
           opacity: 1, 
@@ -36,7 +34,7 @@ export default function StudentStories() {
       // Cards entrance animation
       gsap.fromTo(
         ".student-card",
-        { y: 80, opacity: 0, scale: 0.9 },
+        { y: 60, opacity: 0, scale: 0.95 },
         { 
           y: 0, 
           opacity: 1, 
@@ -45,7 +43,7 @@ export default function StudentStories() {
           stagger: 0.1,
           ease: "back.out(1.7)",
           scrollTrigger: {
-            trigger: ".stories-container",
+            trigger: ".stories-grid",
             start: "top 80%",
             toggleActions: "play none none reverse"
           }
@@ -56,72 +54,15 @@ export default function StudentStories() {
     return () => ctx.revert();
   }, []);
 
-  // Auto-scroll effect
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      scrollRight();
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying]);
-
-  // Check scroll position
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
-
-    const checkScrollPosition = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = container;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
-    };
-
-    container.addEventListener('scroll', checkScrollPosition);
-    checkScrollPosition();
-
-    return () => container.removeEventListener('scroll', checkScrollPosition);
-  }, []);
-
   const scrollLeft = () => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 320; // w-80 = 320px
-      const newIndex = Math.max(0, currentIndex - 1);
-      setCurrentIndex(newIndex);
-      
-      scrollContainerRef.current.scrollTo({
-        left: newIndex * (cardWidth + 24), // 24px gap
-        behavior: 'smooth'
-      });
-    }
+    setCurrentIndex(Math.max(0, currentIndex - 1));
   };
 
   const scrollRight = () => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 320;
-      const maxIndex = studentsData.students.length - 1;
-      const newIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
-      setCurrentIndex(newIndex);
-      
-      scrollContainerRef.current.scrollTo({
-        left: newIndex * (cardWidth + 24),
-        behavior: 'smooth'
-      });
-    }
+    setCurrentIndex(Math.min(maxIndex, currentIndex + 1));
   };
 
-  const goToSlide = (index: number) => {
-    if (scrollContainerRef.current) {
-      const cardWidth = 320;
-      setCurrentIndex(index);
-      
-      scrollContainerRef.current.scrollTo({
-        left: index * (cardWidth + 24),
-        behavior: 'smooth'
-      });
-    }
-  };
+  const visibleStudents = studentsData.students.slice(currentIndex, currentIndex + itemsPerView);
 
   return (
     <section ref={sectionRef} className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 relative overflow-hidden">
@@ -136,81 +77,72 @@ export default function StudentStories() {
         </div>
         
         <div className="relative max-w-6xl mx-auto">
-          {/* Scroll Controls */}
-          <button 
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-4 bg-white/95 backdrop-blur-sm rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 ${
-              canScrollLeft ? 'hover:shadow-2xl' : 'opacity-50 cursor-not-allowed'
-            }`}
-          >
-            <ChevronLeft className="h-6 w-6 text-gray-700" />
-          </button>
-          
-          <button 
-            onClick={scrollRight}
-            disabled={!canScrollRight && currentIndex < studentsData.students.length - 1}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-4 bg-white/95 backdrop-blur-sm rounded-full shadow-xl transition-all duration-300 transform hover:scale-110 ${
-              canScrollRight || currentIndex < studentsData.students.length - 1 ? 'hover:shadow-2xl' : 'opacity-50 cursor-not-allowed'
-            }`}
-          >
-            <ChevronRight className="h-6 w-6 text-gray-700" />
-          </button>
+          {/* Navigation Controls */}
+          <div className="flex justify-between items-center mb-8">
+            <button 
+              onClick={scrollLeft}
+              disabled={currentIndex === 0}
+              className={`p-3 rounded-full shadow-lg transition-all duration-300 ${
+                currentIndex === 0 
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                  : 'bg-white text-gray-700 hover:shadow-xl transform hover:scale-105'
+              }`}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            
+            <div className="text-sm text-gray-500 bg-white px-4 py-2 rounded-full shadow">
+              {currentIndex + 1}-{Math.min(currentIndex + itemsPerView, studentsData.students.length)} of {studentsData.students.length} stories
+            </div>
+            
+            <button 
+              onClick={scrollRight}
+              disabled={currentIndex >= maxIndex}
+              className={`p-3 rounded-full shadow-lg transition-all duration-300 ${
+                currentIndex >= maxIndex 
+                  ? 'bg-gray-200 text-gray-400 cursor-not-allowed' 
+                  : 'bg-white text-gray-700 hover:shadow-xl transform hover:scale-105'
+              }`}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+          </div>
 
-          {/* Auto-play Toggle */}
-          <button
-            onClick={() => setIsAutoPlaying(!isAutoPlaying)}
-            className="absolute top-0 right-0 z-10 p-3 bg-white/95 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
-          >
-            {isAutoPlaying ? (
-              <Pause className="h-5 w-5 text-gray-700" />
-            ) : (
-              <Play className="h-5 w-5 text-gray-700" />
-            )}
-          </button>
-
-          {/* Stories Container */}
-          <div 
-            ref={scrollContainerRef}
-            className="stories-container flex gap-6 overflow-x-auto scrollbar-hide pb-4 scroll-smooth px-12"
-            style={{ 
-              scrollbarWidth: 'none', 
-              msOverflowStyle: 'none',
-              scrollSnapType: 'x mandatory'
-            }}
-          >
-            {studentsData.students.map((student, index) => (
+          {/* Stories Grid */}
+          <div className="stories-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {visibleStudents.map((student, index) => (
               <div
                 key={student.id}
-                className="student-card flex-shrink-0 w-80 bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-100"
-                style={{ scrollSnapAlign: 'start' }}
+                className="student-card bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-gray-100"
               >
+                {/* Student Header */}
                 <div className="text-center mb-6">
-                  <div className="relative inline-block">
+                  <div className="relative inline-block mb-4">
                     <img
                       src={student.image}
                       alt={student.name}
-                      className="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-gradient-to-r from-orange-400 to-pink-400 shadow-xl object-cover"
+                      className="w-20 h-20 rounded-full object-cover border-4 border-gradient-to-r from-orange-400 to-pink-400 shadow-lg"
                     />
-                    <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full border-4 border-white flex items-center justify-center">
+                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-3 border-white flex items-center justify-center">
                       <div className="w-2 h-2 bg-white rounded-full"></div>
                     </div>
                   </div>
-                  <h3 className="text-2xl font-bold text-gray-800 mb-1">{student.name}</h3>
-                  <p className="text-orange-600 font-semibold text-lg">{student.grade}</p>
+                  <h3 className="text-xl font-bold text-gray-800 mb-1">{student.name}</h3>
+                  <p className="text-orange-600 font-semibold">{student.grade}</p>
                 </div>
                 
-                <div className="relative mb-8">
-                  <Quote className="h-8 w-8 text-orange-400 mb-4 opacity-50" />
-                  <p className="text-gray-600 leading-relaxed text-lg italic relative z-10">
+                {/* Quote */}
+                <div className="relative mb-6">
+                  <Quote className="h-6 w-6 text-orange-400 mb-3 opacity-50" />
+                  <p className="text-gray-600 leading-relaxed italic">
                     "{student.story}"
                   </p>
-                  <Quote className="h-6 w-6 text-orange-300 absolute bottom-0 right-0 opacity-30 rotate-180" />
                 </div>
                 
+                {/* Achievement Badge */}
                 <div className="text-center">
-                  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-full text-sm font-bold shadow-lg">
-                    <Award className="h-5 w-5" />
+                  <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                    <Award className="h-4 w-4" />
                     <span>{student.achievement}</span>
                   </div>
                 </div>
@@ -219,11 +151,11 @@ export default function StudentStories() {
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center space-x-3 mt-8">
-            {studentsData.students.map((_, index) => (
+          <div className="flex justify-center space-x-2 mt-8">
+            {Array.from({ length: maxIndex + 1 }, (_, index) => (
               <button
                 key={index}
-                onClick={() => goToSlide(index)}
+                onClick={() => setCurrentIndex(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-125'
@@ -231,19 +163,6 @@ export default function StudentStories() {
                 }`}
               />
             ))}
-          </div>
-
-          {/* Progress Bar */}
-          <div className="mt-6 max-w-md mx-auto">
-            <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
-              <div 
-                className="h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full transition-all duration-300"
-                style={{ width: `${((currentIndex + 1) / studentsData.students.length) * 100}%` }}
-              ></div>
-            </div>
-            <div className="text-center mt-2 text-sm text-gray-500">
-              {currentIndex + 1} of {studentsData.students.length} stories
-            </div>
           </div>
         </div>
       </div>
