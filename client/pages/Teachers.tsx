@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import TeacherCard from "../components/TeacherCard";
-import HeroBreadcrumb from "../components/HeroBreadcrumb";
 import teachersData from "../data/teachers.json";
 
 gsap.registerPlugin(ScrollTrigger);
