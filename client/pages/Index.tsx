@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Play, Calendar } from "lucide-react";
+import { ArrowRight, Play, Calendar, BookOpen } from "lucide-react";
 import ModernHeroSection from "../components/ModernHeroSection";
 import EnhancedThreeBackground from "../components/EnhancedThreeBackground";
 import ImageShowcase from "../components/ImageShowcase";
