@@ -76,8 +76,8 @@ export default function Footer() {
         <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-green-300 rounded-full animate-ping"></div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Brand Section */}
           <div className="footer-item space-y-6">
             <Link to="/" className="flex items-center space-x-3 group">
