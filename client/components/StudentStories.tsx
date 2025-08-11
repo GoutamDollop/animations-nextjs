@@ -155,11 +155,42 @@ export default function StudentStories() {
             </div>
           )}
           
-          {/* Mobile indicator */}
+          {/* Mobile indicator and controls */}
           {isMobile && (
             <div className="text-center mb-6">
-              <div className="text-sm text-gray-500 bg-white px-4 py-2 rounded-full shadow inline-block">
+              <div className="text-sm text-gray-500 bg-white px-4 py-2 rounded-full shadow inline-block mb-4">
                 {currentIndex + 1} of {studentsData.students.length} stories • Auto-scrolling
+              </div>
+
+              {/* Manual controls for mobile */}
+              <div className="flex justify-center items-center space-x-4">
+                <button
+                  onClick={scrollLeft}
+                  disabled={currentIndex === 0}
+                  className={`p-2 rounded-full shadow-md transition-all duration-300 ${
+                    currentIndex === 0
+                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : 'bg-white text-gray-700 hover:shadow-lg transform hover:scale-105'
+                  }`}
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+
+                <div className="text-xs text-gray-500 bg-orange-50 px-3 py-1 rounded-full">
+                  Manual Control
+                </div>
+
+                <button
+                  onClick={scrollRight}
+                  disabled={currentIndex >= maxIndex}
+                  className={`p-2 rounded-full shadow-md transition-all duration-300 ${
+                    currentIndex >= maxIndex
+                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      : 'bg-white text-gray-700 hover:shadow-lg transform hover:scale-105'
+                  }`}
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
               </div>
             </div>
           )}
@@ -228,21 +259,18 @@ export default function StudentStories() {
             ))}
           </div>
 
-          {/* Dots Indicator */}
+          {/* Dots Indicator - Now clickable on mobile too */}
           <div className="flex justify-center space-x-2 mt-6 md:mt-8">
             {Array.from({ length: Math.max(1, maxIndex + 1) }, (_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                disabled={isMobile}
-                className={`rounded-full transition-all duration-300 ${
-                  isMobile ? 'w-2 h-2' : 'w-3 h-3'
+                className={`rounded-full transition-all duration-300 cursor-pointer ${
+                  isMobile ? 'w-3 h-3' : 'w-3 h-3'
                 } ${
                   index === currentIndex
                     ? 'bg-gradient-to-r from-orange-500 to-red-500 scale-125'
                     : 'bg-gray-300 hover:bg-gray-400'
-                } ${
-                  isMobile ? 'cursor-default' : 'cursor-pointer'
                 }`}
               />
             ))}
