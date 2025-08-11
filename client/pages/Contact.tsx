@@ -316,7 +316,7 @@ export default function Contact() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-3 md:py-4 rounded-xl font-bold text-base md:text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
                     >
                       {isSubmitting ? (
                         <>
@@ -385,11 +385,11 @@ export default function Contact() {
                     Start your journey with us today! Our admissions team is ready to guide you.
                   </p>
                   <div className="space-y-3">
-                    <button className="w-full bg-white text-orange-600 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                    <button className="w-full bg-white text-orange-600 py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base hover:shadow-lg transform hover:scale-105 transition-all duration-300">
                       Apply for Admission
                     </button>
-                    <button className="w-full bg-transparent border-2 border-white text-white py-3 rounded-xl font-semibold hover:bg-white hover:text-orange-600 transition-all duration-300 flex items-center justify-center space-x-2">
-                      <Calendar className="h-5 w-5" />
+                    <button className="w-full bg-transparent border-2 border-white text-white py-2 md:py-3 rounded-xl font-semibold text-sm md:text-base hover:bg-white hover:text-orange-600 transition-all duration-300 flex items-center justify-center space-x-2">
+                      <Calendar className="h-4 w-4 md:h-5 md:w-5" />
                       <span>Schedule Campus Tour</span>
                     </button>
                   </div>
