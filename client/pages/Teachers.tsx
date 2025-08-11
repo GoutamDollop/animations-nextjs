@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TeacherCard from '../components/TeacherCard';
-import CustomCursor from '../components/CustomCursor';
 import teachersData from '../data/teachers.json';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,9 +16,7 @@ export default function Teachers() {
   }, []);
 
   return (
-    <>
-      <CustomCursor />
-      <div className="min-h-screen pt-20 lg:pt-24">
+    <div className="min-h-screen pt-20 lg:pt-24">
         {/* Header Section */}
         <section className="py-20 bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-600 text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-20">
@@ -65,7 +62,6 @@ export default function Teachers() {
             </button>
           </div>
         </section>
-      </div>
-    </>
+    </div>
   );
 }
