@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import Footer from './Footer';
 import Loading from './Loading';
 import ScrollToTop from './ScrollToTop';
+import CustomCursor from './CustomCursor';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -25,15 +26,18 @@ export default function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-white">
-      <Navigation />
-      
-      <main className="flex-grow">
-        {children}
-      </main>
-      
-      <Footer />
-      <ScrollToTop />
-    </div>
+    <>
+      <CustomCursor />
+      <div className="min-h-screen flex flex-col bg-white">
+        <Navigation />
+        
+        <main className="flex-grow">
+          {children}
+        </main>
+        
+        <Footer />
+        <ScrollToTop />
+      </div>
+    </>
   );
 }
