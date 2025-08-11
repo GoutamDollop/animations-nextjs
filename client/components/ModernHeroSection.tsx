@@ -19,6 +19,15 @@ export default function ModernHeroSection() {
   const imageRef = useRef<HTMLDivElement>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  // Auto-slider for hero images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Hero entrance animations
