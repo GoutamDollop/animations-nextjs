@@ -337,10 +337,27 @@ interface EnhancedThreeBackgroundProps {
   intensity?: number;
 }
 
-export default function EnhancedThreeBackground({ 
-  className = "", 
-  intensity = 0.7 
+export default function EnhancedThreeBackground({
+  className = "",
+  intensity = 0.7
 }: EnhancedThreeBackgroundProps) {
+  const [shouldRender, setShouldRender] = React.useState(true);
+
+  React.useEffect(() => {
+    // Check if WebGL is supported
+    const canvas = document.createElement('canvas');
+    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    if (!gl) {
+      setShouldRender(false);
+      console.warn('WebGL not supported, Three.js background disabled');
+    }
+
+    return () => {
+      setShouldRender(false);
+    };
+  }, []);
+
+  if (!shouldRender) return null;
   return (
     <div className={`absolute inset-0 ${className}`} style={{ opacity: intensity }}>
       <Canvas
