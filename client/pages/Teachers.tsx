@@ -19,7 +19,6 @@ export default function Teachers() {
     <div className="min-h-screen pt-20 lg:pt-24">
       {/* Header Section */}
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 text-white relative overflow-hidden">
-        <HeroBreadcrumb />
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
