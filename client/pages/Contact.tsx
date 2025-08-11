@@ -10,12 +10,8 @@ import {
   User, 
   MessageSquare,
   Calendar,
-  GraduationCap,
-  Star,
   CheckCircle,
-  ArrowRight
 } from 'lucide-react';
-import CustomCursor from '../components/CustomCursor';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,302 +161,244 @@ export default function Contact() {
   ];
 
   return (
-    <>
-      <CustomCursor />
-      <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
-        {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-300 rounded-full animate-ping"></div>
+    <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
+      {/* Hero Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
+          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-300 rounded-full animate-ping"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
+          <div className="contact-header max-w-4xl mx-auto">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-6">
+              Get In Touch 📞
+            </h1>
+            <p className="text-xl md:text-2xl leading-relaxed">
+              Ready to start your educational journey? We're here to help you every step of the way!
+            </p>
           </div>
-          
-          <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-            <div className="contact-header max-w-4xl mx-auto">
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-6">
-                Get In Touch 📞
-              </h1>
-              <p className="text-xl md:text-2xl leading-relaxed">
-                Ready to start your educational journey? We're here to help you every step of the way!
-              </p>
-            </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Main Content */}
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-              {/* Contact Form */}
-              <div className="contact-form">
-                <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10">
-                  <div className="mb-8">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                      Send us a Message 💌
-                    </h2>
-                    <p className="text-gray-600">
-                      Fill out the form below and we'll get back to you within 24 hours.
-                    </p>
+      {/* Main Content */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            {/* Contact Form */}
+            <div className="contact-form">
+              <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10">
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                    Send us a Message 💌
+                  </h2>
+                  <p className="text-gray-600">
+                    Fill out the form below and we'll get back to you within 24 hours.
+                  </p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Inquiry Type */}
+                  <div className="form-field">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      What can we help you with?
+                    </label>
+                    <select
+                      name="inquiryType"
+                      value={formData.inquiryType}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                    >
+                      {inquiryTypes.map((type) => (
+                        <option key={type.value} value={type.value}>
+                          {type.label}
+                        </option>
+                      ))}
+                    </select>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Inquiry Type */}
+                  {/* Name and Email */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="form-field">
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        What can we help you with?
+                        Full Name *
                       </label>
-                      <select
-                        name="inquiryType"
-                        value={formData.inquiryType}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
-                      >
-                        {inquiryTypes.map((type) => (
-                          <option key={type.value} value={type.value}>
-                            {type.label}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    {/* Name and Email */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="form-field">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Full Name *
-                        </label>
-                        <div className="relative">
-                          <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                          <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
-                            placeholder="Your full name"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="form-field">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
-                            placeholder="your@email.com"
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Phone and Subject */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      <div className="form-field">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Phone Number
-                        </label>
-                        <div className="relative">
-                          <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
-                          <input
-                            type="tel"
-                            name="phone"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
-                            placeholder="+1 (555) 123-4567"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="form-field">
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Subject *
-                        </label>
+                      <div className="relative">
+                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                         <input
                           type="text"
-                          name="subject"
-                          value={formData.subject}
+                          name="name"
+                          value={formData.name}
                           onChange={handleInputChange}
                           required
-                          className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
-                          placeholder="How can we help?"
+                          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                          placeholder="Your full name"
                         />
                       </div>
                     </div>
 
-                    {/* Message */}
                     <div className="form-field">
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Message *
+                        Email Address *
                       </label>
                       <div className="relative">
-                        <MessageSquare className="absolute left-3 top-4 h-5 w-5 text-gray-400" />
-                        <textarea
-                          name="message"
-                          value={formData.message}
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
                           onChange={handleInputChange}
                           required
-                          rows={5}
-                          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none"
-                          placeholder="Tell us more about your inquiry..."
-                        ></textarea>
+                          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                          placeholder="your@email.com"
+                        />
                       </div>
                     </div>
+                  </div>
 
-                    {/* Submit Button */}
+                  {/* Phone and Subject */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="form-field">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-                      >
-                        {isSubmitting ? (
-                          <>
-                            <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            <span>Sending...</span>
-                          </>
-                        ) : (
-                          <>
-                            <Send className="h-5 w-5" />
-                            <span>Send Message</span>
-                          </>
-                        )}
-                      </button>
-                    </div>
-                  </form>
-
-                  {/* Success Message */}
-                  <div className="success-message hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl">
-                    <div className="flex items-center space-x-2">
-                      <CheckCircle className="h-5 w-5 text-green-600" />
-                      <span className="text-green-800 font-semibold">Message sent successfully!</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contact Information */}
-              <div className="contact-info">
-                <div className="space-y-6">
-                  <div className="mb-8">
-                    <h2 className="text-3xl font-bold text-gray-800 mb-4">
-                      Contact Information 📍
-                    </h2>
-                    <p className="text-gray-600">
-                      Multiple ways to reach us. Choose what works best for you!
-                    </p>
-                  </div>
-
-                  {contactInfo.map((info, index) => (
-                    <div
-                      key={index}
-                      className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-                    >
-                      <div className="flex items-start space-x-4">
-                        <div className={`p-3 bg-gradient-to-br ${info.color} rounded-xl shadow-lg`}>
-                          <info.icon className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="text-lg font-bold text-gray-800 mb-2">
-                            {info.title}
-                          </h3>
-                          {info.details.map((detail, detailIndex) => (
-                            <p key={detailIndex} className="text-gray-600">
-                              {detail}
-                            </p>
-                          ))}
-                        </div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Phone Number
+                      </label>
+                      <div className="relative">
+                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                        <input
+                          type="tel"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                          placeholder="+1 (555) 123-4567"
+                        />
                       </div>
                     </div>
-                  ))}
 
-                  {/* Quick Actions */}
-                  <div className="bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl p-6 text-white">
-                    <h3 className="text-xl font-bold mb-4">Ready to Apply? 🎓</h3>
-                    <p className="mb-6">
-                      Start your journey with us today! Our admissions team is ready to guide you.
-                    </p>
-                    <div className="space-y-3">
-                      <button className="w-full bg-white text-orange-600 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                        Apply for Admission
-                      </button>
-                      <button className="w-full bg-transparent border-2 border-white text-white py-3 rounded-xl font-semibold hover:bg-white hover:text-orange-600 transition-all duration-300 flex items-center justify-center space-x-2">
-                        <Calendar className="h-5 w-5" />
-                        <span>Schedule Campus Tour</span>
-                      </button>
+                    <div className="form-field">
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Subject *
+                      </label>
+                      <input
+                        type="text"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300"
+                        placeholder="How can we help?"
+                      />
                     </div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="form-field">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      Message *
+                    </label>
+                    <div className="relative">
+                      <MessageSquare className="absolute left-3 top-4 h-5 w-5 text-gray-400" />
+                      <textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={5}
+                        className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all duration-300 resize-none"
+                        placeholder="Tell us more about your inquiry..."
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="form-field">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white py-4 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Sending...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5" />
+                          <span>Send Message</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+
+                {/* Success Message */}
+                <div className="success-message hidden mt-6 p-4 bg-green-50 border border-green-200 rounded-xl">
+                  <div className="flex items-center space-x-2">
+                    <CheckCircle className="h-5 w-5 text-green-600" />
+                    <span className="text-green-800 font-semibold">Message sent successfully!</span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
 
-        {/* FAQ Section */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-4 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">
-                Frequently Asked Questions ❓
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Quick answers to common questions about EduVerse Academy.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  question: "What are the admission requirements?",
-                  answer: "We welcome students from diverse backgrounds. Contact our admissions team for specific requirements."
-                },
-                {
-                  question: "Do you offer financial aid?",
-                  answer: "Yes! We provide various scholarship and financial aid options to make education accessible."
-                },
-                {
-                  question: "Can I schedule a campus tour?",
-                  answer: "Absolutely! We offer both virtual and in-person tours. Schedule yours today."
-                },
-                {
-                  question: "What programs do you offer?",
-                  answer: "We offer comprehensive programs in STEM, Arts, Languages, and more for all grade levels."
-                },
-                {
-                  question: "What is the student-teacher ratio?",
-                  answer: "We maintain small class sizes with an average ratio of 15:1 for personalized attention."
-                },
-                {
-                  question: "Do you have extracurricular activities?",
-                  answer: "Yes! We offer 50+ clubs, sports teams, and activities to enrich student experience."
-                }
-              ].map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-gradient-to-br from-gray-50 to-blue-50 rounded-2xl p-6 hover:shadow-lg transition-all duration-300"
-                >
-                  <h3 className="text-lg font-bold text-gray-800 mb-3">
-                    {faq.question}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {faq.answer}
+            {/* Contact Information */}
+            <div className="contact-info">
+              <div className="space-y-6">
+                <div className="mb-8">
+                  <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                    Contact Information 📍
+                  </h2>
+                  <p className="text-gray-600">
+                    Multiple ways to reach us. Choose what works best for you!
                   </p>
                 </div>
-              ))}
+
+                {contactInfo.map((info, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className={`p-3 bg-gradient-to-br ${info.color} rounded-xl shadow-lg`}>
+                        <info.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-gray-800 mb-2">
+                          {info.title}
+                        </h3>
+                        {info.details.map((detail, detailIndex) => (
+                          <p key={detailIndex} className="text-gray-600">
+                            {detail}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Quick Actions */}
+                <div className="bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 rounded-2xl p-6 text-white">
+                  <h3 className="text-xl font-bold mb-4">Ready to Apply? 🎓</h3>
+                  <p className="mb-6">
+                    Start your journey with us today! Our admissions team is ready to guide you.
+                  </p>
+                  <div className="space-y-3">
+                    <button className="w-full bg-white text-orange-600 py-3 rounded-xl font-semibold hover:shadow-lg transform hover:scale-105 transition-all duration-300">
+                      Apply for Admission
+                    </button>
+                    <button className="w-full bg-transparent border-2 border-white text-white py-3 rounded-xl font-semibold hover:bg-white hover:text-orange-600 transition-all duration-300 flex items-center justify-center space-x-2">
+                      <Calendar className="h-5 w-5" />
+                      <span>Schedule Campus Tour</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-        </section>
-      </div>
-    </>
+        </div>
+      </section>
+    </div>
   );
 }
