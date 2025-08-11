@@ -5,6 +5,8 @@ import Loading from './Loading';
 import ScrollToTop from './ScrollToTop';
 import CustomCursor from './CustomCursor';
 import PerformanceOptimizer from './PerformanceOptimizer';
+import Breadcrumb from './Breadcrumb';
+import ScrollManager from './ScrollManager';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -29,9 +31,11 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <>
       <PerformanceOptimizer />
+      <ScrollManager />
       <CustomCursor />
       <div className="min-h-screen flex flex-col bg-white">
         <Navigation />
+        <Breadcrumb />
 
         <main className="flex-grow">
           {children}
