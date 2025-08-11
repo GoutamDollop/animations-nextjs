@@ -5,14 +5,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function AdvancedScrollAnimations() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const isInitialized = useRef(false);
 
   useEffect(() => {
-    if (isInitialized.current || !containerRef.current) return;
+    if (isInitialized.current) return;
     isInitialized.current = true;
 
-    const ctx = gsap.context(() => {
+    // Wait for DOM to be ready
+    const initAnimations = () => {
       // 1. Parallax Background Layers
       gsap.utils.toArray(".parallax-bg").forEach((element: any, i) => {
         const depth = (i + 1) * 0.3;
@@ -28,9 +28,8 @@ export default function AdvancedScrollAnimations() {
         });
       });
 
-      // 2. Horizontal Scroll Gallery (like gsap.com/scroll/)
-      const horizontalSections = gsap.utils.toArray(".horizontal-scroll");
-      horizontalSections.forEach((section: any) => {
+      // 2. Horizontal Scroll Gallery
+      gsap.utils.toArray(".horizontal-scroll").forEach((section: any) => {
         const slides = section.querySelectorAll(".scroll-slide");
         if (slides.length > 1) {
           gsap.to(slides, {
@@ -52,7 +51,7 @@ export default function AdvancedScrollAnimations() {
       gsap.utils.toArray(".pin-section").forEach((section: any) => {
         const content = section.querySelectorAll(".pin-content");
         if (content.length > 1) {
-          gsap.timeline({
+          const timeline = gsap.timeline({
             scrollTrigger: {
               trigger: section,
               pin: true,
@@ -61,11 +60,18 @@ export default function AdvancedScrollAnimations() {
               scrub: 1,
               anticipatePin: 1
             }
-          })
-          .to(content[0], { opacity: 0, scale: 0.8, duration: 1 })
-          .to(content[1], { opacity: 1, scale: 1, duration: 1 }, "-=0.5")
-          .to(content[1], { opacity: 0, scale: 0.8, duration: 1 })
-          .to(content[2], { opacity: 1, scale: 1, duration: 1 }, "-=0.5");
+          });
+
+          content.forEach((item: any, index: number) => {
+            if (index === 0) {
+              timeline.to(item, { opacity: 0, scale: 0.8, duration: 1 });
+            } else if (index < content.length - 1) {
+              timeline.to(item, { opacity: 1, scale: 1, duration: 1 }, "-=0.5")
+                      .to(item, { opacity: 0, scale: 0.8, duration: 1 });
+            } else {
+              timeline.to(item, { opacity: 1, scale: 1, duration: 1 }, "-=0.5");
+            }
+          });
         }
       });
 
@@ -74,21 +80,19 @@ export default function AdvancedScrollAnimations() {
         const text = element.textContent;
         const words = text.split(" ");
         element.innerHTML = words.map((word: string) => 
-          `<span class="word-reveal">${word}</span>`
+          `<span class="word-reveal" style="display: inline-block; overflow: hidden;"><span style="display: inline-block;">${word}</span></span>`
         ).join(" ");
 
-        gsap.fromTo(element.querySelectorAll(".word-reveal"), 
+        gsap.fromTo(element.querySelectorAll(".word-reveal span"), 
           { 
-            opacity: 0, 
-            y: 50,
+            y: 100,
             skewY: 7,
-            filter: "blur(10px)"
+            opacity: 0
           },
           {
-            opacity: 1,
             y: 0,
             skewY: 0,
-            filter: "blur(0px)",
+            opacity: 1,
             duration: 0.8,
             stagger: 0.1,
             ease: "power3.out",
@@ -101,35 +105,10 @@ export default function AdvancedScrollAnimations() {
         );
       });
 
-      // 5. Morphing Path Animations
-      gsap.utils.toArray(".morph-path").forEach((path: any) => {
-        const timeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: path.closest('.morph-container'),
-            start: "top center",
-            end: "bottom center",
-            scrub: 1,
-            onUpdate: (self) => {
-              const progress = self.progress;
-              // Create morphing effect with custom path data
-              const morphStates = [
-                "M0,50 Q50,10 100,50 T200,50",
-                "M0,50 Q50,90 100,50 T200,50",
-                "M0,50 Q50,50 100,50 T200,50"
-              ];
-              const currentIndex = Math.floor(progress * (morphStates.length - 1));
-              const nextIndex = Math.min(currentIndex + 1, morphStates.length - 1);
-              const localProgress = (progress * (morphStates.length - 1)) % 1;
-              
-              // Simple interpolation between path states
-              path.setAttribute('d', morphStates[currentIndex]);
-            }
-          }
-        });
-      });
-
-      // 6. 3D Rotation Cards on Scroll
-      gsap.utils.toArray(".rotate-3d").forEach((card: any, i) => {
+      // 5. 3D Rotation Cards on Scroll
+      gsap.utils.toArray(".rotate-3d").forEach((card: any) => {
+        gsap.set(card, { transformStyle: "preserve-3d" });
+        
         gsap.fromTo(card,
           { 
             rotationY: -30,
@@ -156,7 +135,7 @@ export default function AdvancedScrollAnimations() {
         );
       });
 
-      // 7. Counter Animation on Scroll
+      // 6. Counter Animation on Scroll
       gsap.utils.toArray(".counter-scroll").forEach((counter: any) => {
         const target = parseInt(counter.getAttribute("data-target") || "0");
         const obj = { value: 0 };
@@ -171,12 +150,12 @@ export default function AdvancedScrollAnimations() {
           scrollTrigger: {
             trigger: counter,
             start: "top 80%",
-            toggleActions: "play none none reverse"
+            toggleActions: "play none none reset"
           }
         });
       });
 
-      // 8. Stagger Animation with Physics
+      // 7. Stagger Animation with Physics
       gsap.utils.toArray(".physics-stagger").forEach((container: any) => {
         const items = container.querySelectorAll(".physics-item");
         
@@ -208,28 +187,7 @@ export default function AdvancedScrollAnimations() {
         );
       });
 
-      // 9. Liquid Morphing Background
-      gsap.utils.toArray(".liquid-bg").forEach((bg: any) => {
-        const shapes = bg.querySelectorAll(".liquid-shape");
-        
-        shapes.forEach((shape: any, i: number) => {
-          gsap.to(shape, {
-            morphSVG: shape.getAttribute("data-morph") || shape,
-            duration: 2 + i * 0.5,
-            ease: "power2.inOut",
-            yoyo: true,
-            repeat: -1,
-            scrollTrigger: {
-              trigger: bg,
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 2
-            }
-          });
-        });
-      });
-
-      // 10. Scroll-triggered Magnetic Effect
+      // 8. Scroll-triggered Magnetic Effect
       gsap.utils.toArray(".magnetic-scroll").forEach((element: any) => {
         gsap.set(element, { transformOrigin: "center center" });
         
@@ -272,11 +230,11 @@ export default function AdvancedScrollAnimations() {
         });
       });
 
-      // 11. Wave Text Animation
+      // 9. Wave Text Animation
       gsap.utils.toArray(".wave-text").forEach((element: any) => {
         const text = element.textContent;
         const chars = text.split("");
-        element.innerHTML = chars.map((char: string, i: number) => 
+        element.innerHTML = chars.map((char: string) => 
           `<span class="wave-char" style="display: inline-block; transform-origin: bottom center;">${char === " " ? "&nbsp;" : char}</span>`
         ).join("");
 
@@ -299,7 +257,6 @@ export default function AdvancedScrollAnimations() {
           }
         );
 
-        // Continuous wave effect
         gsap.to(waveChars, {
           y: -10,
           duration: 1.5,
@@ -320,7 +277,7 @@ export default function AdvancedScrollAnimations() {
         });
       });
 
-      // 12. Progress Bar Animation
+      // 10. Progress Bar Animation
       gsap.utils.toArray(".progress-scroll").forEach((bar: any) => {
         gsap.fromTo(bar,
           { scaleX: 0, transformOrigin: "left center" },
@@ -337,7 +294,7 @@ export default function AdvancedScrollAnimations() {
         );
       });
 
-      // 13. Zoom-in Section Effect
+      // 11. Zoom-in Section Effect
       gsap.utils.toArray(".zoom-section").forEach((section: any) => {
         gsap.fromTo(section,
           { scale: 0.8, opacity: 0 },
@@ -357,38 +314,160 @@ export default function AdvancedScrollAnimations() {
         );
       });
 
-    }, containerRef);
+      // 12. Fade Slide Animations (inspired by gsap.com/scroll)
+      gsap.utils.toArray(".fade-slide-up").forEach((element: any) => {
+        gsap.fromTo(element,
+          { y: 100, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      gsap.utils.toArray(".fade-slide-left").forEach((element: any) => {
+        gsap.fromTo(element,
+          { x: -100, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      gsap.utils.toArray(".fade-slide-right").forEach((element: any) => {
+        gsap.fromTo(element,
+          { x: 100, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      // 13. Scale and Rotate Effects
+      gsap.utils.toArray(".scale-rotate").forEach((element: any) => {
+        gsap.fromTo(element,
+          { 
+            scale: 0.5, 
+            rotation: -180,
+            opacity: 0
+          },
+          {
+            scale: 1,
+            rotation: 0,
+            opacity: 1,
+            duration: 1.5,
+            ease: "back.out(1.7)",
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              toggleActions: "play none none reverse"
+            }
+          }
+        );
+      });
+
+      // 14. Typewriter Effect
+      gsap.utils.toArray(".typewriter").forEach((element: any) => {
+        const text = element.textContent;
+        element.textContent = "";
+        
+        gsap.to(element, {
+          duration: text.length * 0.05,
+          ease: "none",
+          onUpdate: function() {
+            const progress = this.progress();
+            const currentLength = Math.floor(progress * text.length);
+            element.textContent = text.slice(0, currentLength) + (progress < 1 ? "|" : "");
+          },
+          scrollTrigger: {
+            trigger: element,
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        });
+      });
+
+      // 15. Morphing Shapes (using CSS clip-path)
+      gsap.utils.toArray(".morph-shape").forEach((element: any) => {
+        const morphStates = [
+          "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          "polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%)",
+          "polygon(50% 0%, 100% 25%, 50% 100%, 0% 75%)",
+          "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)"
+        ];
+        
+        gsap.to(element, {
+          clipPath: morphStates[1],
+          duration: 1,
+          ease: "power2.inOut",
+          scrollTrigger: {
+            trigger: element,
+            start: "top 70%",
+            end: "bottom 30%",
+            scrub: 1,
+            onUpdate: (self) => {
+              const progress = self.progress;
+              const stateIndex = Math.floor(progress * (morphStates.length - 1));
+              const nextIndex = Math.min(stateIndex + 1, morphStates.length - 1);
+              element.style.clipPath = morphStates[stateIndex];
+            }
+          }
+        });
+      });
+
+      // Refresh ScrollTrigger after setup
+      ScrollTrigger.refresh();
+    };
+
+    // Initialize after a short delay to ensure DOM is ready
+    const timeoutId = setTimeout(initAnimations, 100);
 
     return () => {
-      ctx.revert();
+      clearTimeout(timeoutId);
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
       isInitialized.current = false;
     };
   }, []);
 
-  return (
-    <div ref={containerRef} className="fixed inset-0 pointer-events-none z-0">
-      {/* This component sets up scroll triggers globally */}
-    </div>
-  );
+  return null;
 }
 
-// Additional utility component for smooth scrolling
+// Smooth Scroll Provider Component
 export function SmoothScrollProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
-    // Initialize smooth scrolling with GSAP
     gsap.registerPlugin(ScrollTrigger);
 
-    // Smooth scroll configuration
     ScrollTrigger.config({
       autoRefreshEvents: "visibilitychange,DOMContentLoaded,load,resize"
     });
 
-    // Update ScrollTrigger when fonts load
     document.fonts.ready.then(() => {
       ScrollTrigger.refresh();
     });
 
-    // Refresh on window resize
     const handleResize = () => {
       ScrollTrigger.refresh();
     };
@@ -404,24 +483,45 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
   return <>{children}</>;
 }
 
-// Utility function to add scroll classes to elements
-export const addScrollClasses = (element: HTMLElement, classes: string[]) => {
-  classes.forEach(className => {
-    element.classList.add(className);
-  });
-};
-
-// Pre-defined animation presets
-export const ScrollAnimationPresets = {
+// Pre-defined animation classes for easy use
+export const ScrollAnimationClasses = {
+  // Text animations
   textReveal: "text-reveal",
-  parallaxBg: "parallax-bg", 
+  waveText: "wave-text",
+  typewriter: "typewriter",
+  
+  // Movement animations
+  fadeSlideUp: "fade-slide-up",
+  fadeSlideLeft: "fade-slide-left", 
+  fadeSlideRight: "fade-slide-right",
+  
+  // Transform animations
+  rotate3d: "rotate-3d",
+  scaleRotate: "scale-rotate",
+  zoomSection: "zoom-section",
+  
+  // Interactive animations
+  magneticScroll: "magnetic-scroll",
+  physicsStagger: "physics-stagger",
+  
+  // Layout animations
+  parallaxBg: "parallax-bg",
   horizontalScroll: "horizontal-scroll",
   pinSection: "pin-section",
-  rotate3d: "rotate-3d",
-  counterScroll: "counter-scroll",
-  physicsStagger: "physics-stagger",
-  magneticScroll: "magnetic-scroll",
-  waveText: "wave-text",
+  
+  // Progress animations
   progressScroll: "progress-scroll",
-  zoomSection: "zoom-section"
+  counterScroll: "counter-scroll",
+  
+  // Shape animations
+  morphShape: "morph-shape"
+};
+
+// Utility function to apply multiple scroll animation classes
+export const applyScrollAnimations = (element: HTMLElement, animations: string[]) => {
+  animations.forEach(animation => {
+    if (ScrollAnimationClasses[animation as keyof typeof ScrollAnimationClasses]) {
+      element.classList.add(ScrollAnimationClasses[animation as keyof typeof ScrollAnimationClasses]);
+    }
+  });
 };
