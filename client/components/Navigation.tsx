@@ -30,11 +30,18 @@ export default function Navigation() {
   }, []);
 
   useEffect(() => {
-    // Animate navigation items on mount
+    // Enhanced navigation animations
     gsap.fromTo(
       ".nav-item",
-      { y: -20, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power2.out" },
+      { y: -30, opacity: 0, scale: 0.8 },
+      { y: 0, opacity: 1, scale: 1, duration: 0.8, stagger: 0.1, ease: "back.out(1.7)" }
+    );
+
+    // Logo bounce animation
+    gsap.fromTo(
+      ".logo",
+      { scale: 0, rotation: -180 },
+      { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, 0.5)" }
     );
   }, []);
 
@@ -42,11 +49,18 @@ export default function Navigation() {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
 
-    // Animate theme toggle
+    // Enhanced theme toggle animation
     gsap.to(".theme-toggle", {
-      rotation: 360,
-      duration: 0.6,
-      ease: "power2.out",
+      rotation: 720,
+      scale: 1.2,
+      duration: 0.8,
+      ease: "back.out(1.7)",
+      onComplete: () => {
+        gsap.to(".theme-toggle", {
+          scale: 1,
+          duration: 0.3
+        });
+      }
     });
   };
 
@@ -56,102 +70,131 @@ export default function Navigation() {
     if (!isOpen) {
       gsap.fromTo(
         ".mobile-nav-item",
-        { x: 50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.3, stagger: 0.1, ease: "power2.out" },
+        { x: 100, opacity: 0, rotationY: 90 },
+        { x: 0, opacity: 1, rotationY: 0, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }
       );
     }
   };
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border shadow-lg"
+          ? "bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-2xl"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 nav-item group">
-            <div className="p-2 bg-gradient-to-br from-primary to-secondary rounded-xl transform transition-transform group-hover:scale-110">
-              <GraduationCap className="h-6 w-6 lg:h-8 lg:w-8 text-white" />
+          {/* Enhanced Logo */}
+          <Link to="/" className="logo flex items-center space-x-3 nav-item group">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-300"></div>
+              <div className="relative p-3 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl transform transition-transform group-hover:scale-110 shadow-lg">
+                <GraduationCap className="h-8 w-8 text-white" />
+              </div>
             </div>
-            <div className="font-display font-bold text-xl lg:text-2xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              EduVerse
+            <div className="hidden sm:block">
+              <div className="font-display font-black text-2xl lg:text-3xl">
+                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                  EduVerse
+                </span>
+              </div>
+              <div className="text-xs text-gray-500 font-medium -mt-1">
+                Academy
+              </div>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
+          <div className="hidden lg:flex items-center space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`nav-item relative px-3 py-2 text-sm font-medium transition-colors hover:text-primary ${
+                className={`nav-item relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-xl hover:bg-gray-100 group ${
                   location.pathname === item.path
-                    ? "text-primary"
-                    : "text-foreground/80"
+                    ? "text-blue-600 bg-blue-50"
+                    : "text-gray-700 hover:text-blue-600"
                 }`}
               >
-                {item.name}
+                <span className="relative z-10">{item.name}</span>
                 {location.pathname === item.path && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full" />
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full" />
                 )}
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
               </Link>
             ))}
           </div>
 
-          {/* Theme Toggle & Mobile Menu */}
+          {/* Right Side Actions */}
           <div className="flex items-center space-x-4">
+            {/* CTA Button */}
+            <Link
+              to="/contact"
+              className="hidden md:inline-flex nav-item items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+            >
+              <span>Get Started</span>
+            </Link>
+
+            {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="nav-item theme-toggle p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+              className="nav-item theme-toggle p-3 rounded-xl bg-gray-100 hover:bg-gray-200 transition-all duration-300 shadow-md hover:shadow-lg"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-5 w-5 text-gray-700" />
               ) : (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-5 w-5 text-gray-700" />
               )}
             </button>
 
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="lg:hidden nav-item p-2 rounded-lg bg-muted/50 hover:bg-muted transition-colors"
+              className="lg:hidden nav-item p-3 rounded-xl bg-gray-100 hover:bg-gray-200 transition-all duration-300 shadow-md hover:shadow-lg"
               aria-label="Toggle menu"
             >
               {isOpen ? (
-                <X className="h-5 w-5" />
+                <X className="h-5 w-5 text-gray-700" />
               ) : (
-                <Menu className="h-5 w-5" />
+                <Menu className="h-5 w-5 text-gray-700" />
               )}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Enhanced Mobile Navigation */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ${
-            isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+            isOpen ? "max-h-screen opacity-100 pb-6" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="py-4 space-y-2 bg-background/95 backdrop-blur-md rounded-b-xl border-t border-border">
+          <div className="mt-4 space-y-2 bg-white/95 backdrop-blur-lg rounded-2xl p-4 shadow-2xl border border-gray-200">
             {navItems.map((item, index) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`mobile-nav-item block px-4 py-3 text-base font-medium rounded-lg mx-2 transition-colors ${
+                className={`mobile-nav-item block px-6 py-4 text-base font-semibold rounded-xl transition-all duration-300 ${
                   location.pathname === item.path
-                    ? "bg-primary text-primary-foreground"
-                    : "text-foreground/80 hover:bg-muted hover:text-primary"
+                    ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg"
+                    : "text-gray-700 hover:bg-gradient-to-r hover:from-blue-50 hover:to-purple-50 hover:text-blue-600"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
+            <div className="pt-4 border-t border-gray-200">
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="mobile-nav-item block px-6 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                Get Started Today
+              </Link>
+            </div>
           </div>
         </div>
       </div>
