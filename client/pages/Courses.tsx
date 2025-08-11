@@ -13,7 +13,6 @@ import {
   Calendar,
   DollarSign,
 } from "lucide-react";
-import CustomCursor from "../components/CustomCursor";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -193,9 +192,7 @@ export default function Courses() {
   };
 
   return (
-    <>
-      <CustomCursor />
-      <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
+    <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
           <div className="absolute inset-0 opacity-20">
@@ -368,7 +365,6 @@ export default function Courses() {
             </div>
           </div>
         </section>
-      </div>
-    </>
+    </div>
   );
 }
