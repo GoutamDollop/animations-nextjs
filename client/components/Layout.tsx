@@ -40,7 +40,6 @@ export default function Layout({ children }: LayoutProps) {
         <Navigation />
 
         <main className="flex-grow">
-          <ConditionalBreadcrumb />
           {children}
         </main>
 
