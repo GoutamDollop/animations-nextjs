@@ -57,7 +57,7 @@ export default function Teachers() {
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
               We're always looking for passionate educators to join our mission of transforming young lives through education!
             </p>
-            <button className="inline-flex items-center space-x-3 bg-white text-orange-600 px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
+            <button className="inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white text-orange-600 px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300">
               <span>Apply to Teach</span>
             </button>
           </div>
