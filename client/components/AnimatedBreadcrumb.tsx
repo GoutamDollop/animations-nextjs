@@ -27,8 +27,8 @@ export default function AnimatedBreadcrumb() {
   const breadcrumbRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement[]>([]);
 
-  // Don't show breadcrumb on home page
-  if (location.pathname === "/") return null;
+  // Check if we should show breadcrumb (but don't return early)
+  const shouldShowBreadcrumb = location.pathname !== "/";
 
   const getBreadcrumbItems = (): BreadcrumbItem[] => {
     const pathSegments = location.pathname.split("/").filter(Boolean);
