@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import Loading from './Loading';
+import ScrollToTop from './ScrollToTop';
 
 interface LayoutProps {
   children: React.ReactNode;
