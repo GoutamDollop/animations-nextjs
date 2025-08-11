@@ -1,0 +1,52 @@
+{
+  "students": [
+    {
+      "id": 1,
+      "name": "Emma Rodriguez",
+      "grade": "Grade 12",
+      "image": "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
+      "story": "EduVerse helped me discover my passion for science. The hands-on experiments and supportive teachers made learning so exciting!",
+      "achievement": "Science Fair Winner 2024"
+    },
+    {
+      "id": 2,
+      "name": "Alex Thompson",
+      "grade": "Grade 10",
+      "image": "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
+      "story": "The collaborative learning environment at EduVerse taught me teamwork and leadership skills that I'll carry forever.",
+      "achievement": "Student Council President"
+    },
+    {
+      "id": 3,
+      "name": "Maya Patel",
+      "grade": "Grade 11",
+      "image": "https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg",
+      "story": "Thanks to EduVerse's amazing art program, I've discovered my talent and will be studying Fine Arts at university!",
+      "achievement": "Art Scholarship Recipient"
+    },
+    {
+      "id": 4,
+      "name": "Jordan Williams",
+      "grade": "Grade 9",
+      "image": "https://images.pexels.com/photos/5274601/pexels-photo-5274601.jpeg",
+      "story": "The outdoor learning activities at EduVerse made me fall in love with environmental science and nature!",
+      "achievement": "Environmental Club Leader"
+    },
+    {
+      "id": 5,
+      "name": "Sophia Chen",
+      "grade": "Grade 12",
+      "image": "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
+      "story": "EduVerse's coding program opened up a whole new world for me. Now I'm heading to MIT for computer science!",
+      "achievement": "Coding Competition Winner"
+    },
+    {
+      "id": 6,
+      "name": "Marcus Johnson",
+      "grade": "Grade 11",
+      "image": "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
+      "story": "The music program here is incredible! I've learned so much and even performed at Carnegie Hall!",
+      "achievement": "Music Scholarship Winner"
+    }
+  ]
+}
