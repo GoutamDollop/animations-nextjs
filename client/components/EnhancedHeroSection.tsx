@@ -158,7 +158,7 @@ export default function EnhancedHeroSection() {
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Three.js Background */}
-      <ThreeBackground className="opacity-40" />
+      <EnhancedThreeBackground className="opacity-40" />
       
       {/* Parallax Background Elements */}
       <div className="parallax-bg absolute inset-0 opacity-10">
