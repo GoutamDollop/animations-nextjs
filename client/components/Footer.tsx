@@ -70,10 +70,10 @@ export default function Footer() {
   return (
     <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-gray-800 via-gray-900 to-black mt-auto w-full">
       {/* Floating Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-        <div className="absolute bottom-40 right-32 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-green-300 rounded-full animate-ping"></div>
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-40 right-32 w-24 h-24 bg-purple-500 rounded-full animate-bounce"></div>
+        <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-indigo-500 rounded-full animate-ping"></div>
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16 relative z-10">
