@@ -289,13 +289,72 @@ img {
 
   .card-hover {
     @apply transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+    will-change: transform, box-shadow;
   }
 
   .btn-primary {
     @apply bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105;
+    will-change: transform, box-shadow;
   }
 
   .glass {
     @apply bg-white/20 backdrop-blur-lg border border-white/30;
+  }
+
+  /* Floating animations */
+  .float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .float-medium {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .float-fast {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  /* Performance optimized keyframes */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) translateZ(0); }
+    50% { transform: translateY(-20px) translateZ(0); }
+  }
+
+  /* Low performance mode optimizations */
+  .low-performance * {
+    animation-duration: 2s !important;
+    transition-duration: 0.1s !important;
+  }
+
+  .low-performance .three-background,
+  .low-performance .parallax-bg {
+    display: none !important;
+  }
+
+  /* Reduced motion support */
+  .reduced-motion * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Slow network optimizations */
+  .slow-network .three-background,
+  .slow-network .parallax-bg,
+  .slow-network .enhanced-cursor {
+    display: none !important;
+  }
+
+  /* GPU acceleration utility classes */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+
+  /* Smooth scroll container */
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
   }
 }
