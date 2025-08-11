@@ -358,6 +358,36 @@ img {
     -webkit-overflow-scrolling: touch;
   }
 
+  /* Enhanced cursor interactions */
+  .group {
+    cursor: none;
+  }
+
+  .group:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Button hover effects */
+  button, .group, a {
+    cursor: none;
+    transition: all 0.3s ease;
+  }
+
+  button:hover, .group:hover, a:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Enhanced magnetic effect */
+  .magnetic {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  /* Text selection styling */
+  ::selection {
+    background: linear-gradient(135deg, #f97316, #dc2626);
+    color: white;
+  }
+
   /* Swiper Styles */
   .swiper {
     margin-left: auto;
