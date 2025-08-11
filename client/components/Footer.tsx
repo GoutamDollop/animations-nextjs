@@ -34,9 +34,9 @@ export default function Footer() {
         scrollTrigger: {
           trigger: ".footer-container",
           start: "top 90%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          toggleActions: "play none none reverse",
+        },
+      },
     );
   }, []);
 
@@ -82,8 +82,8 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-orange-100 text-sm leading-relaxed">
-              🌟 Empowering minds, shaping futures. Join us in creating tomorrow's
-              leaders through innovative education!
+              🌟 Empowering minds, shaping futures. Join us in creating
+              tomorrow's leaders through innovative education!
             </p>
             <div className="flex space-x-3">
               {socialLinks.map(({ Icon, color, label }, index) => (
@@ -106,19 +106,26 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {["Home", "About", "Courses", "Teachers", "Events", "Contact"].map(
-                (item, index) => (
-                  <li key={index}>
-                    <Link
-                      to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                      className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
-                    >
-                      <span className="group-hover:underline">{item}</span>
-                      <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">🚀</span>
-                    </Link>
-                  </li>
-                ),
-              )}
+              {[
+                "Home",
+                "About",
+                "Courses",
+                "Teachers",
+                "Events",
+                "Contact",
+              ].map((item, index) => (
+                <li key={index}>
+                  <Link
+                    to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                    className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
+                  >
+                    <span className="group-hover:underline">{item}</span>
+                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      🚀
+                    </span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -142,7 +149,9 @@ export default function Footer() {
                     className="text-orange-100 hover:text-white transition-all duration-300 text-sm font-medium hover:translate-x-2 transform transition-transform inline-block group"
                   >
                     <span className="group-hover:underline">{item}</span>
-                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">📚</span>
+                    <span className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      📚
+                    </span>
                   </a>
                 </li>
               ))}

@@ -1,18 +1,18 @@
-import React, { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { 
-  Mail, 
-  Phone, 
-  Calendar, 
-  Award, 
-  Users, 
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  Mail,
+  Phone,
+  Calendar,
+  Award,
+  Users,
   Star,
   Facebook,
   Twitter,
   Linkedin,
-  Instagram
-} from 'lucide-react';
+  Instagram,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,7 +43,7 @@ export default function TeacherCard({
   rating,
   students,
   description,
-  achievements
+  achievements,
 }: TeacherCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -51,7 +51,8 @@ export default function TeacherCard({
     const card = cardRef.current;
     if (!card) return;
 
-    gsap.fromTo(card,
+    gsap.fromTo(
+      card,
       { y: 50, opacity: 0, scale: 0.95 },
       {
         y: 0,
@@ -62,17 +63,17 @@ export default function TeacherCard({
         scrollTrigger: {
           trigger: card,
           start: "top 85%",
-          toggleActions: "play none none reverse"
-        }
-      }
+          toggleActions: "play none none reverse",
+        },
+      },
     );
 
     // Hover effect
-    card.addEventListener('mouseenter', () => {
+    card.addEventListener("mouseenter", () => {
       gsap.to(card, { y: -5, duration: 0.3, ease: "power2.out" });
     });
-    
-    card.addEventListener('mouseleave', () => {
+
+    card.addEventListener("mouseleave", () => {
       gsap.to(card, { y: 0, duration: 0.3, ease: "power2.out" });
     });
   }, []);
@@ -81,11 +82,14 @@ export default function TeacherCard({
     { Icon: Facebook, color: "hover:bg-blue-600" },
     { Icon: Twitter, color: "hover:bg-sky-500" },
     { Icon: Linkedin, color: "hover:bg-blue-700" },
-    { Icon: Instagram, color: "hover:bg-pink-600" }
+    { Icon: Instagram, color: "hover:bg-pink-600" },
   ];
 
   return (
-    <div ref={cardRef} className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
+    <div
+      ref={cardRef}
+      className="bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl"
+    >
       {/* Header */}
       <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-6 text-white relative">
         <div className="flex items-center space-x-4">
@@ -102,7 +106,9 @@ export default function TeacherCard({
                 <Star
                   key={i}
                   className={`h-3 w-3 ${
-                    i < rating ? 'text-yellow-400 fill-current' : 'text-purple-300'
+                    i < rating
+                      ? "text-yellow-400 fill-current"
+                      : "text-purple-300"
                   }`}
                 />
               ))}
@@ -128,7 +134,9 @@ export default function TeacherCard({
         </div>
 
         {/* Description */}
-        <p className="text-gray-600 text-sm leading-relaxed mb-4">{description}</p>
+        <p className="text-gray-600 text-sm leading-relaxed mb-4">
+          {description}
+        </p>
 
         {/* Education & Specialization */}
         <div className="space-y-2 mb-4">
@@ -137,7 +145,9 @@ export default function TeacherCard({
             <span className="text-gray-600">{education}</span>
           </div>
           <div className="text-xs">
-            <span className="font-semibold text-gray-800">Specialization: </span>
+            <span className="font-semibold text-gray-800">
+              Specialization:{" "}
+            </span>
             <span className="text-gray-600">{specialization}</span>
           </div>
         </div>

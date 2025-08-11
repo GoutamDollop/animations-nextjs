@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 export default function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -16,15 +16,15 @@ export default function CustomCursor() {
 
     // Throttled mouse move handler for better performance
     let animationId: number;
-    
+
     const updateCursor = () => {
       if (cursor && follower) {
         cursor.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
         follower.style.transform = `translate3d(${mouseX - 16}px, ${mouseY - 16}px, 0)`;
-        
+
         if (isHovering) {
-          cursor.style.transform += ' scale(1.5)';
-          follower.style.transform += ' scale(1.5)';
+          cursor.style.transform += " scale(1.5)";
+          follower.style.transform += " scale(1.5)";
         }
       }
     };
@@ -32,11 +32,11 @@ export default function CustomCursor() {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      
+
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
-      
+
       animationId = requestAnimationFrame(updateCursor);
     };
 
@@ -51,26 +51,28 @@ export default function CustomCursor() {
     };
 
     // Add event listeners
-    document.addEventListener('mousemove', handleMouseMove, { passive: true });
+    document.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     // Add hover effects to interactive elements
-    const interactiveElements = document.querySelectorAll('a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card, .enhanced-btn');
-    
-    interactiveElements.forEach(el => {
-      el.addEventListener('mouseenter', handleMouseEnter, { passive: true });
-      el.addEventListener('mouseleave', handleMouseLeave, { passive: true });
+    const interactiveElements = document.querySelectorAll(
+      'a, button, [role="button"], .interactive-btn, .hover-image, .stat-card, .feature-card, .enhanced-btn',
+    );
+
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleMouseEnter, { passive: true });
+      el.addEventListener("mouseleave", handleMouseLeave, { passive: true });
     });
 
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
-      
+      document.removeEventListener("mousemove", handleMouseMove);
+
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
-      
-      interactiveElements.forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter);
-        el.removeEventListener('mouseleave', handleMouseLeave);
+
+      interactiveElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handleMouseEnter);
+        el.removeEventListener("mouseleave", handleMouseLeave);
       });
     };
   }, []);
@@ -82,7 +84,7 @@ export default function CustomCursor() {
         ref={cursorRef}
         className="fixed top-0 left-0 w-2 h-2 bg-gradient-to-r from-orange-500 to-red-500 rounded-full pointer-events-none z-[9999] transition-transform duration-150 ease-out hidden lg:block"
       />
-      
+
       {/* Cursor follower */}
       <div
         ref={followerRef}

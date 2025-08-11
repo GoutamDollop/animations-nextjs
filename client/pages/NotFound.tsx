@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
-import { Home, ArrowLeft, Search, BookOpen, Users, Star } from 'lucide-react';
-import CustomCursor from '../components/CustomCursor';
+import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { gsap } from "gsap";
+import { Home, ArrowLeft, Search, BookOpen, Users, Star } from "lucide-react";
+import CustomCursor from "../components/CustomCursor";
 
 export default function NotFound() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,35 +11,53 @@ export default function NotFound() {
     const ctx = gsap.context(() => {
       // 404 text animation
       gsap.fromTo(
-        '.error-text',
+        ".error-text",
         { scale: 0, rotation: -180, opacity: 0 },
-        { scale: 1, rotation: 0, opacity: 1, duration: 1.5, ease: 'elastic.out(1, 0.5)' }
+        {
+          scale: 1,
+          rotation: 0,
+          opacity: 1,
+          duration: 1.5,
+          ease: "elastic.out(1, 0.5)",
+        },
       );
 
       // Content animation
       gsap.fromTo(
-        '.error-content',
+        ".error-content",
         { y: 100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, delay: 0.5, ease: 'power3.out', stagger: 0.2 }
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          delay: 0.5,
+          ease: "power3.out",
+          stagger: 0.2,
+        },
       );
 
       // Floating elements
-      gsap.to('.floating-element', {
+      gsap.to(".floating-element", {
         y: -20,
         duration: 3,
         repeat: -1,
         yoyo: true,
-        ease: 'power2.inOut',
-        stagger: 0.5
+        ease: "power2.inOut",
+        stagger: 0.5,
       });
 
       // Interactive buttons
-      document.querySelectorAll('.error-btn').forEach((btn) => {
-        btn.addEventListener('mouseenter', () => {
-          gsap.to(btn, { scale: 1.05, y: -5, duration: 0.3, ease: 'power2.out' });
+      document.querySelectorAll(".error-btn").forEach((btn) => {
+        btn.addEventListener("mouseenter", () => {
+          gsap.to(btn, {
+            scale: 1.05,
+            y: -5,
+            duration: 0.3,
+            ease: "power2.out",
+          });
         });
-        btn.addEventListener('mouseleave', () => {
-          gsap.to(btn, { scale: 1, y: 0, duration: 0.3, ease: 'power2.out' });
+        btn.addEventListener("mouseleave", () => {
+          gsap.to(btn, { scale: 1, y: 0, duration: 0.3, ease: "power2.out" });
         });
       });
     }, containerRef);
@@ -50,7 +68,10 @@ export default function NotFound() {
   return (
     <>
       <CustomCursor />
-      <div ref={containerRef} className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 flex items-center justify-center relative overflow-hidden">
+      <div
+        ref={containerRef}
+        className="min-h-screen bg-gradient-to-br from-orange-50 via-red-50 to-pink-50 flex items-center justify-center relative overflow-hidden"
+      >
         {/* Floating Background Elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="floating-element absolute top-20 left-20 w-16 h-16 bg-gradient-to-br from-pink-400 to-red-400 rounded-full opacity-60"></div>
@@ -76,13 +97,17 @@ export default function NotFound() {
                 Oops! Page Not Found 🔍
               </h2>
               <p className="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
-                It looks like you've wandered off the learning path! The page you're looking for doesn't exist, but don't worry - there's still plenty to discover at EduVerse Academy.
+                It looks like you've wandered off the learning path! The page
+                you're looking for doesn't exist, but don't worry - there's
+                still plenty to discover at EduVerse Academy.
               </p>
             </div>
 
             {/* Suggestions */}
             <div className="error-content mb-12">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Here's where you might want to go:</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                Here's where you might want to go:
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <Link
                   to="/"
@@ -90,7 +115,9 @@ export default function NotFound() {
                 >
                   <Home className="h-12 w-12 text-orange-500 mx-auto mb-4 group-hover:scale-110 transition-transform" />
                   <h4 className="font-bold text-gray-800 mb-2">Home</h4>
-                  <p className="text-gray-600 text-sm">Return to our homepage</p>
+                  <p className="text-gray-600 text-sm">
+                    Return to our homepage
+                  </p>
                 </Link>
 
                 <Link
@@ -136,11 +163,15 @@ export default function NotFound() {
             <div className="error-content mt-12 p-6 bg-white/80 backdrop-blur-sm rounded-2xl shadow-lg">
               <div className="flex items-center justify-center space-x-2 mb-4">
                 <Star className="h-6 w-6 text-yellow-500" />
-                <span className="text-lg font-semibold text-gray-800">Did you know?</span>
+                <span className="text-lg font-semibold text-gray-800">
+                  Did you know?
+                </span>
                 <Star className="h-6 w-6 text-yellow-500" />
               </div>
               <p className="text-gray-600">
-                At EduVerse Academy, we believe every mistake is a learning opportunity! Just like this 404 error taught you something new about web navigation. 🚀
+                At EduVerse Academy, we believe every mistake is a learning
+                opportunity! Just like this 404 error taught you something new
+                about web navigation. 🚀
               </p>
             </div>
           </div>
