@@ -6,10 +6,18 @@ import { ArrowRight, Play, Star, Trophy, BookOpen, Users } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const heroImages = [
+  "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+  "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
+  "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+];
+
 export default function ModernHeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
