@@ -14,7 +14,7 @@ import {
   Clock
 } from 'lucide-react';
 import HeroSlider from './HeroSlider';
-import ThreeBackground from './ThreeBackground';
+import EnhancedThreeBackground from './EnhancedThreeBackground';
 
 gsap.registerPlugin(ScrollTrigger);
 
