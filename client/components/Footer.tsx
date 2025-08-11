@@ -96,7 +96,7 @@ export default function Footer() {
                 </div>
               </div>
             </Link>
-            <p className="text-orange-100 text-sm leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed">
               🌟 Empowering minds, shaping futures. Join us in creating
               tomorrow's leaders through innovative education!
             </p>
