@@ -200,12 +200,12 @@ export default function HeroSlider() {
         </button>
 
         {/* Dots Indicator */}
-        <div className="flex space-x-2">
+        <div className="flex space-x-1.5 md:space-x-2">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => changeSlide(index)}
-              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
                   ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
                   : "bg-white/50 hover:bg-white/80"
@@ -218,10 +218,10 @@ export default function HeroSlider() {
         {/* Next Button */}
         <button
           onClick={nextSlide}
-          className="p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="p-1.5 sm:p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           aria-label="Next slide"
         >
-          <ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
+          <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-gray-700" />
         </button>
       </div>
     </div>
