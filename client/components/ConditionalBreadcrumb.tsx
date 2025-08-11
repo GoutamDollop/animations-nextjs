@@ -15,15 +15,23 @@ const routeLabels: Record<string, string> = {
   "/events": "Events",
   "/gallery": "Gallery",
   "/contact": "Contact",
-  "/testimonials": "Testimonials"
+  "/testimonials": "Testimonials",
 };
 
 interface ConditionalBreadcrumbProps {
   showOnPages?: string[];
 }
 
-export default function ConditionalBreadcrumb({ 
-  showOnPages = ["/about", "/courses", "/teachers", "/events", "/gallery", "/contact", "/testimonials"] 
+export default function ConditionalBreadcrumb({
+  showOnPages = [
+    "/about",
+    "/courses",
+    "/teachers",
+    "/events",
+    "/gallery",
+    "/contact",
+    "/testimonials",
+  ],
 }: ConditionalBreadcrumbProps) {
   const location = useLocation();
 
@@ -32,17 +40,17 @@ export default function ConditionalBreadcrumb({
 
   const getBreadcrumbItems = (): BreadcrumbItem[] => {
     const pathSegments = location.pathname.split("/").filter(Boolean);
-    const items: BreadcrumbItem[] = [
-      { label: "Home", path: "/" }
-    ];
+    const items: BreadcrumbItem[] = [{ label: "Home", path: "/" }];
 
     let currentPath = "";
     pathSegments.forEach((segment) => {
       currentPath += `/${segment}`;
-      const label = routeLabels[currentPath] || segment.charAt(0).toUpperCase() + segment.slice(1);
+      const label =
+        routeLabels[currentPath] ||
+        segment.charAt(0).toUpperCase() + segment.slice(1);
       items.push({
         label,
-        path: currentPath
+        path: currentPath,
       });
     });
 
@@ -57,15 +65,17 @@ export default function ConditionalBreadcrumb({
         <nav className="flex items-center space-x-2 py-3 text-sm">
           {breadcrumbItems.map((item, index) => {
             const isLast = index === breadcrumbItems.length - 1;
-            
+
             return (
               <React.Fragment key={item.path}>
                 {index === 0 ? (
                   <Home className="w-4 h-4 text-gray-500" />
                 ) : null}
-                
+
                 {isLast ? (
-                  <span className="text-orange-500 font-medium">{item.label}</span>
+                  <span className="text-orange-500 font-medium">
+                    {item.label}
+                  </span>
                 ) : (
                   <Link
                     to={item.path}
@@ -75,9 +85,7 @@ export default function ConditionalBreadcrumb({
                   </Link>
                 )}
 
-                {!isLast && (
-                  <ChevronRight className="w-4 h-4 text-gray-400" />
-                )}
+                {!isLast && <ChevronRight className="w-4 h-4 text-gray-400" />}
               </React.Fragment>
             );
           })}

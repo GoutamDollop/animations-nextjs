@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Star, Trophy, BookOpen, Users } from 'lucide-react';
+import React, { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
+import { ArrowRight, Play, Star, Trophy, BookOpen, Users } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,7 +10,7 @@ const heroImages = [
   "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
   "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
   "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+  "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
 ];
 
 export default function ModernHeroSection() {
@@ -38,9 +38,9 @@ export default function ModernHeroSection() {
           x: 0,
           opacity: 1,
           duration: 1.2,
-          ease: 'power3.out',
-          delay: 0.3
-        }
+          ease: "power3.out",
+          delay: 0.3,
+        },
       );
 
       gsap.fromTo(
@@ -51,38 +51,38 @@ export default function ModernHeroSection() {
           opacity: 1,
           scale: 1,
           duration: 1.5,
-          ease: 'power3.out',
-          delay: 0.6
-        }
+          ease: "power3.out",
+          delay: 0.6,
+        },
       );
 
       // Floating elements
-      gsap.to('.floating-element', {
+      gsap.to(".floating-element", {
         y: -20,
         duration: 3,
-        ease: 'power2.inOut',
+        ease: "power2.inOut",
         yoyo: true,
         repeat: -1,
-        stagger: 0.5
+        stagger: 0.5,
       });
 
       // Text reveal animations
       gsap.fromTo(
-        '.hero-title span',
+        ".hero-title span",
         { y: 100, opacity: 0 },
         {
           y: 0,
           opacity: 1,
           duration: 0.8,
           stagger: 0.1,
-          ease: 'back.out(1.7)',
-          delay: 0.8
-        }
+          ease: "back.out(1.7)",
+          delay: 0.8,
+        },
       );
 
       // Button animations
       gsap.fromTo(
-        '.hero-buttons > *',
+        ".hero-buttons > *",
         { y: 50, opacity: 0, scale: 0.8 },
         {
           y: 0,
@@ -90,18 +90,20 @@ export default function ModernHeroSection() {
           scale: 1,
           duration: 0.6,
           stagger: 0.2,
-          ease: 'back.out(1.7)',
-          delay: 1.2
-        }
+          ease: "back.out(1.7)",
+          delay: 1.2,
+        },
       );
-
     }, heroRef);
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden">
+    <section
+      ref={heroRef}
+      className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 overflow-hidden"
+    >
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Floating shapes */}
@@ -109,7 +111,7 @@ export default function ModernHeroSection() {
         <div className="floating-element absolute top-40 right-20 w-12 h-12 bg-gradient-to-br from-pink-400 to-red-500 rounded-full opacity-25"></div>
         <div className="floating-element absolute bottom-40 left-20 w-20 h-20 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-15"></div>
         <div className="floating-element absolute bottom-60 right-40 w-8 h-8 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full opacity-30"></div>
-        
+
         {/* Abstract shapes */}
         <div className="absolute top-1/4 left-1/4 w-32 h-32 border-4 border-blue-200 rounded-full opacity-10"></div>
         <div className="absolute bottom-1/4 right-1/4 w-24 h-24 border-4 border-purple-200 rounded-full opacity-15"></div>
@@ -117,7 +119,6 @@ export default function ModernHeroSection() {
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-20">
-          
           {/* Left Content */}
           <div ref={textRef} className="space-y-8">
             {/* Subtitle */}
@@ -130,10 +131,10 @@ export default function ModernHeroSection() {
 
             {/* Main Title */}
             <h1 className="hero-title text-4xl md:text-5xl lg:text-7xl font-black leading-tight text-gray-900">
-              <span className="inline-block">Together</span>{' '}
+              <span className="inline-block">Together</span>{" "}
               <span className="inline-block text-blue-600">we'll</span>
               <br />
-              <span className="inline-block">explore</span>{' '}
+              <span className="inline-block">explore</span>{" "}
               <span className="inline-block text-orange-500">new</span>
               <br />
               <span className="inline-block text-purple-600">knowledge</span>
@@ -141,8 +142,9 @@ export default function ModernHeroSection() {
 
             {/* Description */}
             <p className="text-xl lg:text-2xl text-gray-600 leading-relaxed max-w-2xl">
-              Discover excellence in education with our innovative learning environment, 
-              expert faculty, and comprehensive programs designed for future leaders.
+              Discover excellence in education with our innovative learning
+              environment, expert faculty, and comprehensive programs designed
+              for future leaders.
             </p>
 
             {/* Statistics */}
@@ -174,7 +176,7 @@ export default function ModernHeroSection() {
                 <span>Get Started Today</span>
                 <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
               </Link>
-              
+
               <button className="group inline-flex items-center justify-center space-x-3 bg-white text-gray-800 px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-2 border-gray-200 hover:border-orange-500">
                 <Play className="w-5 h-5 text-orange-500" />
                 <span>Watch Video</span>
@@ -204,7 +206,9 @@ export default function ModernHeroSection() {
             <div className="relative z-10 overflow-hidden rounded-3xl shadow-2xl">
               <div
                 className="flex transition-transform duration-1000 ease-in-out"
-                style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+                style={{
+                  transform: `translateX(-${currentImageIndex * 100}%)`,
+                }}
               >
                 {heroImages.map((image, index) => (
                   <img
@@ -224,13 +228,13 @@ export default function ModernHeroSection() {
                     onClick={() => setCurrentImageIndex(index)}
                     className={`w-2 h-2 rounded-full transition-all duration-300 ${
                       index === currentImageIndex
-                        ? 'bg-white scale-125'
-                        : 'bg-white/50 hover:bg-white/75'
+                        ? "bg-white scale-125"
+                        : "bg-white/50 hover:bg-white/75"
                     }`}
                   />
                 ))}
               </div>
-              
+
               {/* Floating Cards */}
               <div className="absolute -top-8 -left-8 bg-white p-4 rounded-2xl shadow-xl z-20">
                 <div className="flex items-center space-x-3">
@@ -238,7 +242,9 @@ export default function ModernHeroSection() {
                     <BookOpen className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-gray-900">50+ Courses</div>
+                    <div className="text-lg font-bold text-gray-900">
+                      50+ Courses
+                    </div>
                     <div className="text-sm text-gray-600">Available Now</div>
                   </div>
                 </div>
@@ -250,7 +256,9 @@ export default function ModernHeroSection() {
                     <Users className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <div className="text-lg font-bold text-gray-900">Expert Teachers</div>
+                    <div className="text-lg font-bold text-gray-900">
+                      Expert Teachers
+                    </div>
                     <div className="text-sm text-gray-600">World Class</div>
                   </div>
                 </div>

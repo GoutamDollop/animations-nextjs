@@ -2,7 +2,16 @@ import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ChevronRight, Home, BookOpen, Users, Calendar, Phone, GraduationCap, ImageIcon } from "lucide-react";
+import {
+  ChevronRight,
+  Home,
+  BookOpen,
+  Users,
+  Calendar,
+  Phone,
+  GraduationCap,
+  ImageIcon,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +28,7 @@ const routeConfig: Record<string, { label: string; icon: React.ReactNode }> = {
   "/teachers": { label: "Teachers", icon: <Users className="w-4 h-4" /> },
   "/events": { label: "Events", icon: <Calendar className="w-4 h-4" /> },
   "/gallery": { label: "Gallery", icon: <ImageIcon className="w-4 h-4" /> },
-  "/contact": { label: "Contact", icon: <Phone className="w-4 h-4" /> }
+  "/contact": { label: "Contact", icon: <Phone className="w-4 h-4" /> },
 };
 
 export default function AnimatedBreadcrumb() {
@@ -33,7 +42,7 @@ export default function AnimatedBreadcrumb() {
   const getBreadcrumbItems = (): BreadcrumbItem[] => {
     const pathSegments = location.pathname.split("/").filter(Boolean);
     const items: BreadcrumbItem[] = [
-      { label: "Home", path: "/", icon: <Home className="w-4 h-4" /> }
+      { label: "Home", path: "/", icon: <Home className="w-4 h-4" /> },
     ];
 
     let currentPath = "";
@@ -44,13 +53,13 @@ export default function AnimatedBreadcrumb() {
         items.push({
           label: config.label,
           path: currentPath,
-          icon: config.icon
+          icon: config.icon,
         });
       } else {
         // Fallback for dynamic routes
         items.push({
           label: segment.charAt(0).toUpperCase() + segment.slice(1),
-          path: currentPath
+          path: currentPath,
         });
       }
     });
@@ -67,10 +76,10 @@ export default function AnimatedBreadcrumb() {
       // Main container entrance animation
       gsap.fromTo(
         breadcrumbRef.current,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: -30,
-          scale: 0.95
+          scale: 0.95,
         },
         {
           opacity: 1,
@@ -78,17 +87,17 @@ export default function AnimatedBreadcrumb() {
           scale: 1,
           duration: 0.8,
           ease: "power3.out",
-          delay: 0.2
-        }
+          delay: 0.2,
+        },
       );
 
       // Stagger animation for breadcrumb items
       gsap.fromTo(
         ".breadcrumb-item",
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           x: -20,
-          scale: 0.8
+          scale: 0.8,
         },
         {
           opacity: 1,
@@ -97,8 +106,8 @@ export default function AnimatedBreadcrumb() {
           duration: 0.6,
           stagger: 0.1,
           ease: "back.out(1.7)",
-          delay: 0.4
-        }
+          delay: 0.4,
+        },
       );
 
       // Animated underline effect
@@ -109,8 +118,8 @@ export default function AnimatedBreadcrumb() {
           scaleX: 1,
           duration: 0.8,
           delay: 0.6,
-          ease: "power3.out"
-        }
+          ease: "power3.out",
+        },
       );
 
       // Floating animation for the entire breadcrumb
@@ -119,7 +128,7 @@ export default function AnimatedBreadcrumb() {
         duration: 2,
         ease: "power2.inOut",
         yoyo: true,
-        repeat: -1
+        repeat: -1,
       });
 
       // Sparkle effect animation
@@ -130,9 +139,8 @@ export default function AnimatedBreadcrumb() {
         ease: "power2.inOut",
         yoyo: true,
         repeat: -1,
-        stagger: 0.5
+        stagger: 0.5,
       });
-
     }, breadcrumbRef);
 
     return () => ctx.revert();
@@ -145,7 +153,7 @@ export default function AnimatedBreadcrumb() {
         scale: 1.05,
         y: -2,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
   };
@@ -157,7 +165,7 @@ export default function AnimatedBreadcrumb() {
         scale: 1,
         y: 0,
         duration: 0.3,
-        ease: "power2.out"
+        ease: "power2.out",
       });
     }
   };
@@ -176,17 +184,14 @@ export default function AnimatedBreadcrumb() {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div 
-          ref={breadcrumbRef}
-          className="py-4 md:py-6"
-        >
+        <div ref={breadcrumbRef} className="py-4 md:py-6">
           {/* Animated underline */}
           <div className="breadcrumb-underline absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"></div>
 
           <nav className="flex items-center space-x-2 md:space-x-3 flex-wrap">
             {breadcrumbItems.map((item, index) => {
               const isLast = index === breadcrumbItems.length - 1;
-              
+
               return (
                 <React.Fragment key={item.path}>
                   <div
@@ -239,7 +244,11 @@ export default function AnimatedBreadcrumb() {
                   {breadcrumbItems[breadcrumbItems.length - 1].label}
                 </h1>
                 <p className="text-sm md:text-base text-gray-600 mt-1">
-                  Explore our {breadcrumbItems[breadcrumbItems.length - 1].label.toLowerCase()} section
+                  Explore our{" "}
+                  {breadcrumbItems[
+                    breadcrumbItems.length - 1
+                  ].label.toLowerCase()}{" "}
+                  section
                 </p>
               </div>
             </div>

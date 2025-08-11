@@ -1,6 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade, Thumbs } from "swiper/modules";
+import {
+  Navigation,
+  Pagination,
+  Autoplay,
+  EffectFade,
+  Thumbs,
+} from "swiper/modules";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight, Play, Pause } from "lucide-react";
@@ -24,7 +30,7 @@ const schoolImages: ImageSlide[] = [
     alt: "Modern School Campus",
     title: "Our Beautiful Campus",
     description: "State-of-the-art facilities designed for modern learning",
-    category: "Campus"
+    category: "Campus",
   },
   {
     id: 2,
@@ -32,7 +38,7 @@ const schoolImages: ImageSlide[] = [
     alt: "Students in Classroom",
     title: "Interactive Learning",
     description: "Engaging classroom environments that foster creativity",
-    category: "Education"
+    category: "Education",
   },
   {
     id: 3,
@@ -40,7 +46,7 @@ const schoolImages: ImageSlide[] = [
     alt: "Science Laboratory",
     title: "Advanced Laboratories",
     description: "Cutting-edge science labs for hands-on experiments",
-    category: "Facilities"
+    category: "Facilities",
   },
   {
     id: 4,
@@ -48,7 +54,7 @@ const schoolImages: ImageSlide[] = [
     alt: "School Library",
     title: "Digital Library",
     description: "Extensive collection of books and digital resources",
-    category: "Learning"
+    category: "Learning",
   },
   {
     id: 5,
@@ -56,7 +62,7 @@ const schoolImages: ImageSlide[] = [
     alt: "Sports Facilities",
     title: "Sports & Recreation",
     description: "Modern sports facilities for physical development",
-    category: "Sports"
+    category: "Sports",
   },
   {
     id: 6,
@@ -64,8 +70,8 @@ const schoolImages: ImageSlide[] = [
     alt: "Graduation Ceremony",
     title: "Achievement Celebration",
     description: "Celebrating our students' success and achievements",
-    category: "Events"
-  }
+    category: "Events",
+  },
 ];
 
 export default function EnhancedImageSlider() {
@@ -83,10 +89,10 @@ export default function EnhancedImageSlider() {
       // Entrance animation
       gsap.fromTo(
         sliderRef.current,
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           y: 100,
-          scale: 0.95
+          scale: 0.95,
         },
         {
           opacity: 1,
@@ -97,9 +103,9 @@ export default function EnhancedImageSlider() {
           scrollTrigger: {
             trigger: sliderRef.current,
             start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Floating animation for the slider container
@@ -108,7 +114,7 @@ export default function EnhancedImageSlider() {
         duration: 3,
         ease: "power2.inOut",
         yoyo: true,
-        repeat: -1
+        repeat: -1,
       });
 
       // Text reveal animation
@@ -124,9 +130,9 @@ export default function EnhancedImageSlider() {
           scrollTrigger: {
             trigger: sliderRef.current,
             start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Controls animation
@@ -142,9 +148,9 @@ export default function EnhancedImageSlider() {
           scrollTrigger: {
             trigger: sliderRef.current,
             start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            toggleActions: "play none none reverse",
+          },
+        },
       );
     }, sliderRef);
 
@@ -180,19 +186,21 @@ export default function EnhancedImageSlider() {
 
   const handleSlideChange = (swiper: any) => {
     setActiveIndex(swiper.activeIndex);
-    
+
     // Animate slide content
     gsap.fromTo(
       ".slide-content",
       { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" }
+      { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
     );
   };
 
   if (!isLoaded) {
     return (
       <div className="w-full h-96 bg-gradient-to-r from-blue-50 to-purple-50 rounded-3xl animate-pulse flex items-center justify-center">
-        <div className="text-lg font-semibold text-gray-500">Loading Amazing Content...</div>
+        <div className="text-lg font-semibold text-gray-500">
+          Loading Amazing Content...
+        </div>
       </div>
     );
   }
@@ -212,7 +220,8 @@ export default function EnhancedImageSlider() {
             Discover Our Amazing Campus 🏫
           </h2>
           <p className="slider-title text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Take a visual journey through our state-of-the-art facilities and vibrant learning environment
+            Take a visual journey through our state-of-the-art facilities and
+            vibrant learning environment
           </p>
         </div>
 
@@ -231,17 +240,20 @@ export default function EnhancedImageSlider() {
               autoplay={{
                 delay: 4000,
                 disableOnInteraction: false,
-                pauseOnMouseEnter: true
+                pauseOnMouseEnter: true,
               }}
-              thumbs={{ swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null }}
+              thumbs={{
+                swiper:
+                  thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null,
+              }}
               navigation={{
                 prevEl: ".custom-prev",
-                nextEl: ".custom-next"
+                nextEl: ".custom-next",
               }}
               pagination={{
                 el: ".custom-pagination",
                 clickable: true,
-                dynamicBullets: true
+                dynamicBullets: true,
               }}
               className="aspect-[16/9] md:aspect-[21/9]"
             >
@@ -254,10 +266,10 @@ export default function EnhancedImageSlider() {
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                       loading={index === 0 ? "eager" : "lazy"}
                     />
-                    
+
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    
+
                     {/* Content */}
                     <div className="slide-content absolute bottom-0 left-0 right-0 p-6 md:p-12 text-white">
                       <div className="max-w-4xl">
@@ -281,7 +293,7 @@ export default function EnhancedImageSlider() {
             <button className="custom-prev slider-controls absolute left-4 md:left-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 hover:scale-110 transition-all duration-300">
               <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
-            
+
             <button className="custom-next slider-controls absolute right-4 md:right-6 top-1/2 -translate-y-1/2 z-10 w-12 h-12 md:w-16 md:h-16 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/30 hover:scale-110 transition-all duration-300">
               <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
@@ -309,18 +321,18 @@ export default function EnhancedImageSlider() {
               breakpoints={{
                 640: { slidesPerView: 4 },
                 768: { slidesPerView: 5 },
-                1024: { slidesPerView: 6 }
+                1024: { slidesPerView: 6 },
               }}
               watchSlidesProgress
               className="thumbs-slider"
             >
               {schoolImages.map((image, index) => (
                 <SwiperSlide key={`thumb-${image.id}`}>
-                  <div 
+                  <div
                     className={`relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                      index === activeIndex 
-                        ? 'ring-4 ring-blue-500 scale-105' 
-                        : 'hover:scale-105 opacity-70 hover:opacity-100'
+                      index === activeIndex
+                        ? "ring-4 ring-blue-500 scale-105"
+                        : "hover:scale-105 opacity-70 hover:opacity-100"
                     }`}
                   >
                     <img
@@ -348,13 +360,17 @@ export default function EnhancedImageSlider() {
         {/* Progress Bar */}
         <div className="max-w-6xl mx-auto mt-8">
           <div className="w-full bg-gray-200 rounded-full h-1">
-            <div 
+            <div
               className="bg-gradient-to-r from-blue-500 to-purple-500 h-1 rounded-full transition-all duration-300"
-              style={{ width: `${((activeIndex + 1) / schoolImages.length) * 100}%` }}
+              style={{
+                width: `${((activeIndex + 1) / schoolImages.length) * 100}%`,
+              }}
             ></div>
           </div>
           <div className="flex justify-between mt-2 text-sm text-gray-500">
-            <span>{activeIndex + 1} of {schoolImages.length}</span>
+            <span>
+              {activeIndex + 1} of {schoolImages.length}
+            </span>
             <span>Campus Gallery</span>
           </div>
         </div>

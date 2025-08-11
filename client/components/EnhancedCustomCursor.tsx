@@ -13,20 +13,20 @@ const cursorThemes = {
     size: 8,
     color: "#f97316",
     mixBlendMode: "difference",
-    trailLength: 20
+    trailLength: 20,
   },
   dark: {
     size: 8,
     color: "#60a5fa",
     mixBlendMode: "difference",
-    trailLength: 20
+    trailLength: 20,
   },
   interactive: {
     size: 16,
     color: "#ef4444",
     mixBlendMode: "multiply",
-    trailLength: 15
-  }
+    trailLength: 15,
+  },
 };
 
 export default function EnhancedCustomCursor() {
@@ -34,7 +34,8 @@ export default function EnhancedCustomCursor() {
   const followerRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLDivElement>(null);
   const sparklesRef = useRef<HTMLDivElement[]>([]);
-  const [currentTheme, setCurrentTheme] = useState<keyof typeof cursorThemes>("light");
+  const [currentTheme, setCurrentTheme] =
+    useState<keyof typeof cursorThemes>("light");
   const [isScrolling, setIsScrolling] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const isInitialized = useRef(false);
@@ -53,18 +54,23 @@ export default function EnhancedCustomCursor() {
     let mouseY = 0;
     let isVisible = false;
     let scrollTimeout: NodeJS.Timeout;
-    
+
     // Animation frame for smooth performance
     let animationId: number;
     let followerX = 0;
     let followerY = 0;
-    
+
     // Trail system
     const trailPoints: { x: number; y: number; age: number }[] = [];
     const maxTrailPoints = cursorThemes[currentTheme].trailLength;
-    
+
     // Sparkle system
-    const sparkles: { element: HTMLDivElement; x: number; y: number; life: number }[] = [];
+    const sparkles: {
+      element: HTMLDivElement;
+      x: number;
+      y: number;
+      life: number;
+    }[] = [];
 
     const updateCursor = () => {
       if (cursor && follower && trail && isVisible) {
@@ -74,16 +80,16 @@ export default function EnhancedCustomCursor() {
 
         // Direct positioning for main cursor with fixed positioning
         cursor.style.transform = `translate3d(${mouseX - 4}px, ${mouseY - 4}px, 0)`;
-        cursor.style.position = 'fixed';
-        cursor.style.zIndex = '9999';
+        cursor.style.position = "fixed";
+        cursor.style.zIndex = "9999";
 
         follower.style.transform = `translate3d(${followerX - 20}px, ${followerY - 20}px, 0)`;
-        follower.style.position = 'fixed';
-        follower.style.zIndex = '9998';
+        follower.style.position = "fixed";
+        follower.style.zIndex = "9998";
 
         // Update trail
         updateTrail();
-        
+
         // Update sparkles during scroll
         if (isScrolling) {
           updateSparkles();
@@ -91,7 +97,7 @@ export default function EnhancedCustomCursor() {
 
         // Theme-based effects
         const theme = cursorThemes[currentTheme];
-        
+
         if (isHovering) {
           cursor.style.transform += " scale(2)";
           follower.style.transform += " scale(1.5)";
@@ -117,7 +123,7 @@ export default function EnhancedCustomCursor() {
     const updateTrail = () => {
       // Add new trail point
       trailPoints.push({ x: mouseX, y: mouseY, age: 0 });
-      
+
       // Remove old points
       if (trailPoints.length > maxTrailPoints) {
         trailPoints.shift();
@@ -128,13 +134,13 @@ export default function EnhancedCustomCursor() {
         trail.innerHTML = "";
         trailPoints.forEach((point, index) => {
           const trailDot = document.createElement("div");
-          const opacity = (index + 1) / trailPoints.length * 0.5;
-          const size = Math.max(2, (index + 1) / trailPoints.length * 6);
-          
+          const opacity = ((index + 1) / trailPoints.length) * 0.5;
+          const size = Math.max(2, ((index + 1) / trailPoints.length) * 6);
+
           trailDot.style.cssText = `
             position: fixed;
-            left: ${point.x - size/2}px;
-            top: ${point.y - size/2}px;
+            left: ${point.x - size / 2}px;
+            top: ${point.y - size / 2}px;
             width: ${size}px;
             height: ${size}px;
             background: ${cursorThemes[currentTheme].color};
@@ -144,7 +150,7 @@ export default function EnhancedCustomCursor() {
             z-index: 9997;
             mix-blend-mode: ${cursorThemes[currentTheme].mixBlendMode};
           `;
-          
+
           trail.appendChild(trailDot);
         });
       }
@@ -155,7 +161,7 @@ export default function EnhancedCustomCursor() {
       const size = Math.random() * 6 + 2;
       const offsetX = (Math.random() - 0.5) * 40;
       const offsetY = (Math.random() - 0.5) * 40;
-      
+
       sparkle.style.cssText = `
         position: fixed;
         left: ${mouseX + offsetX}px;
@@ -168,13 +174,13 @@ export default function EnhancedCustomCursor() {
         z-index: 9996;
         opacity: 1;
       `;
-      
+
       document.body.appendChild(sparkle);
-      
+
       // Animate sparkle
       gsap.to(sparkle, {
         y: "-=" + (Math.random() * 50 + 20),
-        x: "+=" + ((Math.random() - 0.5) * 30),
+        x: "+=" + (Math.random() - 0.5) * 30,
         scale: 0,
         opacity: 0,
         duration: 0.8 + Math.random() * 0.4,
@@ -183,7 +189,7 @@ export default function EnhancedCustomCursor() {
           if (sparkle.parentNode) {
             sparkle.parentNode.removeChild(sparkle);
           }
-        }
+        },
       });
     };
 
@@ -218,12 +224,12 @@ export default function EnhancedCustomCursor() {
 
     const handleScroll = () => {
       setIsScrolling(true);
-      
+
       // Clear existing timeout
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
-      
+
       // Set timeout to stop scroll effect
       scrollTimeout = setTimeout(() => {
         setIsScrolling(false);
@@ -238,26 +244,24 @@ export default function EnhancedCustomCursor() {
     const handleMouseEnter = (e: Event) => {
       const target = e.target as HTMLElement;
       if (target && target.nodeType === Node.ELEMENT_NODE) {
-        const isInteractive = (
-          target.tagName === 'A' ||
-          target.tagName === 'BUTTON' ||
-          target.tagName === 'INPUT' ||
-          target.tagName === 'TEXTAREA' ||
-          (target.getAttribute && target.getAttribute('role') === 'button') ||
-          (target.classList && (
-            target.classList.contains('group') ||
-            target.classList.contains('interactive-btn') ||
-            target.classList.contains('enhanced-btn') ||
-            target.classList.contains('nav-item') ||
-            target.classList.contains('magnetic') ||
-            target.classList.contains('cursor-pointer')
-          )) ||
-          target.closest('button') ||
-          target.closest('a') ||
+        const isInteractive =
+          target.tagName === "A" ||
+          target.tagName === "BUTTON" ||
+          target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          (target.getAttribute && target.getAttribute("role") === "button") ||
+          (target.classList &&
+            (target.classList.contains("group") ||
+              target.classList.contains("interactive-btn") ||
+              target.classList.contains("enhanced-btn") ||
+              target.classList.contains("nav-item") ||
+              target.classList.contains("magnetic") ||
+              target.classList.contains("cursor-pointer"))) ||
+          target.closest("button") ||
+          target.closest("a") ||
           target.closest('[role="button"]') ||
-          target.closest('.group') ||
-          target.closest('.magnetic')
-        );
+          target.closest(".group") ||
+          target.closest(".magnetic");
 
         if (isInteractive) {
           setIsHovering(true);
@@ -310,12 +314,16 @@ export default function EnhancedCustomCursor() {
       const body = document.body;
       const computedStyle = window.getComputedStyle(body);
       const backgroundColor = computedStyle.backgroundColor;
-      
+
       // Simple theme detection based on background lightness
       if (backgroundColor.includes("rgb")) {
         const rgbValues = backgroundColor.match(/\d+/g);
         if (rgbValues) {
-          const brightness = (parseInt(rgbValues[0]) + parseInt(rgbValues[1]) + parseInt(rgbValues[2])) / 3;
+          const brightness =
+            (parseInt(rgbValues[0]) +
+              parseInt(rgbValues[1]) +
+              parseInt(rgbValues[2])) /
+            3;
           setCurrentTheme(brightness > 128 ? "light" : "dark");
         }
       }
@@ -328,21 +336,44 @@ export default function EnhancedCustomCursor() {
     document.addEventListener("mousemove", handleMouseMove, { passive: true });
     document.addEventListener("mouseout", handleMouseOut, { passive: true });
     document.addEventListener("mouseover", handleMouseOver, { passive: true });
-    document.addEventListener("mouseenter", handleMouseEnter, { passive: true, capture: true });
-    document.addEventListener("mouseleave", handleMouseLeave, { passive: true, capture: true });
+    document.addEventListener("mouseenter", handleMouseEnter, {
+      passive: true,
+      capture: true,
+    });
+    document.addEventListener("mouseleave", handleMouseLeave, {
+      passive: true,
+      capture: true,
+    });
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     // Enhanced interactive elements detection
     const setupInteractiveElements = () => {
       const selectors = [
-        'a', 'button', '[role="button"]', 'input', 'textarea', 'select',
-        '.interactive-btn', '.enhanced-btn', '.nav-item', '.mobile-nav-item',
-        '.form-field', '.gallery-item', '.testimonial-card', '.event-card',
-        '.course-card', '.teacher-card', '.student-card', '.stat-card',
-        '.feature-card', '.hover-image', '.magnetic', '[data-cursor="pointer"]'
+        "a",
+        "button",
+        '[role="button"]',
+        "input",
+        "textarea",
+        "select",
+        ".interactive-btn",
+        ".enhanced-btn",
+        ".nav-item",
+        ".mobile-nav-item",
+        ".form-field",
+        ".gallery-item",
+        ".testimonial-card",
+        ".event-card",
+        ".course-card",
+        ".teacher-card",
+        ".student-card",
+        ".stat-card",
+        ".feature-card",
+        ".hover-image",
+        ".magnetic",
+        '[data-cursor="pointer"]',
       ];
 
-      const elements = document.querySelectorAll(selectors.join(', '));
+      const elements = document.querySelectorAll(selectors.join(", "));
       elements.forEach((el) => {
         el.addEventListener("mouseenter", handleMouseEnter, { passive: true });
         el.addEventListener("mouseleave", handleMouseLeave, { passive: true });
@@ -354,7 +385,7 @@ export default function EnhancedCustomCursor() {
     // Initial setup and periodic updates for dynamic content
     let interactiveElements = setupInteractiveElements();
     detectTheme();
-    
+
     const updateInterval = setInterval(() => {
       interactiveElements.forEach((el) => {
         el.removeEventListener("mouseenter", handleMouseEnter);
@@ -369,13 +400,13 @@ export default function EnhancedCustomCursor() {
       if (animationId) {
         cancelAnimationFrame(animationId);
       }
-      
+
       if (scrollTimeout) {
         clearTimeout(scrollTimeout);
       }
-      
+
       clearInterval(updateInterval);
-      
+
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseout", handleMouseOut);
       document.removeEventListener("mouseover", handleMouseOver);
@@ -389,7 +420,7 @@ export default function EnhancedCustomCursor() {
       });
 
       // Clean up sparkles
-      document.querySelectorAll('[style*="z-index: 9996"]').forEach(el => {
+      document.querySelectorAll('[style*="z-index: 9996"]').forEach((el) => {
         if (el.parentNode) {
           el.parentNode.removeChild(el);
         }
@@ -405,10 +436,10 @@ export default function EnhancedCustomCursor() {
       <div
         ref={cursorRef}
         className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-[9999] opacity-0 invisible transition-all duration-150 ease-out hidden lg:block"
-        style={{ 
-          willChange: 'transform, opacity, background-color',
+        style={{
+          willChange: "transform, opacity, background-color",
           backgroundColor: cursorThemes[currentTheme].color,
-          mixBlendMode: cursorThemes[currentTheme].mixBlendMode as any
+          mixBlendMode: cursorThemes[currentTheme].mixBlendMode as any,
         }}
       />
 
@@ -416,9 +447,9 @@ export default function EnhancedCustomCursor() {
       <div
         ref={followerRef}
         className="fixed top-0 left-0 w-10 h-10 border-2 rounded-full pointer-events-none z-[9998] opacity-0 invisible transition-all duration-300 ease-out hidden lg:block"
-        style={{ 
-          willChange: 'transform, opacity, border-color, background-color',
-          borderColor: cursorThemes[currentTheme].color
+        style={{
+          willChange: "transform, opacity, border-color, background-color",
+          borderColor: cursorThemes[currentTheme].color,
         }}
       />
 
@@ -426,7 +457,7 @@ export default function EnhancedCustomCursor() {
       <div
         ref={trailRef}
         className="fixed inset-0 pointer-events-none z-[9997] opacity-0 invisible hidden lg:block"
-        style={{ willChange: 'opacity' }}
+        style={{ willChange: "opacity" }}
       />
 
       {/* Scroll indicator */}

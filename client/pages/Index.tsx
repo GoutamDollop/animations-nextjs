@@ -32,7 +32,7 @@ export default function Index() {
           duration: 1.5,
           ease: "power3.out",
           delay: 0.2,
-        }
+        },
       );
 
       // Floating elements animation with improved performance
@@ -69,7 +69,7 @@ export default function Index() {
               start: "top 80%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       });
 
@@ -110,9 +110,7 @@ export default function Index() {
       <ModernHeroSection />
 
       {/* Image Showcase - NEW */}
-      <div className="fade-slide-up">
-        <ImageShowcase />
-      </div>
+      <div className="fade-slide-up">{/* <ImageShowcase /> */}</div>
 
       {/* Stats Section with Enhanced Animations - PRESERVED */}
       <div className="fade-slide-left">
@@ -139,7 +137,8 @@ export default function Index() {
               Meet Our Amazing Teachers 👨‍🏫👩‍🏫
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed fade-slide-left">
-              Our passionate educators are dedicated to nurturing young minds and inspiring greatness!
+              Our passionate educators are dedicated to nurturing young minds
+              and inspiring greatness!
             </p>
           </div>
 
@@ -183,7 +182,8 @@ export default function Index() {
               Join Our Educational Community Today! 🎓
             </h2>
             <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 leading-relaxed">
-              Take the first step towards excellence in education and unlock your potential.
+              Take the first step towards excellence in education and unlock
+              your potential.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

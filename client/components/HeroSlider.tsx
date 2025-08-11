@@ -14,7 +14,8 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     id: 1,
-    image: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
+    image:
+      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
     title: "Excellence in",
     subtitle: "Education",
     description:
@@ -23,7 +24,8 @@ const slides: SlideData[] = [
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     title: "Interactive",
     subtitle: "Learning",
     description:
@@ -32,7 +34,8 @@ const slides: SlideData[] = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     title: "Advanced",
     subtitle: "Laboratories",
     description:
@@ -41,7 +44,8 @@ const slides: SlideData[] = [
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
+    image:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
     title: "Sports &",
     subtitle: "Recreation",
     description:
@@ -50,7 +54,8 @@ const slides: SlideData[] = [
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    image:
+      "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
     title: "Digital",
     subtitle: "Library",
     description:

@@ -316,8 +316,13 @@ img {
 
   /* Performance optimized keyframes */
   @keyframes float {
-    0%, 100% { transform: translateY(0px) translateZ(0); }
-    50% { transform: translateY(-20px) translateZ(0); }
+    0%,
+    100% {
+      transform: translateY(0px) translateZ(0);
+    }
+    50% {
+      transform: translateY(-20px) translateZ(0);
+    }
   }
 
   /* Low performance mode optimizations */
@@ -368,12 +373,16 @@ img {
   }
 
   /* Button hover effects */
-  button, .group, a {
+  button,
+  .group,
+  a {
     cursor: none;
     transition: all 0.3s ease;
   }
 
-  button:hover, .group:hover, a:hover {
+  button:hover,
+  .group:hover,
+  a:hover {
     transform: translateY(-1px);
   }
 

@@ -1,7 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { X, ChevronLeft, ChevronRight, Download, Share2, ZoomIn, ZoomOut, RotateCw } from "lucide-react";
+import {
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Download,
+  Share2,
+  ZoomIn,
+  ZoomOut,
+  RotateCw,
+} from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,96 +29,116 @@ const galleryImages: GalleryImage[] = [
   {
     id: 1,
     src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
-    thumb: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Modern School Building",
     title: "Our Main Campus Building",
-    description: "State-of-the-art educational facility with modern architecture",
+    description:
+      "State-of-the-art educational facility with modern architecture",
     category: "Campus",
-    tags: ["architecture", "building", "modern"]
+    tags: ["architecture", "building", "modern"],
   },
   {
     id: 2,
     src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    thumb: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Students Learning",
     title: "Interactive Classroom Session",
     description: "Students engaging in collaborative learning activities",
     category: "Education",
-    tags: ["students", "learning", "classroom"]
+    tags: ["students", "learning", "classroom"],
   },
   {
     id: 3,
     src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    thumb: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Science Laboratory",
     title: "Advanced Science Lab",
     description: "Well-equipped laboratory for hands-on scientific experiments",
     category: "Facilities",
-    tags: ["science", "laboratory", "equipment"]
+    tags: ["science", "laboratory", "equipment"],
   },
   {
     id: 4,
     src: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
-    thumb: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "School Library",
     title: "Digital Learning Center",
     description: "Modern library with extensive digital and physical resources",
     category: "Learning",
-    tags: ["library", "books", "digital"]
+    tags: ["library", "books", "digital"],
   },
   {
     id: 5,
     src: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
-    thumb: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Sports Complex",
     title: "Athletic Facilities",
     description: "Professional sports facilities for physical education",
     category: "Sports",
-    tags: ["sports", "fitness", "athletics"]
+    tags: ["sports", "fitness", "athletics"],
   },
   {
     id: 6,
     src: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2532&q=80",
-    thumb: "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Graduation Day",
     title: "Graduation Ceremony",
     description: "Celebrating our graduates' achievements and future success",
     category: "Events",
-    tags: ["graduation", "celebration", "achievement"]
+    tags: ["graduation", "celebration", "achievement"],
   },
   {
     id: 7,
     src: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
-    thumb: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Team Collaboration",
     title: "Student Collaboration",
     description: "Students working together on innovative projects",
     category: "Education",
-    tags: ["teamwork", "collaboration", "projects"]
+    tags: ["teamwork", "collaboration", "projects"],
   },
   {
     id: 8,
     src: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
-    thumb: "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1497486751825-1233686d5d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Art Studio",
     title: "Creative Arts Studio",
     description: "Inspiring creativity through arts and design programs",
     category: "Arts",
-    tags: ["art", "creativity", "design"]
+    tags: ["art", "creativity", "design"],
   },
   {
     id: 9,
     src: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
-    thumb: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+    thumb:
+      "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
     alt: "Computer Lab",
     title: "Technology Center",
     description: "State-of-the-art computer lab for digital learning",
     category: "Technology",
-    tags: ["computers", "technology", "digital"]
-  }
+    tags: ["computers", "technology", "digital"],
+  },
 ];
 
-const categories = ["All", "Campus", "Education", "Facilities", "Learning", "Sports", "Events", "Arts", "Technology"];
+const categories = [
+  "All",
+  "Campus",
+  "Education",
+  "Facilities",
+  "Learning",
+  "Sports",
+  "Events",
+  "Arts",
+  "Technology",
+];
 
 interface PhotoGalleryProps {
   className?: string;
@@ -124,9 +153,10 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
   const [rotation, setRotation] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const filteredImages = selectedCategory === "All" 
-    ? galleryImages 
-    : galleryImages.filter(img => img.category === selectedCategory);
+  const filteredImages =
+    selectedCategory === "All"
+      ? galleryImages
+      : galleryImages.filter((img) => img.category === selectedCategory);
 
   useEffect(() => {
     if (!galleryRef.current) return;
@@ -144,9 +174,9 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
           scrollTrigger: {
             trigger: galleryRef.current,
             start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Category filter animation
@@ -162,19 +192,19 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
           scrollTrigger: {
             trigger: galleryRef.current,
             start: "top 70%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Gallery items stagger animation
       gsap.fromTo(
         ".gallery-item",
-        { 
-          opacity: 0, 
+        {
+          opacity: 0,
           scale: 0.8,
           y: 50,
-          rotation: -5
+          rotation: -5,
         },
         {
           opacity: 1,
@@ -186,15 +216,15 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
             amount: 1.2,
             grid: "auto",
             from: "center",
-            ease: "power2.out"
+            ease: "power2.out",
           },
           ease: "back.out(1.2)",
           scrollTrigger: {
             trigger: ".gallery-grid",
             start: "top 80%",
-            toggleActions: "play none none reverse"
-          }
-        }
+            toggleActions: "play none none reverse",
+          },
+        },
       );
 
       // Floating animation for gallery items
@@ -206,10 +236,9 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
         repeat: -1,
         stagger: {
           amount: 2,
-          from: "random"
-        }
+          from: "random",
+        },
       });
-
     }, galleryRef);
 
     return () => ctx.revert();
@@ -227,8 +256,8 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
           y: 0,
           duration: 0.6,
           stagger: 0.05,
-          ease: "back.out(1.4)"
-        }
+          ease: "back.out(1.4)",
+        },
       );
     }
   }, [selectedCategory]);
@@ -250,7 +279,7 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
   }, []);
 
   const openLightbox = (image: GalleryImage) => {
-    const index = galleryImages.findIndex(img => img.id === image.id);
+    const index = galleryImages.findIndex((img) => img.id === image.id);
     setCurrentImageIndex(index);
     setLightboxImage(image);
     setZoom(1);
@@ -264,10 +293,11 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
   };
 
   const navigateImage = (direction: "prev" | "next") => {
-    const newIndex = direction === "next" 
-      ? (currentImageIndex + 1) % galleryImages.length
-      : (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-    
+    const newIndex =
+      direction === "next"
+        ? (currentImageIndex + 1) % galleryImages.length
+        : (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+
     setCurrentImageIndex(newIndex);
     setLightboxImage(galleryImages[newIndex]);
     setZoom(1);
@@ -276,14 +306,14 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
 
   const handleZoom = (direction: "in" | "out") => {
     if (direction === "in") {
-      setZoom(prev => Math.min(prev + 0.5, 3));
+      setZoom((prev) => Math.min(prev + 0.5, 3));
     } else {
-      setZoom(prev => Math.max(prev - 0.5, 0.5));
+      setZoom((prev) => Math.max(prev - 0.5, 0.5));
     }
   };
 
   const handleRotate = () => {
-    setRotation(prev => prev + 90);
+    setRotation((prev) => prev + 90);
   };
 
   const handleDownload = () => {
@@ -301,7 +331,7 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
         await navigator.share({
           title: lightboxImage.title,
           text: lightboxImage.description,
-          url: window.location.href
+          url: window.location.href,
         });
       } catch (error) {
         console.log("Sharing failed:", error);
@@ -311,11 +341,16 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
 
   if (!isLoaded) {
     return (
-      <div className={`w-full py-16 bg-gradient-to-br from-slate-50 to-blue-50 ${className}`}>
+      <div
+        className={`w-full py-16 bg-gradient-to-br from-slate-50 to-blue-50 ${className}`}
+      >
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {Array.from({ length: 9 }).map((_, i) => (
-              <div key={i} className="aspect-square bg-gray-200 rounded-2xl animate-pulse"></div>
+              <div
+                key={i}
+                className="aspect-square bg-gray-200 rounded-2xl animate-pulse"
+              ></div>
             ))}
           </div>
         </div>
@@ -325,7 +360,10 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
 
   return (
     <>
-      <section ref={galleryRef} className={`py-16 md:py-24 bg-gradient-to-br from-slate-50 via-white to-purple-50 relative overflow-hidden ${className}`}>
+      <section
+        ref={galleryRef}
+        className={`py-16 md:py-24 bg-gradient-to-br from-slate-50 via-white to-purple-50 relative overflow-hidden ${className}`}
+      >
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-purple-400 to-pink-500 rounded-full blur-3xl"></div>
@@ -339,7 +377,8 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
               Our Amazing Gallery 📸
             </h2>
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Explore our vibrant campus life, state-of-the-art facilities, and memorable moments
+              Explore our vibrant campus life, state-of-the-art facilities, and
+              memorable moments
             </p>
           </div>
 
@@ -374,10 +413,10 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   loading="lazy"
                 />
-                
+
                 {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+
                 {/* Content */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <span className="inline-block px-2 py-1 bg-white/20 backdrop-blur-sm rounded-lg text-xs font-medium mb-2">
@@ -402,7 +441,9 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
           {/* Empty State */}
           {filteredImages.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-xl text-gray-500">No images found in this category.</p>
+              <p className="text-xl text-gray-500">
+                No images found in this category.
+              </p>
             </div>
           )}
         </div>
@@ -462,7 +503,7 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
-          
+
           <button
             onClick={() => navigateImage("next")}
             className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white/30 transition-colors duration-300"
@@ -477,7 +518,7 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
               alt={lightboxImage.alt}
               className="max-w-full max-h-full object-contain transition-transform duration-300"
               style={{
-                transform: `scale(${zoom}) rotate(${rotation}deg)`
+                transform: `scale(${zoom}) rotate(${rotation}deg)`,
               }}
             />
           </div>
@@ -489,8 +530,12 @@ export default function PhotoGallery({ className = "" }: PhotoGalleryProps) {
                 <span className="inline-block px-3 py-1 bg-white/20 rounded-lg text-sm font-medium mb-2">
                   {lightboxImage.category}
                 </span>
-                <h3 className="text-xl font-bold mb-1">{lightboxImage.title}</h3>
-                <p className="text-sm opacity-80">{lightboxImage.description}</p>
+                <h3 className="text-xl font-bold mb-1">
+                  {lightboxImage.title}
+                </h3>
+                <p className="text-sm opacity-80">
+                  {lightboxImage.description}
+                </p>
               </div>
               <div className="text-right">
                 <p className="text-sm opacity-80">
