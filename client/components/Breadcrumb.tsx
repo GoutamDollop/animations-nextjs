@@ -1,11 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
-
-interface BreadcrumbItem {
-  label: string;
-  path: string;
-}
+import { ArrowLeft, Home } from 'lucide-react';
 
 export default function Breadcrumb() {
   const location = useLocation();
@@ -27,22 +22,9 @@ export default function Breadcrumb() {
   const currentPath = location.pathname;
   const currentPageName = pageMapping[currentPath] || 'Page';
 
-  // Build breadcrumb items
-  const breadcrumbItems: BreadcrumbItem[] = [
-    { label: 'Home', path: '/' }
-  ];
-
-  // Add current page if not home
-  if (currentPath !== '/') {
-    breadcrumbItems.push({ label: currentPageName, path: currentPath });
-  }
-
   // Handle back navigation
   const handleBack = () => {
-    if (currentPath === '/') {
-      return; // Already on home, no back action
-    }
-    navigate('/'); // Always go back to home for simplicity
+    navigate('/');
   };
 
   // Don't show breadcrumb on home page
@@ -51,61 +33,35 @@ export default function Breadcrumb() {
   }
 
   return (
-    <div className="bg-white border-b border-gray-200 py-3 md:py-4 sticky top-16 md:top-20 z-40">
+    <div className="bg-gradient-to-r from-orange-50 to-red-50 border-b border-orange-100 py-3 md:py-4">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Back Button */}
+          {/* Back Button with improved design */}
           <button
             onClick={handleBack}
-            className="inline-flex items-center space-x-2 text-gray-600 hover:text-orange-600 transition-colors duration-300 group"
+            className="group inline-flex items-center space-x-2 px-4 py-2 bg-white rounded-full shadow-sm hover:shadow-md transition-all duration-300 transform hover:scale-105 border border-orange-200 hover:border-orange-300"
           >
-            <div className="p-2 rounded-lg bg-gray-100 group-hover:bg-orange-100 transition-colors duration-300">
-              <ChevronLeft className="h-4 w-4 md:h-5 md:w-5" />
-            </div>
-            <span className="font-medium text-sm md:text-base hidden sm:inline">Back to Home</span>
+            <ArrowLeft className="h-4 w-4 text-orange-600 group-hover:text-orange-700" />
+            <span className="text-orange-600 group-hover:text-orange-700 font-medium text-sm">Back to Home</span>
           </button>
 
-          {/* Breadcrumb Navigation */}
-          <nav className="flex items-center space-x-2" aria-label="Breadcrumb">
-            <ol className="flex items-center space-x-2 text-sm md:text-base">
-              {breadcrumbItems.map((item, index) => (
-                <li key={item.path} className="flex items-center">
-                  {index > 0 && (
-                    <ChevronRight className="h-4 w-4 text-gray-400 mx-2" />
-                  )}
-                  {index === 0 ? (
-                    <Link
-                      to={item.path}
-                      className="flex items-center space-x-1 text-gray-500 hover:text-orange-600 transition-colors duration-300"
-                    >
-                      <Home className="h-4 w-4" />
-                      <span className="hidden sm:inline">{item.label}</span>
-                    </Link>
-                  ) : index === breadcrumbItems.length - 1 ? (
-                    <span className="text-gray-800 font-semibold flex items-center space-x-1">
-                      <span>{item.label}</span>
-                      {currentPageName.includes('🎓') && <span>🎓</span>}
-                      {currentPageName.includes('📚') && <span>📚</span>}
-                      {currentPageName.includes('🎉') && <span>🎉</span>}
-                      {currentPageName.includes('📞') && <span>📞</span>}
-                    </span>
-                  ) : (
-                    <Link
-                      to={item.path}
-                      className="text-gray-500 hover:text-orange-600 transition-colors duration-300"
-                    >
-                      {item.label}
-                    </Link>
-                  )}
-                </li>
-              ))}
-            </ol>
-          </nav>
-
-          {/* Current Page Indicator */}
-          <div className="hidden md:flex items-center space-x-2 text-sm text-gray-500">
-            <span>Page:</span>
-            <span className="font-semibold text-gray-800">{currentPageName}</span>
+          {/* Current Page Indicator with modern design */}
+          <div className="flex items-center space-x-3">
+            <div className="hidden sm:flex items-center space-x-2 text-sm text-gray-500">
+              <Home className="h-4 w-4" />
+              <span>/</span>
+              <span>{currentPageName}</span>
+            </div>
+            
+            <div className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-full shadow-md">
+              <span className="font-semibold text-sm">{currentPageName}</span>
+              {currentPageName.includes('About') && <span className="text-orange-200">🎓</span>}
+              {currentPageName.includes('Courses') && <span className="text-orange-200">📚</span>}
+              {currentPageName.includes('Teachers') && <span className="text-orange-200">👩‍🏫</span>}
+              {currentPageName.includes('Events') && <span className="text-orange-200">🎉</span>}
+              {currentPageName.includes('Gallery') && <span className="text-orange-200">📷</span>}
+              {currentPageName.includes('Contact') && <span className="text-orange-200">📞</span>}
+            </div>
           </div>
         </div>
       </div>
