@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { gsap } from 'gsap';
-import { Construction, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { gsap } from "gsap";
+import { Construction, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface PlaceholderPageProps {
   title: string;
@@ -9,12 +9,23 @@ interface PlaceholderPageProps {
   comingSoon?: boolean;
 }
 
-export default function PlaceholderPage({ title, description, comingSoon = true }: PlaceholderPageProps) {
+export default function PlaceholderPage({
+  title,
+  description,
+  comingSoon = true,
+}: PlaceholderPageProps) {
   useEffect(() => {
     gsap.fromTo(
-      '.placeholder-content',
+      ".placeholder-content",
       { y: 50, opacity: 0, scale: 0.9 },
-      { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: 'power2.out', stagger: 0.2 }
+      {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        duration: 0.8,
+        ease: "power2.out",
+        stagger: 0.2,
+      },
     );
   }, []);
 
@@ -50,7 +61,9 @@ export default function PlaceholderPage({ title, description, comingSoon = true 
             <div className="placeholder-content">
               <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-accent/20 to-warning/20 rounded-full px-6 py-3 mb-8">
                 <div className="w-2 h-2 bg-gradient-to-r from-accent to-warning rounded-full animate-pulse"></div>
-                <span className="font-semibold text-foreground">Coming Soon</span>
+                <span className="font-semibold text-foreground">
+                  Coming Soon
+                </span>
               </div>
             </div>
           )}
@@ -58,9 +71,11 @@ export default function PlaceholderPage({ title, description, comingSoon = true 
           {/* CTA */}
           <div className="placeholder-content">
             <p className="text-muted-foreground mb-8">
-              This page is currently under development. Please continue exploring other sections of our website or contact us for more information.
+              This page is currently under development. Please continue
+              exploring other sections of our website or contact us for more
+              information.
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/"
@@ -69,7 +84,7 @@ export default function PlaceholderPage({ title, description, comingSoon = true 
                 <ArrowLeft className="h-5 w-5" />
                 <span>Back to Home</span>
               </Link>
-              
+
               <Link
                 to="/contact"
                 className="inline-flex items-center space-x-2 bg-background border border-border text-foreground px-6 py-3 rounded-xl font-semibold hover:bg-muted transform hover:scale-105 transition-all duration-300"

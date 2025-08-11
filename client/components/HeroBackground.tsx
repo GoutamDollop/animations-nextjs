@@ -1,11 +1,11 @@
-import React, { useRef, useMemo } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
-import { Points, PointMaterial } from '@react-three/drei';
-import * as THREE from 'three';
+import React, { useRef, useMemo } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Points, PointMaterial } from "@react-three/drei";
+import * as THREE from "three";
 
 function AnimatedSphere() {
   const ref = useRef<THREE.Points>(null);
-  
+
   const sphere = useMemo(() => {
     const sphereGeometry = new THREE.SphereGeometry(1, 48, 48);
     const positions = sphereGeometry.attributes.position.array;
@@ -44,7 +44,9 @@ function FloatingShapes() {
         (Math.random() - 0.5) * 10,
       ] as [number, number, number],
       scale: Math.random() * 0.5 + 0.1,
-      color: ['#4F46E5', '#7C3AED', '#F59E0B', '#10B981', '#EF4444'][Math.floor(Math.random() * 5)],
+      color: ["#4F46E5", "#7C3AED", "#F59E0B", "#10B981", "#EF4444"][
+        Math.floor(Math.random() * 5)
+      ],
       speed: Math.random() * 0.02 + 0.01,
     }));
   }, []);
@@ -63,7 +65,8 @@ function FloatingShape({ position, scale, color, speed }: any) {
 
   useFrame((state) => {
     if (ref.current) {
-      ref.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * speed) * 0.5;
+      ref.current.position.y =
+        position[1] + Math.sin(state.clock.elapsedTime * speed) * 0.5;
       ref.current.rotation.x = state.clock.elapsedTime * speed;
       ref.current.rotation.y = state.clock.elapsedTime * speed * 0.5;
     }
@@ -82,12 +85,16 @@ export default function HeroBackground() {
     <div className="absolute inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
-        style={{ background: 'transparent' }}
+        style={{ background: "transparent" }}
       >
         <ambientLight intensity={0.4} />
         <pointLight position={[10, 10, 10]} intensity={0.8} />
-        <pointLight position={[-10, -10, -10]} intensity={0.3} color="#7C3AED" />
-        
+        <pointLight
+          position={[-10, -10, -10]}
+          intensity={0.3}
+          color="#7C3AED"
+        />
+
         <AnimatedSphere />
         <FloatingShapes />
       </Canvas>
