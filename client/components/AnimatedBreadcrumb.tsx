@@ -61,7 +61,7 @@ export default function AnimatedBreadcrumb() {
   const breadcrumbItems = getBreadcrumbItems();
 
   useEffect(() => {
-    if (!breadcrumbRef.current) return;
+    if (!shouldShowBreadcrumb || !breadcrumbRef.current) return;
 
     const ctx = gsap.context(() => {
       // Main container entrance animation
