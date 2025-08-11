@@ -163,19 +163,20 @@ export default function Contact() {
   return (
     <div ref={pageRef} className="min-h-screen pt-20 lg:pt-24">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-          <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-300 rounded-full animate-ping"></div>
+          <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
+          <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-green-300 rounded-full animate-ping"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-8 md:w-12 h-8 md:h-12 bg-orange-300 rounded-full animate-pulse"></div>
         </div>
-        
+
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
           <div className="contact-header max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-black mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
               Get In Touch 📞
             </h1>
-            <p className="text-xl md:text-2xl leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
               Ready to start your educational journey? We're here to help you every step of the way!
             </p>
           </div>
@@ -183,7 +184,7 @@ export default function Contact() {
       </section>
 
       {/* Main Content */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Contact Form */}
