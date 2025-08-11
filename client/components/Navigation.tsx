@@ -19,34 +19,41 @@ export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setIsScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
-    // Enhanced navigation animations
+    // Simplified navigation animations for better performance
     gsap.fromTo(
       ".nav-item",
-      { y: -30, opacity: 0, scale: 0.8 },
+      { y: -20, opacity: 0 },
       {
         y: 0,
         opacity: 1,
-        scale: 1,
-        duration: 0.8,
+        duration: 0.6,
         stagger: 0.1,
-        ease: "back.out(1.7)",
+        ease: "power2.out",
       },
     );
 
-    // Logo bounce animation
+    // Simplified logo animation
     gsap.fromTo(
       ".logo",
-      { scale: 0, rotation: -180 },
-      { scale: 1, rotation: 0, duration: 1, ease: "elastic.out(1, 0.5)" },
+      { scale: 0.8, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.7)" },
     );
   }, []);
 
@@ -54,16 +61,16 @@ export default function Navigation() {
     setIsOpen(!isOpen);
 
     if (!isOpen) {
+      // Simplified mobile menu animation for better performance
       gsap.fromTo(
         ".mobile-nav-item",
-        { x: 100, opacity: 0, rotationY: 90 },
+        { x: 30, opacity: 0 },
         {
           x: 0,
           opacity: 1,
-          rotationY: 0,
-          duration: 0.5,
-          stagger: 0.1,
-          ease: "back.out(1.7)",
+          duration: 0.4,
+          stagger: 0.08,
+          ease: "power2.out",
         },
       );
     }
@@ -71,14 +78,14 @@ export default function Navigation() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform ${
         isScrolled
           ? "bg-white/95 backdrop-blur-lg border-b border-gray-200 shadow-2xl"
           : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 md:h-18 lg:h-20">
           {/* Enhanced Logo */}
           <Link
             to="/"
@@ -91,7 +98,7 @@ export default function Navigation() {
               </div>
             </div>
             <div className="hidden sm:block">
-              <div className="font-display font-black text-2xl lg:text-3xl">
+              <div className="font-display font-black text-xl md:text-2xl lg:text-3xl">
                 <span className="bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 bg-clip-text text-transparent">
                   EduVerse
                 </span>
@@ -103,12 +110,12 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`nav-item relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-xl hover:bg-orange-50 group ${
+                className={`nav-item relative px-3 xl:px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-xl hover:bg-orange-50 group ${
                   location.pathname === item.path
                     ? "text-orange-600 bg-orange-50"
                     : "text-gray-700 hover:text-orange-600"
@@ -124,7 +131,7 @@ export default function Navigation() {
           </div>
 
           {/* Right Side Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 sm:space-x-4">
             {/* Contact Info */}
             <div className="hidden xl:flex items-center space-x-2 text-sm">
               <Phone className="h-4 w-4 text-orange-600" />
@@ -136,7 +143,7 @@ export default function Navigation() {
             {/* CTA Button */}
             <Link
               to="/contact"
-              className="hidden md:inline-flex nav-item items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-600 text-white px-6 py-3 rounded-xl font-semibold text-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="hidden md:inline-flex nav-item items-center space-x-2 bg-gradient-to-r from-orange-500 to-red-600 text-white px-4 lg:px-6 py-2 lg:py-3 rounded-xl font-semibold text-xs lg:text-sm shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               <span>Apply Now</span>
             </Link>
@@ -144,7 +151,7 @@ export default function Navigation() {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMobileMenu}
-              className="lg:hidden nav-item p-3 rounded-xl bg-orange-100 hover:bg-orange-200 transition-all duration-300 shadow-md hover:shadow-lg"
+              className="lg:hidden nav-item p-2.5 md:p-3 rounded-xl bg-orange-100 hover:bg-orange-200 transition-all duration-300 shadow-md hover:shadow-lg"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -158,17 +165,17 @@ export default function Navigation() {
 
         {/* Enhanced Mobile Navigation */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-500 ${
+          className={`lg:hidden overflow-hidden transition-all duration-300 will-change-transform ${
             isOpen ? "max-h-screen opacity-100 pb-6" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="mt-4 space-y-2 bg-white/95 backdrop-blur-lg rounded-2xl p-4 shadow-2xl border border-gray-200">
+          <div className="mt-4 space-y-2 bg-white/95 backdrop-blur-lg rounded-2xl p-4 shadow-2xl border border-gray-200 mx-2">
             {navItems.map((item, index) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={() => setIsOpen(false)}
-                className={`mobile-nav-item block px-6 py-4 text-base font-semibold rounded-xl transition-all duration-300 ${
+                className={`mobile-nav-item block px-4 py-3 text-base font-semibold rounded-xl transition-all duration-300 ${
                   location.pathname === item.path
                     ? "bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg"
                     : "text-gray-700 hover:bg-gradient-to-r hover:from-orange-50 hover:to-red-50 hover:text-orange-600"
@@ -177,11 +184,11 @@ export default function Navigation() {
                 {item.name}
               </Link>
             ))}
-            <div className="pt-4 border-t border-gray-200">
+            <div className="pt-3 border-t border-gray-200">
               <Link
                 to="/contact"
                 onClick={() => setIsOpen(false)}
-                className="mobile-nav-item block px-6 py-4 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300"
+                className="mobile-nav-item block px-4 py-3 bg-gradient-to-r from-orange-500 to-red-600 text-white font-bold rounded-xl text-center shadow-lg hover:shadow-xl transition-all duration-300 text-sm"
               >
                 Apply Now - Join EduVerse!
               </Link>

@@ -21,27 +21,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   useEffect(() => {
-    // Optimized footer animations
-    gsap.fromTo(
-      ".footer-item",
-      { y: 30, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: ".footer-container",
-          start: "top 90%",
-          toggleActions: "play none none reverse",
+    // Ensure footer is always visible first
+    const footerContainer = document.querySelector(".footer-container");
+    if (footerContainer) {
+      (footerContainer as HTMLElement).style.visibility = "visible";
+    }
+
+    // Then apply animations
+    const timer = setTimeout(() => {
+      gsap.fromTo(
+        ".footer-item",
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".footer-container",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
         },
-      },
-    );
+      );
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, []);
 
   const scrollToTop = () => {
-    gsap.to(window, { duration: 1.5, scrollTo: 0, ease: "power3.out" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const socialLinks = [
@@ -53,7 +66,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500">
+    <footer className="footer-container relative overflow-hidden bg-gradient-to-br from-orange-500 via-red-500 to-pink-500 mt-auto w-full">
       {/* Floating Background Elements */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 left-20 w-32 h-32 bg-white rounded-full animate-pulse"></div>
