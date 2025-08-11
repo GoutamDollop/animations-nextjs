@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowRight, Play, Calendar } from "lucide-react";
-import EnhancedHeroSection from "../components/EnhancedHeroSection";
+import ModernHeroSection from "../components/ModernHeroSection";
 import EnhancedThreeBackground from "../components/EnhancedThreeBackground";
 import EnhancedImageSlider from "../components/EnhancedImageSlider";
 import PhotoGallery from "../components/PhotoGallery";
