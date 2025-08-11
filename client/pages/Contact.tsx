@@ -186,7 +186,7 @@ export default function Contact() {
       {/* Main Content */}
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
             {/* Contact Form */}
             <div className="contact-form">
               <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-10">
