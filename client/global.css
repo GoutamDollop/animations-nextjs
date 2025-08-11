@@ -363,27 +363,41 @@ img {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Enhanced cursor interactions */
-  .group {
-    cursor: none;
+  /* Enhanced cursor interactions - only on desktop */
+  @media (min-width: 1024px) {
+    .group {
+      cursor: none;
+    }
+
+    .group:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Button hover effects */
+    button,
+    .group,
+    a {
+      cursor: none;
+      transition: all 0.3s ease;
+    }
+
+    button:hover,
+    .group:hover,
+    a:hover {
+      transform: translateY(-1px);
+    }
+
+    /* Custom cursor for specific elements */
+    *, *::before, *::after {
+      cursor: none !important;
+    }
   }
 
-  .group:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Button hover effects */
-  button,
-  .group,
-  a {
-    cursor: none;
-    transition: all 0.3s ease;
-  }
-
-  button:hover,
-  .group:hover,
-  a:hover {
-    transform: translateY(-1px);
+  /* Maintain normal cursor on mobile */
+  @media (max-width: 1023px) {
+    *, *::before, *::after {
+      cursor: auto !important;
+    }
   }
 
   /* Enhanced magnetic effect */
