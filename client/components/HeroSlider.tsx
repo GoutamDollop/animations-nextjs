@@ -193,10 +193,10 @@ export default function HeroSlider() {
         {/* Previous Button */}
         <button
           onClick={prevSlide}
-          className="p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="p-1.5 sm:p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
+          <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-gray-700" />
         </button>
 
         {/* Dots Indicator */}
