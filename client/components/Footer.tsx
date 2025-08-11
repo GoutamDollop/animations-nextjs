@@ -106,7 +106,7 @@ export default function Footer() {
                   key={index}
                   href="#"
                   aria-label={label}
-                  className={`p-3 bg-white/20 backdrop-blur-sm rounded-xl text-white ${color} transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl`}
+                  className={`p-3 bg-gray-700/50 backdrop-blur-sm rounded-xl text-gray-300 hover:text-white ${color} transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-xl`}
                 >
                   <Icon className="h-5 w-5" />
                 </a>
