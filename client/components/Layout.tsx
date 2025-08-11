@@ -12,10 +12,10 @@ export default function Layout({ children }: LayoutProps) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading time
+    // Simulate loading time - shorter for better UX
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -25,13 +25,13 @@ export default function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-white">
+    <div className="min-h-screen flex flex-col bg-white">
       <Navigation />
-
-      <main className="flex-1">
+      
+      <main className="flex-grow">
         {children}
       </main>
-
+      
       <Footer />
       <ScrollToTop />
     </div>
