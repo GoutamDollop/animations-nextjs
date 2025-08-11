@@ -162,7 +162,9 @@ export default function About() {
   ];
 
   return (
-    <div ref={pageRef} className="min-h-screen pt-16 md:pt-20 lg:pt-24">
+    <div ref={pageRef} className="min-h-screen">
+      <ConditionalBreadcrumb />
+      <div className="pt-4 md:pt-8 lg:pt-12">
       {/* Hero Section */}
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
@@ -398,6 +400,7 @@ export default function About() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }
