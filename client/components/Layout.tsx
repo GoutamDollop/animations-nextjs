@@ -30,18 +30,19 @@ export default function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <>
+    <SmoothScrollProvider>
       <PerformanceOptimizer />
       <ScrollManager />
-      <CustomCursor />
+      <EnhancedCustomCursor />
       <div className="min-h-screen flex flex-col bg-white">
         <Navigation />
+        <AnimatedBreadcrumb />
 
         <main className="flex-grow">{children}</main>
 
         <Footer />
         <ScrollToTop />
       </div>
-    </>
+    </SmoothScrollProvider>
   );
 }
