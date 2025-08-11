@@ -3,9 +3,11 @@ import Navigation from "./Navigation";
 import Footer from "./Footer";
 import Loading from "./Loading";
 import ScrollToTop from "./ScrollToTop";
-import CustomCursor from "./CustomCursor";
+import EnhancedCustomCursor from "./EnhancedCustomCursor";
+import AnimatedBreadcrumb from "./AnimatedBreadcrumb";
 import PerformanceOptimizer from "./PerformanceOptimizer";
 import ScrollManager from "./ScrollManager";
+import { SmoothScrollProvider } from "./AdvancedScrollAnimations";
 
 interface LayoutProps {
   children: React.ReactNode;
