@@ -96,13 +96,27 @@ img {
   }
 
   /* Mobile-specific text sizes */
-  .mobile-text-sm { font-size: 0.875rem; }
-  .mobile-text-base { font-size: 1rem; }
-  .mobile-text-lg { font-size: 1.125rem; }
-  .mobile-text-xl { font-size: 1.25rem; }
-  .mobile-text-2xl { font-size: 1.5rem; }
-  .mobile-text-3xl { font-size: 1.875rem; }
-  .mobile-text-4xl { font-size: 2.25rem; }
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
+  .mobile-text-base {
+    font-size: 1rem;
+  }
+  .mobile-text-lg {
+    font-size: 1.125rem;
+  }
+  .mobile-text-xl {
+    font-size: 1.25rem;
+  }
+  .mobile-text-2xl {
+    font-size: 1.5rem;
+  }
+  .mobile-text-3xl {
+    font-size: 1.875rem;
+  }
+  .mobile-text-4xl {
+    font-size: 2.25rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -323,7 +337,8 @@ img {
   }
 
   @keyframes float {
-    0%, 100% {
+    0%,
+    100% {
       transform: translateY(0px) translateZ(0);
     }
     50% {

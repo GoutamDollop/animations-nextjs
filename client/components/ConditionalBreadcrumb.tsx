@@ -25,7 +25,7 @@ interface ConditionalBreadcrumbProps {
 export default function ConditionalBreadcrumb({
   showOnPages = [
     "/about",
-    "/courses", 
+    "/courses",
     "/teachers",
     "/events",
     "/gallery",

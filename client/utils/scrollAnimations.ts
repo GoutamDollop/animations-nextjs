@@ -18,7 +18,7 @@ export class ScrollAnimationManager {
 
   public init() {
     if (this.initialized) return;
-    
+
     this.initialized = true;
     this.setupGlobalAnimations();
     this.setupIntersectionObserver();
@@ -45,7 +45,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -64,7 +64,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -82,7 +82,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -101,7 +101,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -122,7 +122,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -156,7 +156,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -164,7 +164,10 @@ export class ScrollAnimationManager {
     gsap.utils.toArray(".text-reveal").forEach((element: any) => {
       const chars = element.textContent.split("");
       element.innerHTML = chars
-        .map((char: string) => `<span style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`)
+        .map(
+          (char: string) =>
+            `<span style="display: inline-block;">${char === " " ? "&nbsp;" : char}</span>`,
+        )
         .join("");
 
       gsap.fromTo(
@@ -182,7 +185,7 @@ export class ScrollAnimationManager {
             start: "top 85%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
     });
 
@@ -222,12 +225,12 @@ export class ScrollAnimationManager {
       {
         threshold: 0.1,
         rootMargin: "0px 0px -10% 0px",
-      }
+      },
     );
 
     // Observe elements with animation classes
     const animatedElements = document.querySelectorAll(
-      ".fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in"
+      ".fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in",
     );
 
     animatedElements.forEach((el) => observer.observe(el));
@@ -236,20 +239,16 @@ export class ScrollAnimationManager {
   public createSectionAnimation(
     trigger: string | Element,
     elements: string | Element[],
-    animation: any = animations.fadeIn
+    animation: any = animations.fadeIn,
   ) {
-    gsap.fromTo(
-      elements,
-      animation,
-      {
-        ...animation,
-        scrollTrigger: {
-          trigger,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
+    gsap.fromTo(elements, animation, {
+      ...animation,
+      scrollTrigger: {
+        trigger,
+        start: "top 80%",
+        toggleActions: "play none none reverse",
+      },
+    });
   }
 
   public createParallaxEffect(element: string | Element, speed: number = 0.5) {
@@ -317,28 +316,28 @@ export const animations = {
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power2,
   },
-  
+
   slideInLeft: {
     opacity: 0,
     x: -60,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   slideInRight: {
     opacity: 0,
     x: 60,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   scaleIn: {
     opacity: 0,
     scale: 0.8,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.back,
   },
-  
+
   rotateIn: {
     opacity: 0,
     rotation: -45,

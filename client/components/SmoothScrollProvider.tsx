@@ -16,7 +16,9 @@ const SmoothScrollContext = createContext<SmoothScrollContextType | null>(null);
 export const useSmoothScroll = () => {
   const context = useContext(SmoothScrollContext);
   if (!context) {
-    throw new Error("useSmoothScroll must be used within a SmoothScrollProvider");
+    throw new Error(
+      "useSmoothScroll must be used within a SmoothScrollProvider",
+    );
   }
   return context;
 };
@@ -25,28 +27,33 @@ interface SmoothScrollProviderProps {
   children: React.ReactNode;
 }
 
-export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+export default function SmoothScrollProvider({
+  children,
+}: SmoothScrollProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
-  
+
   useEffect(() => {
     // Initialize Lenis
     const lenis = new Lenis(lenisConfig);
     lenisRef.current = lenis;
-    
+
     // Integrate with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
-    
+
     // Add to GSAP ticker
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
 
     gsap.ticker.lagSmoothing(0);
-    
+
     // Handle anchor links
     const handleAnchorClick = (e: Event) => {
       const target = e.target as HTMLAnchorElement;
-      if (target.tagName === "A" && target.getAttribute("href")?.startsWith("#")) {
+      if (
+        target.tagName === "A" &&
+        target.getAttribute("href")?.startsWith("#")
+      ) {
         e.preventDefault();
         const targetId = target.getAttribute("href")?.substring(1);
         if (targetId) {
@@ -61,9 +68,9 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
         }
       }
     };
-    
+
     document.addEventListener("click", handleAnchorClick);
-    
+
     // Cleanup
     return () => {
       document.removeEventListener("click", handleAnchorClick);
@@ -71,7 +78,7 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       lenis.destroy();
     };
   }, []);
-  
+
   const scrollTo = (target: string | number, options: any = {}) => {
     if (lenisRef.current) {
       lenisRef.current.scrollTo(target, {
@@ -82,26 +89,26 @@ export default function SmoothScrollProvider({ children }: SmoothScrollProviderP
       });
     }
   };
-  
+
   const stop = () => {
     if (lenisRef.current) {
       lenisRef.current.stop();
     }
   };
-  
+
   const start = () => {
     if (lenisRef.current) {
       lenisRef.current.start();
     }
   };
-  
+
   const contextValue: SmoothScrollContextType = {
     lenis: lenisRef.current,
     scrollTo,
     stop,
     start,
   };
-  
+
   return (
     <SmoothScrollContext.Provider value={contextValue}>
       {children}

@@ -24,7 +24,7 @@ import {
   Send,
   Shield,
   FileText,
-  HelpCircle
+  HelpCircle,
 } from "lucide-react";
 import { useSmoothScroll } from "../components/SmoothScrollProvider";
 
@@ -66,11 +66,36 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com", label: "Facebook", color: "hover:text-blue-600" },
-  { icon: Twitter, href: "https://twitter.com", label: "Twitter", color: "hover:text-sky-500" },
-  { icon: Instagram, href: "https://instagram.com", label: "Instagram", color: "hover:text-pink-600" },
-  { icon: Youtube, href: "https://youtube.com", label: "YouTube", color: "hover:text-red-600" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn", color: "hover:text-blue-700" },
+  {
+    icon: Facebook,
+    href: "https://facebook.com",
+    label: "Facebook",
+    color: "hover:text-blue-600",
+  },
+  {
+    icon: Twitter,
+    href: "https://twitter.com",
+    label: "Twitter",
+    color: "hover:text-sky-500",
+  },
+  {
+    icon: Instagram,
+    href: "https://instagram.com",
+    label: "Instagram",
+    color: "hover:text-pink-600",
+  },
+  {
+    icon: Youtube,
+    href: "https://youtube.com",
+    label: "YouTube",
+    color: "hover:text-red-600",
+  },
+  {
+    icon: Linkedin,
+    href: "https://linkedin.com",
+    label: "LinkedIn",
+    color: "hover:text-blue-700",
+  },
 ];
 
 const contactInfo = [
@@ -114,7 +139,7 @@ export default function ModernFooter() {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // Logo animation
@@ -131,7 +156,7 @@ export default function ModernFooter() {
             start: "top 70%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // Social icons animation
@@ -149,7 +174,7 @@ export default function ModernFooter() {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // Newsletter form animation
@@ -166,7 +191,7 @@ export default function ModernFooter() {
             start: "top 80%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
       // Floating elements
@@ -178,7 +203,6 @@ export default function ModernFooter() {
         repeat: -1,
         stagger: 0.5,
       });
-
     }, footerRef);
 
     return () => ctx.revert();
@@ -217,12 +241,12 @@ export default function ModernFooter() {
                 <div className="text-cyan-400 font-semibold">Academy</div>
               </div>
             </div>
-            
+
             <p className="text-gray-300 leading-relaxed mb-6 text-lg">
-              Empowering minds, shaping futures, and creating tomorrow's leaders 
+              Empowering minds, shaping futures, and creating tomorrow's leaders
               through excellence in education since 2008.
             </p>
-            
+
             {/* Awards/Certifications */}
             <div className="flex items-center space-x-4 mb-6">
               <div className="flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 py-2">
@@ -329,7 +353,9 @@ export default function ModernFooter() {
                     <contact.icon className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-white mb-2">{contact.title}</h4>
+                    <h4 className="font-semibold text-white mb-2">
+                      {contact.title}
+                    </h4>
                     {contact.details.map((detail, idx) => (
                       <p key={idx} className="text-gray-300 text-lg">
                         {detail}
@@ -348,10 +374,10 @@ export default function ModernFooter() {
               <span>Stay Connected</span>
             </h3>
             <p className="text-gray-300 mb-6 text-lg leading-relaxed">
-              Subscribe to our newsletter for the latest updates on admissions, 
+              Subscribe to our newsletter for the latest updates on admissions,
               events, and academic achievements.
             </p>
-            
+
             <form className="newsletter-form space-y-4">
               <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
                 <input

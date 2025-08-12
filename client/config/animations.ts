@@ -15,7 +15,7 @@ export const animationConfig = {
     slow: 1.2,
     verySlow: 2.0,
   },
-  
+
   // Easing functions
   ease: {
     power1: "power1.out",
@@ -29,14 +29,14 @@ export const animationConfig = {
     circ: "circ.out",
     sine: "sine.out",
   },
-  
+
   // Stagger settings
   stagger: {
     small: 0.1,
     medium: 0.2,
     large: 0.3,
   },
-  
+
   // Cursor themes
   cursor: {
     default: {
@@ -76,7 +76,7 @@ export const animationConfig = {
       trailLength: 15,
     },
   },
-  
+
   // Scroll trigger settings
   scrollTrigger: {
     start: "top 80%",
@@ -84,7 +84,7 @@ export const animationConfig = {
     toggleActions: "play none none reverse",
     markers: false, // Set to true for debugging
   },
-  
+
   // Three.js settings
   three: {
     particleCount: 100,
@@ -109,16 +109,16 @@ export const lenisConfig = {
 // Initialize Lenis
 export const initLenis = () => {
   const lenis = new Lenis(lenisConfig);
-  
+
   // Integrate with GSAP ScrollTrigger
   lenis.on("scroll", ScrollTrigger.update);
-  
+
   gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
   });
 
   gsap.ticker.lagSmoothing(0);
-  
+
   return lenis;
 };
 
@@ -131,35 +131,35 @@ export const animations = {
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power2,
   },
-  
+
   fadeInUp: {
     opacity: 0,
     y: 60,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   fadeInDown: {
     opacity: 0,
     y: -60,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   fadeInLeft: {
     opacity: 0,
     x: -60,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   fadeInRight: {
     opacity: 0,
     x: 60,
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   // Scale animations
   scaleIn: {
     scale: 0.8,
@@ -167,7 +167,7 @@ export const animations = {
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.back,
   },
-  
+
   // Rotation animations
   rotateIn: {
     rotation: -180,
@@ -175,20 +175,20 @@ export const animations = {
     duration: animationConfig.duration.slow,
     ease: animationConfig.ease.power4,
   },
-  
+
   // Slide animations
   slideInLeft: {
     x: "-100%",
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.expo,
   },
-  
+
   slideInRight: {
     x: "100%",
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.expo,
   },
-  
+
   // Text animations
   textReveal: {
     y: "100%",
@@ -196,7 +196,7 @@ export const animations = {
     duration: animationConfig.duration.normal,
     ease: animationConfig.ease.power3,
   },
-  
+
   // Magnetic effect
   magnetic: (strength = 0.5) => ({
     x: 0,

@@ -14,7 +14,9 @@ const defaultBreakpoints: BreakpointConfig = {
   wide: 1536,
 };
 
-export function useResponsive(breakpoints: BreakpointConfig = defaultBreakpoints) {
+export function useResponsive(
+  breakpoints: BreakpointConfig = defaultBreakpoints,
+) {
   const [screenSize, setScreenSize] = useState({
     width: typeof window !== "undefined" ? window.innerWidth : 1024,
     height: typeof window !== "undefined" ? window.innerHeight : 768,
@@ -35,8 +37,12 @@ export function useResponsive(breakpoints: BreakpointConfig = defaultBreakpoints
   }, []);
 
   const isMobile = screenSize.width < breakpoints.mobile;
-  const isTablet = screenSize.width >= breakpoints.mobile && screenSize.width < breakpoints.tablet;
-  const isDesktop = screenSize.width >= breakpoints.tablet && screenSize.width < breakpoints.desktop;
+  const isTablet =
+    screenSize.width >= breakpoints.mobile &&
+    screenSize.width < breakpoints.tablet;
+  const isDesktop =
+    screenSize.width >= breakpoints.tablet &&
+    screenSize.width < breakpoints.desktop;
   const isWide = screenSize.width >= breakpoints.desktop;
 
   const isSmallScreen = screenSize.width < breakpoints.tablet;
@@ -79,7 +85,9 @@ export const useCommonQueries = () => {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   const isLandscape = useMediaQuery("(orientation: landscape)");
   const isPortrait = useMediaQuery("(orientation: portrait)");
-  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const prefersReducedMotion = useMediaQuery(
+    "(prefers-reduced-motion: reduce)",
+  );
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 
   return {
@@ -101,9 +109,9 @@ export function useTouchDevice(): boolean {
     const checkTouch = () => {
       setIsTouch(
         "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        // @ts-ignore
-        navigator.msMaxTouchPoints > 0
+          navigator.maxTouchPoints > 0 ||
+          // @ts-ignore
+          navigator.msMaxTouchPoints > 0,
       );
     };
 
@@ -123,7 +131,11 @@ interface ResponsiveProps {
   hideOn?: "mobile" | "tablet" | "desktop";
 }
 
-export function Responsive({ children, showOn = "all", hideOn }: ResponsiveProps) {
+export function Responsive({
+  children,
+  showOn = "all",
+  hideOn,
+}: ResponsiveProps) {
   const { isMobile, isTablet, isDesktop } = useResponsive();
 
   const shouldShow = () => {
@@ -151,10 +163,10 @@ interface ResponsiveContainerProps {
   maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
 }
 
-export function ResponsiveContainer({ 
-  children, 
-  className = "", 
-  maxWidth = "2xl" 
+export function ResponsiveContainer({
+  children,
+  className = "",
+  maxWidth = "2xl",
 }: ResponsiveContainerProps) {
   const maxWidthClasses = {
     sm: "max-w-sm",
@@ -166,7 +178,9 @@ export function ResponsiveContainer({
   };
 
   return (
-    <div className={`mx-auto px-4 sm:px-6 lg:px-8 ${maxWidthClasses[maxWidth]} ${className}`}>
+    <div
+      className={`mx-auto px-4 sm:px-6 lg:px-8 ${maxWidthClasses[maxWidth]} ${className}`}
+    >
       {children}
     </div>
   );

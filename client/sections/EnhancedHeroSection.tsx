@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
-import { 
-  ArrowRight, 
-  Play, 
-  Star, 
-  Trophy, 
-  BookOpen, 
-  Users, 
+import {
+  ArrowRight,
+  Play,
+  Star,
+  Trophy,
+  BookOpen,
+  Users,
   Sparkles,
   ChevronDown,
   Award,
   Target,
-  Zap
+  Zap,
 } from "lucide-react";
 import { useSmoothScroll } from "../components/SmoothScrollProvider";
 import { HeroThreeBackground } from "../components/ThreeBackground";
@@ -86,30 +86,30 @@ export default function EnhancedHeroSection() {
   const typewriterRef = useRef<HTMLSpanElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
   const { scrollTo } = useSmoothScroll();
-  
+
   // Auto-rotate hero images
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
     }, 5000);
-    
+
     return () => clearInterval(interval);
   }, []);
-  
+
   // Main hero animations
   useEffect(() => {
     if (!heroRef.current) return;
-    
+
     const ctx = gsap.context(() => {
       // Set initial states
       gsap.set([textContainerRef.current, imageContainerRef.current], {
         opacity: 0,
       });
-      
+
       gsap.set(".hero-title span", { y: "100%", opacity: 0 });
       gsap.set(".hero-subtitle", { y: 60, opacity: 0 });
       gsap.set(".hero-description", { y: 40, opacity: 0 });
@@ -117,84 +117,117 @@ export default function EnhancedHeroSection() {
       gsap.set(".floating-card", { scale: 0, opacity: 0, rotation: -180 });
       gsap.set(".stat-item", { scale: 0, opacity: 0 });
       gsap.set(".hero-image", { scale: 0.8, opacity: 0, rotationY: 45 });
-      
+
       // Create main timeline
       const mainTl = gsap.timeline({ delay: 0.5 });
-      
+
       // Text container entrance
       mainTl.to(textContainerRef.current, {
         opacity: 1,
         duration: 0.6,
         ease: "power2.out",
       });
-      
+
       // Title animation with stagger
-      mainTl.to(".hero-title span", {
-        y: "0%",
-        opacity: 1,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
-      }, "-=0.3");
-      
+      mainTl.to(
+        ".hero-title span",
+        {
+          y: "0%",
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.3",
+      );
+
       // Subtitle and description
-      mainTl.to(".hero-subtitle", {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      }, "-=0.4")
-      .to(".hero-description", {
-        y: 0,
-        opacity: 1,
-        duration: 0.6,
-        ease: "power3.out",
-      }, "-=0.2");
-      
+      mainTl
+        .to(
+          ".hero-subtitle",
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "-=0.4",
+        )
+        .to(
+          ".hero-description",
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            ease: "power3.out",
+          },
+          "-=0.2",
+        );
+
       // CTA buttons
-      mainTl.to(".hero-buttons", {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        duration: 0.8,
-        ease: "back.out(1.7)",
-      }, "-=0.3");
-      
+      mainTl.to(
+        ".hero-buttons",
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: "back.out(1.7)",
+        },
+        "-=0.3",
+      );
+
       // Image container
-      mainTl.to(imageContainerRef.current, {
-        opacity: 1,
-        duration: 0.6,
-        ease: "power2.out",
-      }, "-=0.8");
-      
+      mainTl.to(
+        imageContainerRef.current,
+        {
+          opacity: 1,
+          duration: 0.6,
+          ease: "power2.out",
+        },
+        "-=0.8",
+      );
+
       // Hero image
-      mainTl.to(".hero-image", {
-        scale: 1,
-        opacity: 1,
-        rotationY: 0,
-        duration: 1.2,
-        ease: "power3.out",
-      }, "-=0.6");
-      
+      mainTl.to(
+        ".hero-image",
+        {
+          scale: 1,
+          opacity: 1,
+          rotationY: 0,
+          duration: 1.2,
+          ease: "power3.out",
+        },
+        "-=0.6",
+      );
+
       // Floating cards
-      mainTl.to(".floating-card", {
-        scale: 1,
-        opacity: 1,
-        rotation: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
-      }, "-=0.8");
-      
+      mainTl.to(
+        ".floating-card",
+        {
+          scale: 1,
+          opacity: 1,
+          rotation: 0,
+          duration: 0.8,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.8",
+      );
+
       // Stats
-      mainTl.to(".stat-item", {
-        scale: 1,
-        opacity: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)",
-      }, "-=0.4");
-      
+      mainTl.to(
+        ".stat-item",
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "back.out(1.7)",
+        },
+        "-=0.4",
+      );
+
       // Floating elements animation
       gsap.to(".floating-element", {
         y: -20,
@@ -204,7 +237,7 @@ export default function EnhancedHeroSection() {
         repeat: -1,
         stagger: 0.5,
       });
-      
+
       // Magnetic effects for interactive elements
       const magneticElements = document.querySelectorAll(".magnetic");
       magneticElements.forEach((element) => {
@@ -214,7 +247,7 @@ export default function EnhancedHeroSection() {
           const centerY = rect.top + rect.height / 2;
           const deltaX = (e.clientX - centerX) * 0.2;
           const deltaY = (e.clientY - centerY) * 0.2;
-          
+
           gsap.to(element, {
             x: deltaX,
             y: deltaY,
@@ -222,7 +255,7 @@ export default function EnhancedHeroSection() {
             ease: "power2.out",
           });
         };
-        
+
         const handleMouseLeave = () => {
           gsap.to(element, {
             x: 0,
@@ -231,39 +264,38 @@ export default function EnhancedHeroSection() {
             ease: "elastic.out(1, 0.3)",
           });
         };
-        
+
         element.addEventListener("mousemove", handleMouseMove);
         element.addEventListener("mouseleave", handleMouseLeave);
       });
-      
     }, heroRef);
-    
+
     return () => ctx.revert();
   }, []);
-  
+
   // Typewriter effect
   useEffect(() => {
     if (!typewriterRef.current) return;
-    
+
     let currentTextIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    
+
     const typewriterEffect = () => {
       const currentText = typewriterTexts[currentTextIndex];
-      
+
       if (isDeleting) {
         charIndex--;
       } else {
         charIndex++;
       }
-      
+
       if (typewriterRef.current) {
         typewriterRef.current.textContent = currentText.substring(0, charIndex);
       }
-      
+
       let timeout = isDeleting ? 50 : 100;
-      
+
       if (!isDeleting && charIndex === currentText.length) {
         timeout = 2000;
         isDeleting = true;
@@ -272,23 +304,23 @@ export default function EnhancedHeroSection() {
         currentTextIndex = (currentTextIndex + 1) % typewriterTexts.length;
         timeout = 500;
       }
-      
+
       setTimeout(typewriterEffect, timeout);
     };
-    
+
     typewriterEffect();
   }, []);
-  
+
   // Image transition effect
   useEffect(() => {
     const images = document.querySelectorAll(".hero-image-slide");
-    
+
     gsap.to(images, {
       opacity: 0,
       duration: 0.5,
       ease: "power2.inOut",
     });
-    
+
     gsap.to(images[currentImageIndex], {
       opacity: 1,
       duration: 0.8,
@@ -296,14 +328,14 @@ export default function EnhancedHeroSection() {
       delay: 0.2,
     });
   }, [currentImageIndex]);
-  
+
   // Scroll to next section
   const scrollToNextSection = () => {
     scrollTo("#school-cards");
   };
-  
+
   return (
-    <section 
+    <section
       ref={heroRef}
       data-section="hero"
       className="relative min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 overflow-hidden flex items-center"
@@ -315,19 +347,22 @@ export default function EnhancedHeroSection() {
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-purple-900/60 to-pink-900/40"></div>
-        
+
         {/* Floating background elements */}
-        <div ref={floatingElementsRef} className="absolute inset-0 pointer-events-none">
+        <div
+          ref={floatingElementsRef}
+          className="absolute inset-0 pointer-events-none"
+        >
           <div className="floating-element absolute top-20 left-20 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-cyan-400/20 rounded-full blur-xl"></div>
           <div className="floating-element absolute top-40 right-32 w-24 h-24 bg-gradient-to-br from-purple-400/30 to-pink-400/30 rounded-full blur-lg"></div>
           <div className="floating-element absolute bottom-40 left-32 w-40 h-40 bg-gradient-to-br from-orange-400/20 to-red-400/20 rounded-full blur-2xl"></div>
           <div className="floating-element absolute bottom-60 right-40 w-16 h-16 bg-gradient-to-br from-green-400/25 to-emerald-400/25 rounded-full blur-md"></div>
-          
+
           {/* Geometric shapes */}
           <div className="absolute top-1/4 left-1/4 w-1 h-32 bg-gradient-to-b from-blue-400/30 to-transparent rotate-45"></div>
           <div className="absolute bottom-1/4 right-1/4 w-1 h-24 bg-gradient-to-b from-purple-400/40 to-transparent -rotate-45"></div>
         </div>
-        
+
         {/* Particle effect */}
         <div className="absolute inset-0 opacity-30">
           {Array.from({ length: 50 }).map((_, i) => (
@@ -344,18 +379,23 @@ export default function EnhancedHeroSection() {
           ))}
         </div>
       </div>
-      
+
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-20">
           {/* Left Content */}
-          <div ref={textContainerRef} className="space-y-8 text-center lg:text-left">
+          <div
+            ref={textContainerRef}
+            className="space-y-8 text-center lg:text-left"
+          >
             {/* Badge */}
             <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/90">
               <Sparkles className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm font-medium">Premier Education Institution</span>
+              <span className="text-sm font-medium">
+                Premier Education Institution
+              </span>
               <Star className="w-4 h-4 text-yellow-400" />
             </div>
-            
+
             {/* Main Title */}
             <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white">
               <span className="inline-block overflow-hidden">
@@ -376,10 +416,10 @@ export default function EnhancedHeroSection() {
                 <span className="inline-block">with</span>
               </span>
             </h1>
-            
+
             {/* Typewriter Subtitle */}
             <div className="hero-subtitle">
-              <span 
+              <span
                 ref={typewriterRef}
                 className="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400"
               >
@@ -387,14 +427,14 @@ export default function EnhancedHeroSection() {
               </span>
               <span className="animate-pulse text-cyan-400 text-3xl">|</span>
             </div>
-            
+
             {/* Description */}
             <p className="hero-description text-lg lg:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Experience world-class education with innovative teaching methods, 
-              expert faculty, and cutting-edge facilities that prepare you for 
+              Experience world-class education with innovative teaching methods,
+              expert faculty, and cutting-edge facilities that prepare you for
               tomorrow's challenges.
             </p>
-            
+
             {/* Action Buttons */}
             <div className="hero-buttons flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
               <Link
@@ -406,7 +446,7 @@ export default function EnhancedHeroSection() {
                 <ArrowRight className="relative w-5 h-5 transition-transform group-hover:translate-x-1" />
                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-opacity duration-300"></div>
               </Link>
-              
+
               <button
                 onClick={() => setIsVideoModalOpen(true)}
                 className="magnetic group relative inline-flex items-center justify-center space-x-3 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-bold text-lg border-2 border-white/20 hover:border-white/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
@@ -415,9 +455,12 @@ export default function EnhancedHeroSection() {
                 <span>Watch Story</span>
               </button>
             </div>
-            
+
             {/* Stats */}
-            <div ref={statsRef} className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8">
+            <div
+              ref={statsRef}
+              className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+            >
               {[
                 { value: "15+", label: "Years Experience", icon: Target },
                 { value: "2.5K+", label: "Happy Students", icon: Users },
@@ -431,14 +474,12 @@ export default function EnhancedHeroSection() {
                   <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-white/70">
-                    {stat.label}
-                  </div>
+                  <div className="text-sm text-white/70">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
-          
+
           {/* Right Content - Image Showcase */}
           <div ref={imageContainerRef} className="relative">
             {/* Main Image Container */}
@@ -450,15 +491,15 @@ export default function EnhancedHeroSection() {
                     src={image.src}
                     alt={image.alt}
                     className={`hero-image-slide absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-105 ${
-                      index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+                      index === currentImageIndex ? "opacity-100" : "opacity-0"
                     }`}
                     loading={index === 0 ? "eager" : "lazy"}
                   />
                 ))}
-                
+
                 {/* Image overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
-                
+
                 {/* Image indicators */}
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                   {heroImages.map((_, index) => (
@@ -474,23 +515,28 @@ export default function EnhancedHeroSection() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Floating Cards */}
               {floatingCards.map((card, index) => (
                 <div
                   key={index}
                   className={`floating-card absolute bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer ${
-                    index === 0 ? "-top-6 -left-6" :
-                    index === 1 ? "-top-6 -right-6" :
-                    index === 2 ? "-bottom-6 -left-6" :
-                    "-bottom-6 -right-6"
+                    index === 0
+                      ? "-top-6 -left-6"
+                      : index === 1
+                        ? "-top-6 -right-6"
+                        : index === 2
+                          ? "-bottom-6 -left-6"
+                          : "-bottom-6 -right-6"
                   }`}
-                  style={{ 
+                  style={{
                     animationDelay: `${card.delay}s`,
                   }}
                 >
                   <div className="flex items-center space-x-3">
-                    <div className={`w-12 h-12 bg-gradient-to-br ${card.color} rounded-xl flex items-center justify-center shadow-lg`}>
+                    <div
+                      className={`w-12 h-12 bg-gradient-to-br ${card.color} rounded-xl flex items-center justify-center shadow-lg`}
+                    >
                       <card.icon className="w-6 h-6 text-white" />
                     </div>
                     <div>
@@ -505,13 +551,13 @@ export default function EnhancedHeroSection() {
                 </div>
               ))}
             </div>
-            
+
             {/* Background decoration */}
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl transform rotate-3 scale-105 -z-10 blur-sm"></div>
           </div>
         </div>
       </div>
-      
+
       {/* Scroll Indicator */}
       <button
         onClick={scrollToNextSection}
@@ -525,7 +571,7 @@ export default function EnhancedHeroSection() {
           <ChevronDown className="w-5 h-5 animate-bounce" />
         </div>
       </button>
-      
+
       {/* Video Modal */}
       {isVideoModalOpen && (
         <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">

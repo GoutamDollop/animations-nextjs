@@ -11,15 +11,15 @@ interface ParticleSystemProps {
   speed?: number;
 }
 
-function ParticleSystem({ 
-  count = 200, 
-  color = "#3b82f6", 
-  size = 2, 
-  speed = 0.01 
+function ParticleSystem({
+  count = 200,
+  color = "#3b82f6",
+  size = 2,
+  speed = 0.01,
 }: ParticleSystemProps) {
   const pointsRef = useRef<THREE.Points>(null);
   const { size: canvasSize } = useThree();
-  
+
   // Generate random positions for particles
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
@@ -34,11 +34,12 @@ function ParticleSystem({
   // Animate particles
   useFrame((state) => {
     if (!pointsRef.current) return;
-    
+
     // Rotate the entire particle system
-    pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * speed) * 0.1;
+    pointsRef.current.rotation.x =
+      Math.sin(state.clock.elapsedTime * speed) * 0.1;
     pointsRef.current.rotation.y = state.clock.elapsedTime * speed * 0.5;
-    
+
     // Move particles based on mouse position
     const { mouse } = state;
     pointsRef.current.rotation.x += mouse.y * 0.05;
@@ -46,7 +47,12 @@ function ParticleSystem({
   });
 
   return (
-    <Points ref={pointsRef} positions={positions} stride={3} frustumCulled={false}>
+    <Points
+      ref={pointsRef}
+      positions={positions}
+      stride={3}
+      frustumCulled={false}
+    >
       <PointMaterial
         transparent
         color={color}
@@ -60,39 +66,39 @@ function ParticleSystem({
   );
 }
 
-function FloatingGeometry({ position }: { position: [number, number, number] }) {
+function FloatingGeometry({
+  position,
+}: {
+  position: [number, number, number];
+}) {
   const meshRef = useRef<THREE.Mesh>(null);
-  
+
   useFrame((state) => {
     if (!meshRef.current) return;
-    
+
     meshRef.current.rotation.x = state.clock.elapsedTime * 0.3;
     meshRef.current.rotation.y = state.clock.elapsedTime * 0.2;
-    meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime) * 0.5;
+    meshRef.current.position.y =
+      position[1] + Math.sin(state.clock.elapsedTime) * 0.5;
   });
 
   return (
     <mesh ref={meshRef} position={position}>
       <icosahedronGeometry args={[0.3, 1]} />
-      <meshBasicMaterial
-        color="#8b5cf6"
-        transparent
-        opacity={0.3}
-        wireframe
-      />
+      <meshBasicMaterial color="#8b5cf6" transparent opacity={0.3} wireframe />
     </mesh>
   );
 }
 
 function AnimatedSphere() {
   const sphereRef = useRef<THREE.Mesh>(null);
-  
+
   useFrame((state) => {
     if (!sphereRef.current) return;
-    
+
     sphereRef.current.rotation.x = state.clock.elapsedTime * 0.1;
     sphereRef.current.rotation.y = state.clock.elapsedTime * 0.15;
-    
+
     // Pulsing effect
     const scale = 1 + Math.sin(state.clock.elapsedTime * 2) * 0.1;
     sphereRef.current.scale.setScalar(scale);
@@ -101,12 +107,7 @@ function AnimatedSphere() {
   return (
     <mesh ref={sphereRef} position={[0, 0, -10]}>
       <sphereGeometry args={[3, 32, 32]} />
-      <meshBasicMaterial
-        color="#f97316"
-        transparent
-        opacity={0.1}
-        wireframe
-      />
+      <meshBasicMaterial color="#f97316" transparent opacity={0.1} wireframe />
     </mesh>
   );
 }
@@ -116,12 +117,12 @@ interface ThreeBackgroundProps {
   className?: string;
 }
 
-export default function ThreeBackground({ 
-  variant = "particles", 
-  className = "" 
+export default function ThreeBackground({
+  variant = "particles",
+  className = "",
 }: ThreeBackgroundProps) {
   const { isMobile, prefersReducedMotion } = useCommonQueries();
-  
+
   // Don't render on mobile or for users who prefer reduced motion
   if (isMobile || prefersReducedMotion) {
     return null;
@@ -140,13 +141,23 @@ export default function ThreeBackground({
         );
       case "minimal":
         return (
-          <ParticleSystem count={100} color="#6366f1" size={1.5} speed={0.005} />
+          <ParticleSystem
+            count={100}
+            color="#6366f1"
+            size={1.5}
+            speed={0.005}
+          />
         );
       default:
         return (
           <>
             <ParticleSystem count={200} color="#3b82f6" size={2} speed={0.01} />
-            <ParticleSystem count={100} color="#8b5cf6" size={1.5} speed={0.015} />
+            <ParticleSystem
+              count={100}
+              color="#8b5cf6"
+              size={1.5}
+              speed={0.015}
+            />
             <ParticleSystem count={50} color="#f97316" size={3} speed={0.008} />
           </>
         );
@@ -172,27 +183,27 @@ export default function ThreeBackground({
 // Specialized components for different sections
 export function HeroThreeBackground() {
   return (
-    <ThreeBackground 
-      variant="particles" 
-      className="opacity-30 mix-blend-screen" 
+    <ThreeBackground
+      variant="particles"
+      className="opacity-30 mix-blend-screen"
     />
   );
 }
 
 export function GeometricThreeBackground() {
   return (
-    <ThreeBackground 
-      variant="geometric" 
-      className="opacity-20 mix-blend-multiply" 
+    <ThreeBackground
+      variant="geometric"
+      className="opacity-20 mix-blend-multiply"
     />
   );
 }
 
 export function MinimalThreeBackground() {
   return (
-    <ThreeBackground 
-      variant="minimal" 
-      className="opacity-40 mix-blend-overlay" 
+    <ThreeBackground
+      variant="minimal"
+      className="opacity-40 mix-blend-overlay"
     />
   );
 }

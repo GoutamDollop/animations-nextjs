@@ -23,11 +23,11 @@ export default function ModernIndex() {
       gsap.fromTo(
         pageRef.current,
         { opacity: 0 },
-        { 
-          opacity: 1, 
+        {
+          opacity: 1,
           duration: 1,
-          ease: "power2.out" 
-        }
+          ease: "power2.out",
+        },
       );
 
       // Scroll-triggered animations for various sections
@@ -45,7 +45,7 @@ export default function ModernIndex() {
               start: "top 80%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       });
 
@@ -84,7 +84,9 @@ export default function ModernIndex() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
               <Award className="w-5 h-5 text-blue-500" />
-              <span className="text-blue-600 font-semibold">Our Achievements</span>
+              <span className="text-blue-600 font-semibold">
+                Our Achievements
+              </span>
               <Target className="w-5 h-5 text-purple-500" />
             </div>
             <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
@@ -94,7 +96,8 @@ export default function ModernIndex() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Our commitment to academic excellence is reflected in these remarkable achievements.
+              Our commitment to academic excellence is reflected in these
+              remarkable achievements.
             </p>
           </div>
           <StatsSection />
@@ -110,7 +113,9 @@ export default function ModernIndex() {
           <div className="text-center mb-16">
             <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
               <Users className="w-5 h-5 text-purple-500" />
-              <span className="text-purple-600 font-semibold">Meet Our Faculty</span>
+              <span className="text-purple-600 font-semibold">
+                Meet Our Faculty
+              </span>
               <BookOpen className="w-5 h-5 text-pink-500" />
             </div>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-gray-900">
@@ -120,8 +125,8 @@ export default function ModernIndex() {
               </span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Our passionate educators are dedicated to nurturing young minds and 
-              inspiring excellence in every student.
+              Our passionate educators are dedicated to nurturing young minds
+              and inspiring excellence in every student.
             </p>
           </div>
 
@@ -167,8 +172,8 @@ export default function ModernIndex() {
               </span>
             </h2>
             <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-12 leading-relaxed">
-              Join thousands of students who have transformed their lives through 
-              excellence in education. Your future starts here.
+              Join thousands of students who have transformed their lives
+              through excellence in education. Your future starts here.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -179,7 +184,7 @@ export default function ModernIndex() {
                 <span>Apply Now</span>
                 <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
               </Link>
-              
+
               <Link
                 to="/courses"
                 className="group inline-flex items-center justify-center space-x-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105"
@@ -196,11 +201,15 @@ export default function ModernIndex() {
                 <div className="text-white/70">Years Excellence</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">2.5K+</div>
+                <div className="text-3xl font-bold text-blue-400 mb-2">
+                  2.5K+
+                </div>
                 <div className="text-white/70">Graduates</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400 mb-2">50+</div>
+                <div className="text-3xl font-bold text-purple-400 mb-2">
+                  50+
+                </div>
                 <div className="text-white/70">Expert Faculty</div>
               </div>
               <div className="text-center">

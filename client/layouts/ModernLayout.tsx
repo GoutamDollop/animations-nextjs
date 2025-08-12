@@ -31,10 +31,8 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
       <div className="min-h-screen flex flex-col bg-white">
         <AdvancedCursor />
         <ModernNavigation />
-        
-        <main className="flex-grow">
-          {children}
-        </main>
+
+        <main className="flex-grow">{children}</main>
 
         <ModernFooter />
         <ScrollToTop />
