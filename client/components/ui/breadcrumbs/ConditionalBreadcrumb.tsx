@@ -60,7 +60,7 @@ export default function ConditionalBreadcrumb({
   const breadcrumbItems = getBreadcrumbItems();
 
   return (
-    <div className="bg-gray-50 border-b border-gray-200">
+    <div className="bg-gray-50/80 backdrop-blur-sm border-b border-gray-200/50">
       <div className="container mx-auto px-4 lg:px-8">
         <nav className="flex items-center space-x-2 py-3 text-sm">
           {breadcrumbItems.map((item, index) => {
@@ -73,13 +73,13 @@ export default function ConditionalBreadcrumb({
                 ) : null}
 
                 {isLast ? (
-                  <span className="text-orange-500 font-medium">
+                  <span className="text-blue-600 font-medium">
                     {item.label}
                   </span>
                 ) : (
                   <Link
                     to={item.path}
-                    className="text-gray-600 hover:text-orange-500 transition-colors duration-200"
+                    className="text-gray-600 hover:text-blue-600 transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
