@@ -14,29 +14,53 @@ interface SlideData {
 const slides: SlideData[] = [
   {
     id: 1,
-    image: "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
     title: "Excellence in",
     subtitle: "Education",
     description:
-      "Interactive classroom experiences with cutting-edge technology",
+      "State-of-the-art facilities and innovative teaching methods for the best learning experience",
     badge: "🎓 Excellence",
   },
   {
     id: 2,
-    image: "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
-    title: "Building",
-    subtitle: "Community",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    title: "Interactive",
+    subtitle: "Learning",
     description:
-      "Creating lasting friendships and memories through shared learning",
-    badge: "🌟 Unity",
+      "Engaging classroom environments that foster creativity and collaborative learning",
+    badge: "🤝 Community",
   },
   {
     id: 3,
-    image: "https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg",
-    title: "Success",
-    subtitle: "Stories",
-    description: "Celebrating every milestone in your educational journey",
-    badge: "🏆 Success",
+    image:
+      "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    title: "Advanced",
+    subtitle: "Laboratories",
+    description:
+      "Cutting-edge science labs and research facilities for hands-on experiments",
+    badge: "🔬 Innovation",
+  },
+  {
+    id: 4,
+    image:
+      "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
+    title: "Sports &",
+    subtitle: "Recreation",
+    description:
+      "Professional sports facilities promoting physical fitness and team spirit",
+    badge: "🏆 Sports",
+  },
+  {
+    id: 5,
+    image:
+      "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    title: "Digital",
+    subtitle: "Library",
+    description:
+      "Extensive collection of books and digital resources for comprehensive learning",
+    badge: "📚 Knowledge",
   },
 ];
 
@@ -193,19 +217,19 @@ export default function HeroSlider() {
         {/* Previous Button */}
         <button
           onClick={prevSlide}
-          className="p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="p-1.5 sm:p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           aria-label="Previous slide"
         >
-          <ChevronLeft className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
+          <ChevronLeft className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-gray-700" />
         </button>
 
         {/* Dots Indicator */}
-        <div className="flex space-x-2">
+        <div className="flex space-x-1.5 md:space-x-2">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => changeSlide(index)}
-              className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
                   ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
                   : "bg-white/50 hover:bg-white/80"
@@ -218,10 +242,10 @@ export default function HeroSlider() {
         {/* Next Button */}
         <button
           onClick={nextSlide}
-          className="p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          className="p-1.5 sm:p-2 md:p-3 bg-white/90 backdrop-blur-sm rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
           aria-label="Next slide"
         >
-          <ChevronRight className="h-4 w-4 md:h-5 md:w-5 text-gray-700" />
+          <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 text-gray-700" />
         </button>
       </div>
     </div>

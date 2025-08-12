@@ -21,31 +21,33 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Footer() {
   useEffect(() => {
-    // Ensure footer is always visible first
+    // Force immediate visibility and ensure footer always renders
     const footerContainer = document.querySelector(".footer-container");
     if (footerContainer) {
       (footerContainer as HTMLElement).style.visibility = "visible";
+      (footerContainer as HTMLElement).style.opacity = "1";
+      (footerContainer as HTMLElement).style.display = "block";
     }
 
-    // Then apply animations
+    // Apply subtle entrance animations
     const timer = setTimeout(() => {
       gsap.fromTo(
         ".footer-item",
-        { y: 30, opacity: 0 },
+        { y: 20, opacity: 0.8 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: "power3.out",
+          duration: 0.6,
+          stagger: 0.05,
+          ease: "power2.out",
           scrollTrigger: {
             trigger: ".footer-container",
-            start: "top 90%",
-            toggleActions: "play none none reverse",
+            start: "top 85%",
+            toggleActions: "play none none none",
           },
         },
       );
-    }, 100);
+    }, 150);
 
     return () => clearTimeout(timer);
   }, []);
@@ -74,8 +76,8 @@ export default function Footer() {
         <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-green-300 rounded-full animate-ping"></div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="container mx-auto px-4 lg:px-8 py-12 md:py-16 relative z-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {/* Brand Section */}
           <div className="footer-item space-y-6">
             <Link to="/" className="flex items-center space-x-3 group">
