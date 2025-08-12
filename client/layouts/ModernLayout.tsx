@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ModernNavigation from "./ModernNavigation";
+import ModernFooter from "./ModernFooter";
 import AdvancedCursor from "../components/AdvancedCursor";
 import SmoothScrollProvider from "../components/SmoothScrollProvider";
 import Loading from "../components/Loading";
