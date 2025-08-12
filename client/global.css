@@ -357,40 +357,18 @@ img {
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Enhanced cursor interactions - only on desktop */
+  /* Modern hover effects - desktop only */
   @media (min-width: 1024px) {
-    .group {
-      cursor: none;
+    .hover-lift {
+      transition: transform 0.3s ease;
     }
 
-    .group:hover {
+    .hover-lift:hover {
       transform: translateY(-2px);
     }
 
-    /* Button hover effects */
-    button,
-    .group,
-    a {
-      cursor: none;
-      transition: all 0.3s ease;
-    }
-
-    button:hover,
-    .group:hover,
-    a:hover {
-      transform: translateY(-1px);
-    }
-
-    /* Custom cursor for specific elements */
-    *, *::before, *::after {
-      cursor: none !important;
-    }
-  }
-
-  /* Maintain normal cursor on mobile */
-  @media (max-width: 1023px) {
-    *, *::before, *::after {
-      cursor: auto !important;
+    .magnetic {
+      transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     }
   }
 
