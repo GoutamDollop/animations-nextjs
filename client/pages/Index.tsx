@@ -2,35 +2,11 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  ArrowRight,
-  BookOpen,
-  Users,
-  Award,
-  Calendar,
-  GraduationCap,
-  Star,
-  ChevronRight,
-  Play,
-  Heart,
-  Lightbulb,
-  Target,
-  Zap,
-  Rocket,
-  Globe,
-  Shield,
-  Smile,
-  TrendingUp,
-  CheckCircle,
-  Quote,
-  MapPin,
-  Clock,
-  Phone,
-  Mail,
-} from "lucide-react";
+import { ArrowRight, Play, Calendar } from "lucide-react";
 import AnimatedBackground from "../components/AnimatedBackground";
-import AnimatedCounter from "../components/AnimatedCounter";
 import HeroSlider from "../components/HeroSlider";
+import StatsSection from "../components/StatsSection";
+import StudentStories from "../components/StudentStories";
 import TeacherCard from "../components/TeacherCard";
 import teachersData from "../data/teachers.json";
 
@@ -38,7 +14,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Index() {
   const heroRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -89,40 +64,37 @@ export default function Index() {
       gsap.utils.toArray(".reveal-section").forEach((section: any) => {
         gsap.fromTo(
           section.children,
-          { y: 120, opacity: 0, scale: 0.8 },
+          { y: 60, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            scale: 1,
-            duration: 1.5,
-            stagger: 0.3,
-            ease: "back.out(1.2)",
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: section,
-              start: "top 75%",
+              start: "top 80%",
               toggleActions: "play none none reverse",
             },
           },
         );
       });
 
-      // Enhanced button interactions
+      // Enhanced button interactions with better performance
       document.querySelectorAll(".enhanced-btn").forEach((btn) => {
         btn.addEventListener("mouseenter", () => {
           gsap.to(btn, {
-            scale: 1.1,
-            rotationZ: 5,
-            y: -8,
-            duration: 0.4,
-            ease: "back.out(2)",
+            scale: 1.05,
+            y: -3,
+            duration: 0.3,
+            ease: "power2.out",
           });
         });
         btn.addEventListener("mouseleave", () => {
           gsap.to(btn, {
             scale: 1,
-            rotationZ: 0,
             y: 0,
-            duration: 0.4,
+            duration: 0.3,
             ease: "power2.out",
           });
         });
@@ -132,119 +104,8 @@ export default function Index() {
     return () => ctx.revert();
   }, []);
 
-  const enhancedStats = [
-    {
-      number: 5000,
-      label: "Happy Students",
-      icon: Smile,
-      suffix: "+",
-      color: "from-pink-400 via-rose-400 to-red-500",
-      bgColor: "from-pink-50 to-rose-50",
-      description: "Achieving their dreams",
-    },
-    {
-      number: 200,
-      label: "Expert Teachers",
-      icon: GraduationCap,
-      suffix: "+",
-      color: "from-blue-400 via-indigo-400 to-purple-500",
-      bgColor: "from-blue-50 to-indigo-50",
-      description: "Passionate educators",
-    },
-    {
-      number: 50,
-      label: "Amazing Programs",
-      icon: BookOpen,
-      suffix: "+",
-      color: "from-green-400 via-emerald-400 to-teal-500",
-      bgColor: "from-green-50 to-emerald-50",
-      description: "Future-ready curricula",
-    },
-    {
-      number: 98,
-      label: "Success Rate",
-      icon: TrendingUp,
-      suffix: "%",
-      color: "from-yellow-400 via-orange-400 to-red-500",
-      bgColor: "from-yellow-50 to-orange-50",
-      description: "Outstanding results",
-    },
-  ];
-
-  const teachers = [
-    {
-      name: "Dr. Sarah Johnson",
-      position: "Principal & Mathematics Professor",
-      image:
-        "https://images.pexels.com/photos/6929160/pexels-photo-6929160.jpeg",
-      experience: "15+ Years",
-      education: "PhD in Mathematics Education, Harvard University",
-      specialization: "Advanced Mathematics & STEM Education",
-      email: "sarah.johnson@eduverse.edu",
-      phone: "+1 (555) 123-4567",
-      rating: 5,
-      students: 500,
-      description:
-        "Dr. Sarah Johnson is our visionary principal with over 15 years of experience in mathematics education. She has revolutionized our STEM programs and mentored hundreds of students to achieve academic excellence.",
-      achievements: [
-        "Published 25+ research papers in mathematics education",
-        "Recipient of National Teaching Excellence Award 2023",
-        "Led the development of innovative STEM curriculum",
-        "Mentored 50+ students into top universities",
-      ],
-    },
-    {
-      name: "Prof. Michael Chen",
-      position: "Computer Science Department Head",
-      image:
-        "https://images.pexels.com/photos/6326377/pexels-photo-6326377.jpeg",
-      experience: "12+ Years",
-      education: "PhD in Computer Science, MIT",
-      specialization: "AI, Machine Learning & Programming",
-      email: "michael.chen@eduverse.edu",
-      phone: "+1 (555) 234-5678",
-      rating: 5,
-      students: 350,
-      description:
-        "Professor Michael Chen brings cutting-edge technology education to our students. His innovative teaching methods in AI and programming have inspired countless students to pursue careers in technology.",
-      achievements: [
-        "Former Google Senior Software Engineer",
-        "Created award-winning programming bootcamp",
-        "Published AI research in top-tier journals",
-        "100% student placement rate in tech companies",
-      ],
-    },
-  ];
-
-  const studentStories = [
-    {
-      name: "Emma Rodriguez",
-      grade: "Grade 12",
-      image:
-        "https://images.pexels.com/photos/8466776/pexels-photo-8466776.jpeg",
-      story:
-        "EduVerse helped me discover my passion for science. The hands-on experiments and supportive teachers made learning so exciting!",
-      achievement: "Science Fair Winner 2024",
-    },
-    {
-      name: "Alex Thompson",
-      grade: "Grade 10",
-      image:
-        "https://images.pexels.com/photos/6238130/pexels-photo-6238130.jpeg",
-      story:
-        "The collaborative learning environment at EduVerse taught me teamwork and leadership skills that I'll carry forever.",
-      achievement: "Student Council President",
-    },
-    {
-      name: "Maya Patel",
-      grade: "Grade 11",
-      image:
-        "https://images.pexels.com/photos/8199708/pexels-photo-8199708.jpeg",
-      story:
-        "Thanks to EduVerse's amazing art program, I've discovered my talent and will be studying Fine Arts at university!",
-      achievement: "Art Scholarship Recipient",
-    },
-  ];
+  // Get first 2 teachers for homepage
+  const featuredTeachers = teachersData.teachers.slice(0, 2);
 
   return (
     <div ref={heroRef} className="min-h-screen overflow-hidden">
