@@ -35,7 +35,8 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
         <main className="flex-grow">
           {children}
         </main>
-        
+
+        <ModernFooter />
         <ScrollToTop />
       </div>
     </SmoothScrollProvider>
