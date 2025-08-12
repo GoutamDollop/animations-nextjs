@@ -295,53 +295,18 @@ img {
     @apply bg-white/20 backdrop-blur-lg border border-white/30;
   }
 
-  /* Floating animations */
-  .float-slow {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  .float-medium {
+  /* Modern animation utilities */
+  .floating-element {
     animation: float 4s ease-in-out infinite;
   }
 
-  .float-fast {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  /* Performance optimized keyframes */
   @keyframes float {
-    0%,
-    100% {
+    0%, 100% {
       transform: translateY(0px) translateZ(0);
     }
     50% {
-      transform: translateY(-20px) translateZ(0);
+      transform: translateY(-15px) translateZ(0);
     }
-  }
-
-  /* Low performance mode optimizations */
-  .low-performance * {
-    animation-duration: 2s !important;
-    transition-duration: 0.1s !important;
-  }
-
-  .low-performance .three-background,
-  .low-performance .parallax-bg {
-    display: none !important;
-  }
-
-  /* Reduced motion support */
-  .reduced-motion * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-
-  /* Slow network optimizations */
-  .slow-network .three-background,
-  .slow-network .parallax-bg,
-  .slow-network .enhanced-cursor {
-    display: none !important;
   }
 
   /* GPU acceleration utility classes */
