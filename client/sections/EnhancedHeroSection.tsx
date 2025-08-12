@@ -310,6 +310,9 @@ export default function EnhancedHeroSection() {
     >
       {/* Animated Background */}
       <div className="absolute inset-0">
+        {/* Three.js Particle Background */}
+        <HeroThreeBackground />
+
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-purple-900/60 to-pink-900/40"></div>
         
