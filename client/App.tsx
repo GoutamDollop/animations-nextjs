@@ -1,9 +1,9 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./components/Layout";
+import ModernLayout from "./layouts/ModernLayout";
 
 // Pages
-import Index from "./pages/Index";
+import ModernIndex from "./pages/ModernIndex";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Teachers from "./pages/Teachers";
@@ -16,9 +16,9 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
+      <ModernLayout>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<ModernIndex />} />
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/teachers" element={<Teachers />} />
@@ -28,7 +28,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </Layout>
+      </ModernLayout>
     </BrowserRouter>
   );
 }
