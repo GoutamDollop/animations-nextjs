@@ -1,0 +1,63 @@
+{
+  "navigation": {
+    "brand": {
+      "name": "EduVerse",
+      "subtitle": "Academy",
+      "logo": "GraduationCap"
+    },
+    "links": [
+      {
+        "id": 1,
+        "name": "Home",
+        "path": "/",
+        "description": "Welcome to EduVerse"
+      },
+      {
+        "id": 2,
+        "name": "About",
+        "path": "/about",
+        "description": "Our story and mission"
+      },
+      {
+        "id": 3,
+        "name": "Programs",
+        "path": "/courses",
+        "description": "Explore our courses"
+      },
+      {
+        "id": 4,
+        "name": "Faculty",
+        "path": "/teachers",
+        "description": "Meet our experts"
+      },
+      {
+        "id": 5,
+        "name": "Campus Life",
+        "path": "/events",
+        "description": "Events and activities"
+      },
+      {
+        "id": 6,
+        "name": "Gallery",
+        "path": "/gallery",
+        "description": "Campus moments"
+      },
+      {
+        "id": 7,
+        "name": "Contact",
+        "path": "/contact",
+        "description": "Get in touch"
+      }
+    ],
+    "cta": {
+      "text": "Apply Now",
+      "subtext": "Join EduVerse Today",
+      "icon": "Sparkles"
+    },
+    "theme": {
+      "primary": "from-indigo-600 via-purple-600 to-pink-600",
+      "secondary": "from-blue-500 to-cyan-500",
+      "accent": "from-pink-500 to-rose-500"
+    }
+  }
+}

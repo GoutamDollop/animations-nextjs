@@ -1,0 +1,87 @@
+{
+  "hero": {
+    "title": {
+      "main": "Excellence in",
+      "highlight": "Education",
+      "subtitle": "Starts Here"
+    },
+    "description": "Transform your future with our world-class educational programs. Join thousands of students who have achieved remarkable success through innovative learning experiences.",
+    "cta": {
+      "primary": "Start Your Journey",
+      "secondary": "Explore Programs"
+    },
+    "stats": [
+      {
+        "id": 1,
+        "value": "15,000+",
+        "label": "Happy Students",
+        "color": "from-blue-400 to-cyan-500"
+      },
+      {
+        "id": 2,
+        "value": "500+",
+        "label": "Expert Faculty",
+        "color": "from-purple-400 to-pink-500"
+      },
+      {
+        "id": 3,
+        "value": "95%",
+        "label": "Success Rate",
+        "color": "from-green-400 to-emerald-500"
+      }
+    ],
+    "features": [
+      {
+        "id": 1,
+        "icon": "BookOpen",
+        "title": "Interactive Learning",
+        "description": "Hands-on projects and real-world applications",
+        "color": "from-blue-500 to-blue-600"
+      },
+      {
+        "id": 2,
+        "icon": "Users",
+        "title": "Expert Mentorship",
+        "description": "Learn from industry professionals and thought leaders",
+        "color": "from-purple-500 to-purple-600"
+      },
+      {
+        "id": 3,
+        "icon": "Award",
+        "title": "Certified Programs",
+        "description": "Industry-recognized certifications and credentials",
+        "color": "from-green-500 to-green-600"
+      }
+    ],
+    "slides": [
+      {
+        "id": 1,
+        "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "title": "Modern Learning Environment",
+        "description": "State-of-the-art facilities with cutting-edge technology",
+        "overlay": "from-blue-900/80 via-purple-900/60 to-pink-900/40"
+      },
+      {
+        "id": 2,
+        "image": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "title": "Expert Faculty & Mentorship",
+        "description": "Learn from industry leaders and experienced professionals",
+        "overlay": "from-purple-900/80 via-pink-900/60 to-red-900/40"
+      },
+      {
+        "id": 3,
+        "image": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
+        "title": "Collaborative Learning",
+        "description": "Connect and grow with like-minded peers and innovators",
+        "overlay": "from-indigo-900/80 via-blue-900/60 to-cyan-900/40"
+      },
+      {
+        "id": 4,
+        "image": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+        "title": "Success & Achievement",
+        "description": "Celebrate your journey to excellence and career growth",
+        "overlay": "from-green-900/80 via-teal-900/60 to-blue-900/40"
+      }
+    ]
+  }
+}

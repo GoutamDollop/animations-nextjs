@@ -1,0 +1,68 @@
+{
+  "images": [
+    {
+      "id": 1,
+      "url": "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      "title": "Modern Campus",
+      "description": "State-of-the-art facilities for innovative learning",
+      "category": "campus",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "url": "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      "title": "Interactive Classrooms",
+      "description": "Technology-enhanced learning environments",
+      "category": "classroom",
+      "featured": true
+    },
+    {
+      "id": 3,
+      "url": "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
+      "title": "Collaborative Spaces",
+      "description": "Designed for teamwork and creativity",
+      "category": "collaboration",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "url": "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      "title": "Library & Research",
+      "description": "Extensive resources for academic excellence",
+      "category": "library",
+      "featured": true
+    },
+    {
+      "id": 5,
+      "url": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+      "title": "Student Life",
+      "description": "Vibrant community and extracurricular activities",
+      "category": "student-life",
+      "featured": true
+    },
+    {
+      "id": 6,
+      "url": "https://images.unsplash.com/photo-1509062522246-3755977927d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=2064&q=80",
+      "title": "Science Labs",
+      "description": "Cutting-edge equipment for hands-on learning",
+      "category": "laboratory",
+      "featured": true
+    },
+    {
+      "id": 7,
+      "url": "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2322&q=80",
+      "title": "Sports Complex",
+      "description": "Comprehensive athletic facilities and programs",
+      "category": "sports",
+      "featured": false
+    },
+    {
+      "id": 8,
+      "url": "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
+      "title": "Auditorium",
+      "description": "Modern venue for events and presentations",
+      "category": "events",
+      "featured": false
+    }
+  ]
+}

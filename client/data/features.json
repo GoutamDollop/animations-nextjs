@@ -1,0 +1,70 @@
+{
+  "features": [
+    {
+      "id": 1,
+      "icon": "BookOpen",
+      "title": "Expert Faculty",
+      "description": "Learn from industry professionals and thought leaders with years of experience",
+      "color": "from-blue-500 to-cyan-500",
+      "stats": {
+        "value": "150+",
+        "label": "Expert Teachers"
+      }
+    },
+    {
+      "id": 2,
+      "icon": "Users",
+      "title": "Small Class Sizes",
+      "description": "Personalized attention for every student with optimal teacher-to-student ratios",
+      "color": "from-purple-500 to-pink-500",
+      "stats": {
+        "value": "15:1",
+        "label": "Student Ratio"
+      }
+    },
+    {
+      "id": 3,
+      "icon": "Award",
+      "title": "Accredited Programs",
+      "description": "Internationally recognized certifications and academic excellence standards",
+      "color": "from-green-500 to-emerald-500",
+      "stats": {
+        "value": "98%",
+        "label": "Success Rate"
+      }
+    },
+    {
+      "id": 4,
+      "icon": "Globe",
+      "title": "Global Network",
+      "description": "Connect with students and professionals worldwide through our alumni network",
+      "color": "from-orange-500 to-red-500",
+      "stats": {
+        "value": "50+",
+        "label": "Countries"
+      }
+    },
+    {
+      "id": 5,
+      "icon": "Zap",
+      "title": "Cutting-Edge Tech",
+      "description": "Latest tools and technologies in education for modern learning experiences",
+      "color": "from-yellow-500 to-orange-500",
+      "stats": {
+        "value": "24/7",
+        "label": "Lab Access"
+      }
+    },
+    {
+      "id": 6,
+      "icon": "Heart",
+      "title": "Student Support",
+      "description": "Comprehensive support throughout your educational journey and beyond",
+      "color": "from-pink-500 to-rose-500",
+      "stats": {
+        "value": "100%",
+        "label": "Support Coverage"
+      }
+    }
+  ]
+}

@@ -460,17 +460,6 @@ export default function EnhancedCustomCursor() {
         style={{ willChange: "opacity" }}
       />
 
-      {/* Scroll indicator */}
-      {isScrolling && (
-        <div className="fixed top-4 right-4 z-[9995] bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-80 hidden lg:block">
-          Scrolling ✨
-        </div>
-      )}
-
-      {/* Theme indicator */}
-      <div className="fixed bottom-4 right-4 z-[9995] bg-black/20 backdrop-blur-sm text-white px-2 py-1 rounded text-xs opacity-50 hidden lg:block">
-        Cursor: {currentTheme}
-      </div>
     </>
   );
 }
