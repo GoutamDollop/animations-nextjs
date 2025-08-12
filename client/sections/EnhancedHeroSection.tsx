@@ -17,6 +17,7 @@ import {
   Zap
 } from "lucide-react";
 import { useSmoothScroll } from "../components/SmoothScrollProvider";
+import { HeroThreeBackground } from "../components/ThreeBackground";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
