@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import {
   Quote,
   Star,
@@ -9,12 +11,21 @@ import {
   Play,
   Heart,
   MessageCircle,
+  MessageSquare,
   Share2,
   Award,
   GraduationCap,
   Briefcase,
   MapPin,
+  Sparkles,
+  TrendingUp,
+  Crown,
+  Zap,
+  ChevronLeft,
+  ChevronRight,
+  Globe,
 } from "lucide-react";
+import studentsData from "../data/students.json";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -303,260 +314,217 @@ export default function ModernStudentStories() {
           </p>
         </div>
 
-        {/* Main Story Showcase */}
-        <div className="relative mb-16">
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              {/* Story Content */}
-              <div className="p-8 lg:p-12 flex flex-col justify-center">
-                <div className="mb-8">
-                  {/* Student Info */}
-                  <div className="flex items-center space-x-4 mb-6">
-                    <div className="relative">
-                      <img
-                        src={currentStory.avatar}
-                        alt={currentStory.name}
-                        className="w-16 h-16 rounded-full object-cover shadow-lg"
-                      />
-                      <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-green-500 rounded-full border-2 border-white flex items-center justify-center">
-                        <GraduationCap className="w-3 h-3 text-white" />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900">
-                        {currentStory.name}
-                      </h3>
-                      <p className="text-blue-600 font-semibold">
-                        {currentStory.role}
-                      </p>
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mt-1">
-                        <span className="flex items-center space-x-1">
-                          <Award className="w-4 h-4" />
-                          <span>{currentStory.course}</span>
-                        </span>
-                        <span className="flex items-center space-x-1">
-                          <MapPin className="w-4 h-4" />
-                          <span>{currentStory.location}</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Rating */}
-                  <div className="flex items-center space-x-2 mb-6">
-                    <div className="flex space-x-1">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-5 h-5 ${
-                            i < currentStory.rating
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <span className="text-gray-600 font-medium">
-                      {currentStory.rating}.0
-                    </span>
-                  </div>
-
-                  {/* Story */}
-                  <blockquote className="text-lg text-gray-700 leading-relaxed mb-6 relative">
-                    <Quote className="absolute -top-4 -left-4 w-8 h-8 text-blue-300 opacity-50" />
-                    {currentStory.story}
-                  </blockquote>
-
-                  {/* Achievement */}
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4 mb-6">
-                    <div className="flex items-center space-x-2 mb-2">
-                      <Briefcase className="w-5 h-5 text-blue-600" />
-                      <span className="text-blue-600 font-semibold text-sm">
-                        Current Achievement
-                      </span>
-                    </div>
-                    <p className="text-gray-800 font-medium">
-                      {currentStory.achievement}
-                    </p>
-                  </div>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {currentStory.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="px-3 py-1 bg-gradient-to-r from-blue-100 to-purple-100 text-blue-700 rounded-full text-sm font-medium"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Stats */}
-                  <div className="grid grid-cols-3 gap-4 mb-6">
-                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                      <div className="text-2xl font-bold text-blue-600">
-                        {currentStory.stats.gpa}
-                      </div>
-                      <div className="text-sm text-gray-600">GPA</div>
-                    </div>
-                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                      <div
-                        className="text-2xl font-bold text-purple-600 stat-counter"
-                        data-target={currentStory.stats.projects}
-                      >
-                        0
-                      </div>
-                      <div className="text-sm text-gray-600">Projects</div>
-                    </div>
-                    <div className="text-center p-3 bg-gray-50 rounded-xl">
-                      <div
-                        className="text-2xl font-bold text-orange-600 stat-counter"
-                        data-target={currentStory.stats.awards}
-                      >
-                        0
-                      </div>
-                      <div className="text-sm text-gray-600">Awards</div>
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex items-center space-x-4">
-                    {currentStory.videoUrl && (
-                      <button
-                        onClick={() =>
-                          setSelectedVideo(currentStory.videoUrl || null)
-                        }
-                        className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-                      >
-                        <Play className="w-4 h-4" />
-                        <span>Watch Video</span>
-                      </button>
-                    )}
-
-                    <button className="inline-flex items-center space-x-2 text-gray-600 hover:text-blue-600 transition-colors duration-200">
-                      <MessageCircle className="w-4 h-4" />
-                      <span>Message</span>
-                    </button>
-
-                    <button className="inline-flex items-center space-x-2 text-gray-600 hover:text-purple-600 transition-colors duration-200">
-                      <Share2 className="w-4 h-4" />
-                      <span>Share</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Story Image */}
-              <div className="relative">
-                <img
-                  src={currentStory.image}
-                  alt={`${currentStory.name}'s story`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-
-                {/* Year badge */}
-                <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2 shadow-lg">
-                  <span className="text-gray-800 font-semibold text-sm">
-                    {currentStory.year}
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Navigation */}
-          <div className="flex items-center justify-between mt-8">
-            <button
-              onClick={prevSlide}
-              className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-600 hover:bg-white transition-all duration-200"
-            >
-              <ArrowLeft className="w-5 h-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex space-x-1 sm:space-x-1.5">
-              {studentStories.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-1.5 h-1.5 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                    index === currentIndex
-                      ? "bg-blue-500 scale-110 sm:scale-125"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={nextSlide}
-              className="w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full shadow-lg flex items-center justify-center text-gray-600 hover:text-blue-600 hover:bg-white transition-all duration-200"
-            >
-              <ArrowRight className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
-
-        {/* All Stories Grid */}
-        <div className="stories-carousel">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-            More Success Stories
-          </h3>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {studentStories.map((story, index) => (
-              <div
-                key={story.id}
-                className="story-card bg-white/70 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer group"
-                onClick={() => goToSlide(index)}
+        {/* Enhanced Stories Grid with Motion */}
+        <motion.div 
+          className="stories-carousel mb-16"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          {/* Featured Stories Carousel */}
+          <div className="relative mb-12">
+            <div className="overflow-hidden rounded-3xl">
+              <motion.div 
+                className="flex transition-transform duration-700 ease-out"
+                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
               >
-                <div className="flex items-start space-x-4">
-                  <img
-                    src={story.avatar}
-                    alt={story.name}
-                    className="w-16 h-16 rounded-full object-cover ring-4 ring-white shadow-lg flex-shrink-0"
-                  />
-                  <div className="flex-1 min-w-0">
-                    <h4 className="font-bold text-gray-900 text-lg truncate group-hover:text-blue-600 transition-colors">
-                      {story.name}
-                    </h4>
-                    <p className="text-blue-600 text-sm font-semibold truncate">{story.course}</p>
-                    <div className="flex items-center space-x-1 mt-1">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < story.rating
-                              ? "text-yellow-400 fill-current"
-                              : "text-gray-300"
-                          }`}
-                        />
-                      ))}
+                {studentsData.students.map((student, index) => (
+                  <motion.div 
+                    key={student.id}
+                    className="w-full flex-shrink-0 relative"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ 
+                      opacity: index === currentIndex ? 1 : 0.7, 
+                      scale: index === currentIndex ? 1 : 0.95 
+                    }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <div className="bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 backdrop-blur-xl rounded-3xl shadow-2xl overflow-hidden border border-white/20">
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8 lg:p-12">
+                        {/* Student Avatar and Info */}
+                        <div className="text-center lg:text-left">
+                          <div className="relative inline-block mb-6">
+                            <div className="w-32 h-32 lg:w-40 lg:h-40 mx-auto lg:mx-0 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/50 backdrop-blur-sm">
+                              <img
+                                src={student.image}
+                                alt={student.name}
+                                className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
+                              />
+                            </div>
+                            <motion.div 
+                              className="absolute -top-3 -right-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full p-3 shadow-xl"
+                              animate={{ rotate: [0, 10, -10, 0] }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                            >
+                              <Crown className="w-6 h-6 text-white" />
+                            </motion.div>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            <h3 className="text-2xl lg:text-3xl font-black text-gray-900">{student.name}</h3>
+                            <p className="text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                              {student.grade}
+                            </p>
+                            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-green-100 to-emerald-100 px-4 py-2 rounded-full">
+                              <Award className="w-4 h-4 text-green-600" />
+                              <span className="text-green-700 font-semibold text-sm">{student.achievement}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Story Content */}
+                        <div className="lg:col-span-2 space-y-6">
+                          {/* Quote */}
+                          <div className="relative">
+                            <motion.div
+                              className="absolute -top-4 -left-4 text-6xl text-blue-200 opacity-30"
+                              animate={{ rotate: [0, 5, -5, 0] }}
+                              transition={{ duration: 4, repeat: Infinity }}
+                            >
+                              <Quote className="w-12 h-12" />
+                            </motion.div>
+                            <blockquote className="text-lg lg:text-xl text-gray-700 leading-relaxed font-medium italic relative z-10">
+                              {student.story}
+                            </blockquote>
+                          </div>
+
+                          {/* Interactive Elements */}
+                          <div className="flex flex-wrap items-center gap-4">
+                            <motion.button 
+                              className="group flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Play className="w-4 h-4" />
+                              <span>Watch Story</span>
+                            </motion.button>
+                            
+                            <motion.button 
+                              className="group flex items-center space-x-2 bg-white/60 backdrop-blur-sm text-gray-700 px-6 py-3 rounded-xl font-semibold border border-white/40 hover:bg-white/80 transition-all duration-300"
+                              whileHover={{ scale: 1.05, y: -2 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <MessageCircle className="w-4 h-4" />
+                              <span>Connect</span>
+                            </motion.button>
+                            
+                            <motion.button 
+                              className="group flex items-center space-x-2 text-gray-600 hover:text-pink-600 transition-colors duration-200"
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                            >
+                              <Heart className="w-5 h-5" />
+                              <span className="font-semibold">Inspire</span>
+                            </motion.button>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
 
-                <p className="text-gray-600 text-sm leading-relaxed my-4 line-clamp-3">
-                  \"{story.story}\"
-                </p>
+            {/* Enhanced Navigation */}
+            <div className="flex items-center justify-center mt-8 space-x-8">
+              <motion.button
+                onClick={prevSlide}
+                className="group relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-xl flex items-center justify-center text-white hover:shadow-2xl transition-all duration-300"
+                whileHover={{ scale: 1.1, rotate: -5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronLeft className="w-6 h-6 transition-transform group-hover:-translate-x-0.5" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.button>
 
-                <div className="flex items-center justify-between text-xs text-gray-500">
-                  <span className="bg-blue-50 px-2 py-1 rounded-full font-semibold">
-                    GPA: {story.stats.gpa}
-                  </span>
-                  <span className="bg-purple-50 px-2 py-1 rounded-full font-semibold">
-                    {story.stats.awards} Awards
-                  </span>
-                  <span className="text-blue-600 font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    Read More →
-                  </span>
-                </div>
+              {/* Dots with enhanced styling */}
+              <div className="flex space-x-3">
+                {studentsData.students.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`relative w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentIndex
+                        ? "bg-gradient-to-r from-blue-500 to-purple-600 scale-125"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.8 }}
+                  >
+                    {index === currentIndex && (
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full blur-sm"
+                        animate={{ scale: [1, 1.5, 1] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                      />
+                    )}
+                  </motion.button>
+                ))}
               </div>
-            ))}
+
+              <motion.button
+                onClick={nextSlide}
+                className="group relative w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full shadow-xl flex items-center justify-center text-white hover:shadow-2xl transition-all duration-300"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <ChevronRight className="w-6 h-6 transition-transform group-hover:translate-x-0.5" />
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </motion.button>
+            </div>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Simplified Call-to-Action Section */}
+        <motion.div 
+          className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 lg:p-8 shadow-lg border border-white/30 mt-12"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <div className="text-center max-w-2xl mx-auto">
+            <motion.div
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full px-4 py-2 mb-4"
+              whileHover={{ scale: 1.05 }}
+            >
+              <Sparkles className="w-4 h-4" />
+              <span className="font-semibold text-sm">Inspiring Journeys</span>
+            </motion.div>
+            
+            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+              Want to Read More 
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                Success Stories?
+              </span>
+            </h3>
+            
+            <p className="text-gray-600 mb-6">
+              Discover how EduVerse Academy has transformed the lives of hundreds of students worldwide.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/testimonials"
+                  className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>View All Stories</span>
+                </Link>
+              </motion.div>
+              
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center space-x-2 bg-white text-gray-700 px-6 py-3 rounded-xl font-semibold border border-gray-200 hover:border-purple-300 transition-all duration-300"
+                >
+                  <Award className="w-4 h-4 text-purple-600" />
+                  <span>Share Your Story</span>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </motion.div>
       </div>
 
       {/* Video Modal */}

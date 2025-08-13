@@ -192,68 +192,36 @@ export default function ModernIndex() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 lg:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 relative overflow-hidden animate-on-scroll">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="parallax-element absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-blue-400 to-cyan-400 rounded-full blur-3xl"></div>
-          <div className="parallax-element absolute bottom-10 right-10 w-40 h-40 bg-gradient-to-br from-purple-400 to-pink-400 rounded-full blur-3xl"></div>
-          <div className="parallax-element absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-br from-orange-400 to-red-400 rounded-full blur-2xl transform -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-6 text-white leading-tight">
-              Ready to Start Your{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
-                Journey?
+      {/* Simplified CTA Section */}
+      <section className="py-16 lg:py-20 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 animate-on-scroll">
+        <div className="container mx-auto px-4 lg:px-8 text-center">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+              Start Your Educational{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
+                Journey Today
               </span>
             </h2>
-            <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed">
-              Join thousands of students who have transformed their lives
-              through excellence in education. Your future starts here.
+            <p className="text-lg text-blue-100 mb-8">
+              Join thousands of students who have achieved their dreams with us.
             </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/contact"
-                className="group inline-flex items-center justify-center space-x-2 md:space-x-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center space-x-2 bg-white text-blue-600 px-8 py-4 rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               >
                 <span>Apply Now</span>
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-5 h-5" />
               </Link>
-
+              
               <Link
                 to="/courses"
-                className="group inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl hover:bg-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-xl font-bold hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
               >
-                <BookOpen className="w-5 h-5 md:w-6 md:h-6" />
-                <span>Explore Courses</span>
+                <BookOpen className="w-5 h-5" />
+                <span>View Courses</span>
               </Link>
-            </div>
-
-            {/* Trust indicators */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-16 border-t border-white/10">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">15+</div>
-                <div className="text-white/70">Years Excellence</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-400 mb-2">
-                  2.5K+
-                </div>
-                <div className="text-white/70">Graduates</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400 mb-2">
-                  50+
-                </div>
-                <div className="text-white/70">Expert Faculty</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-pink-400 mb-2">98%</div>
-                <div className="text-white/70">Success Rate</div>
-              </div>
             </div>
           </div>
         </div>

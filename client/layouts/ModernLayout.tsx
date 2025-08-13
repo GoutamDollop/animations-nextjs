@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import ModernNavigation from "./ModernNavigation";
-import ModernFooter from "./ModernFooter";
+import UltraModernNavigation from "./UltraModernNavigation";
+import UltraModernFooter from "./UltraModernFooter";
 import AdvancedCursor from "../components/AdvancedCursor";
 import SmoothScrollProvider from "../components/SmoothScrollProvider";
 import Loading from "../components/ui/loading/Loading";
@@ -36,11 +36,11 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
     <SmoothScrollProvider>
       <div className="min-h-screen flex flex-col bg-white">
         <AdvancedCursor />
-        <ModernNavigation />
+        <UltraModernNavigation />
 
         <main className="flex-grow">{children}</main>
 
-        {!isNotFoundPage && <ModernFooter />}
+        {!isNotFoundPage && <UltraModernFooter />}
       </div>
     </SmoothScrollProvider>
   );

@@ -44,6 +44,12 @@
       },
       {
         "id": 7,
+        "name": "Testimonials",
+        "path": "/testimonials",
+        "description": "Student voices"
+      },
+      {
+        "id": 8,
         "name": "Contact",
         "path": "/contact",
         "description": "Get in touch"

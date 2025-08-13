@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import {
   ArrowRight,
   Play,
@@ -15,15 +16,20 @@ import {
   Award,
   Target,
   Zap,
+  Globe,
+  Rocket,
+  GraduationCap,
 } from "lucide-react";
 import { useSmoothScroll } from "../components/SmoothScrollProvider";
 import { HeroThreeBackground } from "../components/ThreeBackground";
+import heroData from "../data/hero.json";
+import heroSliderData from "../data/heroSlider.json";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
 const heroImages = [
   {
-    src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    src: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2832&q=80",
     alt: "Students collaborating in modern classroom",
   },
   {
@@ -273,13 +279,14 @@ export default function EnhancedHeroSection() {
     return () => ctx.revert();
   }, []);
 
-  // Typewriter effect
+  // Enhanced Typewriter effect with improved performance and visual appeal
   useEffect(() => {
     if (!typewriterRef.current) return;
 
     let currentTextIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
+    let timeoutId: NodeJS.Timeout;
 
     const typewriterEffect = () => {
       const currentText = typewriterTexts[currentTextIndex];
@@ -292,23 +299,34 @@ export default function EnhancedHeroSection() {
 
       if (typewriterRef.current) {
         typewriterRef.current.textContent = currentText.substring(0, charIndex);
+        
+        // Add pulsing cursor animation
+        const cursor = typewriterRef.current.nextElementSibling as HTMLElement;
+        if (cursor && cursor.classList.contains('typewriter-cursor')) {
+          cursor.style.opacity = '1';
+        }
       }
 
-      let timeout = isDeleting ? 50 : 100;
+      let timeout = isDeleting ? 50 : 120;
 
       if (!isDeleting && charIndex === currentText.length) {
-        timeout = 2000;
+        timeout = 3000; // Pause at end of text
         isDeleting = true;
       } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         currentTextIndex = (currentTextIndex + 1) % typewriterTexts.length;
-        timeout = 500;
+        timeout = 800; // Pause before starting new text
       }
 
-      setTimeout(typewriterEffect, timeout);
+      timeoutId = setTimeout(typewriterEffect, timeout);
     };
 
-    typewriterEffect();
+    const startTypewriter = setTimeout(typewriterEffect, 2000); // Start after initial animations
+
+    return () => {
+      if (timeoutId) clearTimeout(timeoutId);
+      clearTimeout(startTypewriter);
+    };
   }, []);
 
   // Image transition effect
@@ -380,24 +398,24 @@ export default function EnhancedHeroSection() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-16 sm:py-20">
           {/* Left Content */}
           <div
             ref={textContainerRef}
-            className="space-y-8 text-center lg:text-left"
+            className="space-y-6 sm:space-y-8 text-center lg:text-left order-2 lg:order-1"
           >
             {/* Badge */}
-            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 text-white/90">
-              <Sparkles className="w-4 h-4 text-yellow-400" />
-              <span className="text-sm font-medium">
+            <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-4 py-2 text-white/90 text-sm">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
+              <span className="font-medium">
                 Premier Education Institution
               </span>
-              <Star className="w-4 h-4 text-yellow-400" />
+              <Star className="w-3 h-3 sm:w-4 sm:h-4 text-yellow-400" />
             </div>
 
             {/* Main Title */}
-            <h1 className="hero-title text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white">
+            <h1 className="hero-title text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white">
               <span className="inline-block overflow-hidden">
                 <span className="inline-block">Shape</span>
               </span>{" "}
@@ -421,37 +439,37 @@ export default function EnhancedHeroSection() {
             <div className="hero-subtitle">
               <span
                 ref={typewriterRef}
-                className="text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400"
+                className="text-xl sm:text-2xl lg:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400"
               >
                 Excellence in Education
               </span>
-              <span className="animate-pulse text-cyan-400 text-3xl">|</span>
+              <span className="typewriter-cursor animate-pulse text-cyan-400 text-2xl sm:text-3xl">|</span>
             </div>
 
             {/* Description */}
-            <p className="hero-description text-lg lg:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <p className="hero-description text-base sm:text-lg lg:text-xl text-white/80 leading-relaxed max-w-2xl mx-auto lg:mx-0 px-4 lg:px-0">
               Experience world-class education with innovative teaching methods,
               expert faculty, and cutting-edge facilities that prepare you for
               tomorrow's challenges.
             </p>
 
             {/* Action Buttons */}
-            <div className="hero-buttons flex flex-col sm:flex-row gap-4 items-center justify-center lg:justify-start">
+            <div className="hero-buttons flex flex-col sm:flex-row gap-3 sm:gap-4 items-center justify-center lg:justify-start px-4 lg:px-0">
               <Link
                 to="/contact"
-                className="magnetic group relative inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 overflow-hidden"
+                className="magnetic group relative inline-flex items-center justify-center space-x-2 sm:space-x-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 overflow-hidden w-full sm:w-auto"
               >
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 <span className="relative">Start Your Journey</span>
-                <ArrowRight className="relative w-5 h-5 transition-transform group-hover:translate-x-1" />
-                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-opacity duration-300"></div>
+                <ArrowRight className="relative w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:translate-x-1" />
+                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 rounded-xl sm:rounded-2xl blur-xl transition-opacity duration-300"></div>
               </Link>
 
               <button
                 onClick={() => setIsVideoModalOpen(true)}
-                className="magnetic group relative inline-flex items-center justify-center space-x-3 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-2xl font-bold text-lg border-2 border-white/20 hover:border-white/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105"
+                className="magnetic group relative inline-flex items-center justify-center space-x-2 sm:space-x-3 bg-white/10 backdrop-blur-sm text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg border-2 border-white/20 hover:border-white/40 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
               >
-                <Play className="w-5 h-5 transition-transform group-hover:scale-110" />
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 transition-transform group-hover:scale-110" />
                 <span>Watch Story</span>
               </button>
             </div>
@@ -459,7 +477,7 @@ export default function EnhancedHeroSection() {
             {/* Stats */}
             <div
               ref={statsRef}
-              className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 pt-6 sm:pt-8 px-4 lg:px-0"
             >
               {[
                 { value: "15+", label: "Years Experience", icon: Target },
@@ -468,23 +486,23 @@ export default function EnhancedHeroSection() {
                 { value: "98%", label: "Success Rate", icon: Trophy },
               ].map((stat, index) => (
                 <div key={index} className="stat-item text-center group">
-                  <div className="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                    <stat.icon className="w-6 h-6 text-white" />
+                  <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-lg sm:rounded-xl mb-2 sm:mb-3 group-hover:scale-110 transition-transform duration-300">
+                    <stat.icon className="w-4 h-4 sm:w-6 sm:h-6 text-white" />
                   </div>
-                  <div className="text-2xl lg:text-3xl font-bold text-white mb-1">
+                  <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-1">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-white/70">{stat.label}</div>
+                  <div className="text-xs sm:text-sm text-white/70">{stat.label}</div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right Content - Image Showcase */}
-          <div ref={imageContainerRef} className="relative">
+          <div ref={imageContainerRef} className="relative order-1 lg:order-2">
             {/* Main Image Container */}
             <div className="relative z-10">
-              <div className="hero-image relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl transform perspective-1000">
+              <div className="hero-image relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl transform perspective-1000">
                 {heroImages.map((image, index) => (
                   <img
                     key={index}
@@ -501,7 +519,7 @@ export default function EnhancedHeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
 
                 {/* Image indicators */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                <div className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-1.5 sm:space-x-2">
                   {heroImages.map((_, index) => (
                     <button
                       key={index}
@@ -516,44 +534,62 @@ export default function EnhancedHeroSection() {
                 </div>
               </div>
 
-              {/* Floating Cards */}
-              {floatingCards.map((card, index) => (
-                <div
-                  key={index}
-                  className={`floating-card absolute bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer ${
-                    index === 0
-                      ? "-top-6 -left-6"
-                      : index === 1
-                        ? "-top-6 -right-6"
-                        : index === 2
-                          ? "-bottom-6 -left-6"
-                          : "-bottom-6 -right-6"
-                  }`}
-                  style={{
-                    animationDelay: `${card.delay}s`,
-                  }}
-                >
-                  <div className="flex items-center space-x-3">
-                    <div
-                      className={`w-12 h-12 bg-gradient-to-br ${card.color} rounded-xl flex items-center justify-center shadow-lg`}
-                    >
-                      <card.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-bold text-gray-900">
-                        {card.title}
+              {/* Floating Cards - Hidden on mobile, visible on tablet and up */}
+              <div className="hidden sm:block">
+                {floatingCards.map((card, index) => (
+                  <div
+                    key={index}
+                    className={`floating-card absolute bg-white/95 backdrop-blur-sm p-3 sm:p-4 rounded-xl sm:rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 cursor-pointer ${
+                      index === 0
+                        ? "sm:-top-4 sm:-left-4 lg:-top-6 lg:-left-6"
+                        : index === 1
+                          ? "sm:-top-4 sm:-right-4 lg:-top-6 lg:-right-6"
+                          : index === 2
+                            ? "sm:-bottom-4 sm:-left-4 lg:-bottom-6 lg:-left-6"
+                            : "sm:-bottom-4 sm:-right-4 lg:-bottom-6 lg:-right-6"
+                    }`}
+                    style={{
+                      animationDelay: `${card.delay}s`,
+                    }}
+                  >
+                    <div className="flex items-center space-x-2 sm:space-x-3">
+                      <div
+                        className={`w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-gradient-to-br ${card.color} rounded-lg sm:rounded-xl flex items-center justify-center shadow-lg`}
+                      >
+                        <card.icon className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
                       </div>
-                      <div className="text-sm text-gray-600">
-                        {card.subtitle}
+                      <div>
+                        <div className="text-sm sm:text-base lg:text-lg font-bold text-gray-900">
+                          {card.title}
+                        </div>
+                        <div className="text-xs sm:text-sm text-gray-600">
+                          {card.subtitle}
+                        </div>
                       </div>
                     </div>
                   </div>
+                ))}
+              </div>
+
+              {/* Mobile-only compact stats overlay */}
+              <div className="sm:hidden absolute bottom-4 left-4 right-4">
+                <div className="bg-black/50 backdrop-blur-sm rounded-xl p-3">
+                  <div className="grid grid-cols-2 gap-3 text-center">
+                    <div className="text-white">
+                      <div className="text-lg font-bold">15+</div>
+                      <div className="text-xs opacity-80">Years</div>
+                    </div>
+                    <div className="text-white">
+                      <div className="text-lg font-bold">2.5K+</div>
+                      <div className="text-xs opacity-80">Students</div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
 
             {/* Background decoration */}
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-3xl transform rotate-3 scale-105 -z-10 blur-sm"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 rounded-2xl sm:rounded-3xl transform rotate-3 scale-105 -z-10 blur-sm"></div>
           </div>
         </div>
       </div>
