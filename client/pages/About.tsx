@@ -14,8 +14,9 @@ import {
   Calendar,
   Trophy,
   Rocket,
+  GraduationCap,
 } from "lucide-react";
-import ConditionalBreadcrumb from "../components/ui/breadcrumbs/SimpleBreadcrumb";
+import UniversalPageHero from "../components/sections/hero/UniversalPageHero";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -163,29 +164,17 @@ export default function About() {
 
   return (
     <div ref={pageRef} className="min-h-screen">
-      <ConditionalBreadcrumb />
-      <div className="pt-4 md:pt-8 lg:pt-12">
-        {/* Hero Section */}
-        <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 text-white relative overflow-hidden">
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full animate-pulse"></div>
-            <div className="absolute bottom-20 right-20 w-24 h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-            <div className="absolute top-1/2 left-1/3 w-16 h-16 bg-pink-300 rounded-full animate-ping"></div>
-          </div>
-
-          <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-            <div className="about-header max-w-4xl mx-auto">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
-                About EduVerse Academy 🎓
-              </h1>
-              <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
-                Empowering minds, shaping futures, and creating tomorrow's
-                leaders through innovative education and boundless opportunities
-                since 1985.
-              </p>
-            </div>
-          </div>
-        </section>
+      {/* Universal Hero Section */}
+      <UniversalPageHero
+        title="About EduVerse Academy"
+        subtitle="Excellence in Education Since 1985"
+        description="Empowering minds, shaping futures, and creating tomorrow's leaders through innovative education and boundless opportunities."
+        backgroundImage="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        badge={{
+          icon: <GraduationCap className="w-5 h-5 text-yellow-400" />,
+          text: "Premier Education Institution"
+        }}
+      />
 
         {/* Mission & Vision */}
         <section className="about-section py-12 md:py-16 lg:py-20 bg-white">
@@ -402,7 +391,6 @@ export default function About() {
             </div>
           </div>
         </section>
-      </div>
     </div>
   );
 }

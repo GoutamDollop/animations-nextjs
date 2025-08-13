@@ -170,7 +170,7 @@ export default function ModernNavigation() {
                 key={item.name}
                 className="relative"
                 onMouseEnter={() => item.hasDropdown && setActiveDropdown(item.name)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                onMouseLeave={() => item.hasDropdown && setActiveDropdown(null)}
               >
                 <motion.div
                   whileHover={{ y: -2 }}

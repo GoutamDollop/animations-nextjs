@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import ModernLayout from "./layouts/ModernLayout";
 
 // Pages
@@ -13,9 +13,26 @@ import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
-function App() {
+// ScrollToTop component to handle route changes
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    // Smooth scroll to top on route change
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }, [pathname]);
+
+  return null;
+}
+
+function AppRoutes() {
   return (
-    <BrowserRouter>
+    <>
+      <ScrollToTop />
       <ModernLayout>
         <Routes>
           <Route path="/" element={<ModernIndex />} />
@@ -29,6 +46,14 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ModernLayout>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppRoutes />
     </BrowserRouter>
   );
 }

@@ -10,6 +10,7 @@ import {
   Calendar,
   User,
 } from "lucide-react";
+import UniversalPageHero from "../components/sections/hero/UniversalPageHero";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -127,27 +128,16 @@ export default function Testimonials() {
   const currentData = testimonials[currentTestimonial];
 
   return (
-    <div ref={pageRef} className="min-h-screen pt-16 md:pt-20 lg:pt-24">
-      {/* Hero Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-          <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-pink-300 rounded-full animate-ping"></div>
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="testimonials-header max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
-              Student Success Stories 🌟
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
-              Hear from our amazing graduates who are making their mark in the
-              world!
-            </p>
-          </div>
-        </div>
-      </section>
+    <div ref={pageRef} className="min-h-screen">
+      <UniversalPageHero
+        title="Student Success Stories"
+        description="Hear from our amazing graduates who are making their mark in the world!"
+        breadcrumbs={[
+          { label: "Home", href: "/" },
+          { label: "Testimonials", href: "/testimonials" },
+        ]}
+        backgroundGradient="from-emerald-500 via-teal-500 to-cyan-500"
+      />
 
       {/* Featured Testimonial */}
       <section className="py-12 md:py-16 lg:py-20 bg-white">

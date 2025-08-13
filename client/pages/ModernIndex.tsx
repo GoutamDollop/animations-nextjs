@@ -81,21 +81,21 @@ export default function ModernIndex() {
       {/* Enhanced Stats Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 animate-on-scroll">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
-              <Award className="w-5 h-5 text-blue-500" />
-              <span className="text-blue-600 font-semibold">
+          <div className="text-center mb-12 md:mb-16 px-4">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6">
+              <Award className="w-4 h-4 md:w-5 md:h-5 text-blue-500" />
+              <span className="text-blue-600 font-semibold text-sm md:text-base">
                 Our Achievements
               </span>
-              <Target className="w-5 h-5 text-purple-500" />
+              <Target className="w-4 h-4 md:w-5 md:h-5 text-purple-500" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-black mb-6 text-gray-900">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black mb-4 md:mb-6 text-gray-900 leading-tight">
               Excellence in{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-purple-500">
                 Numbers
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               Our commitment to academic excellence is reflected in these
               remarkable achievements.
             </p>
@@ -110,21 +110,21 @@ export default function ModernIndex() {
       {/* Featured Teachers Section */}
       <section className="py-20 lg:py-32 bg-gradient-to-br from-slate-50 via-white to-blue-50 animate-on-scroll">
         <div className="container mx-auto px-4 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6">
-              <Users className="w-5 h-5 text-purple-500" />
-              <span className="text-purple-600 font-semibold">
+          <div className="text-center mb-12 md:mb-16 px-4">
+            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm rounded-full px-4 md:px-6 py-2 md:py-3 mb-4 md:mb-6">
+              <Users className="w-4 h-4 md:w-5 md:h-5 text-purple-500" />
+              <span className="text-purple-600 font-semibold text-sm md:text-base">
                 Meet Our Faculty
               </span>
-              <BookOpen className="w-5 h-5 text-pink-500" />
+              <BookOpen className="w-4 h-4 md:w-5 md:h-5 text-pink-500" />
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-gray-900">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-6 text-gray-900 leading-tight">
               World-Class{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
                 Educators
               </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
               Our passionate educators are dedicated to nurturing young minds
               and inspiring excellence in every student.
             </p>
@@ -164,32 +164,32 @@ export default function ModernIndex() {
         </div>
 
         <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 text-white leading-tight">
+          <div className="max-w-4xl mx-auto px-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-4 md:mb-6 text-white leading-tight">
               Ready to Start Your{" "}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400">
                 Journey?
               </span>
             </h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-12 leading-relaxed">
+            <p className="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed">
               Join thousands of students who have transformed their lives
               through excellence in education. Your future starts here.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center">
               <Link
                 to="/contact"
-                className="group inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105"
+                className="group inline-flex items-center justify-center space-x-2 md:space-x-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl shadow-2xl hover:shadow-cyan-500/25 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
               >
                 <span>Apply Now</span>
-                <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 transition-transform group-hover:translate-x-1" />
               </Link>
 
               <Link
                 to="/courses"
-                className="group inline-flex items-center justify-center space-x-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:bg-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105"
+                className="group inline-flex items-center justify-center space-x-2 md:space-x-3 bg-white/10 backdrop-blur-sm border-2 border-white/20 text-white px-6 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-xl hover:bg-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
               >
-                <BookOpen className="w-6 h-6" />
+                <BookOpen className="w-5 h-5 md:w-6 md:h-6" />
                 <span>Explore Courses</span>
               </Link>
             </div>

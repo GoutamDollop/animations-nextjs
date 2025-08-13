@@ -29,25 +29,27 @@ export default function Footer() {
       (footerContainer as HTMLElement).style.display = "block";
     }
 
-    // Apply subtle entrance animations
+    // Apply immediate visibility with subtle animations
     const timer = setTimeout(() => {
+      gsap.set(".footer-item", { opacity: 1, y: 0 });
+      
       gsap.fromTo(
         ".footer-item",
-        { y: 20, opacity: 0.8 },
+        { y: 10, opacity: 0.9 },
         {
           y: 0,
           opacity: 1,
-          duration: 0.6,
-          stagger: 0.05,
-          ease: "power2.out",
+          duration: 0.4,
+          stagger: 0.03,
+          ease: "power1.out",
           scrollTrigger: {
             trigger: ".footer-container",
-            start: "top 85%",
+            start: "top 95%",
             toggleActions: "play none none none",
           },
         },
       );
-    }, 150);
+    }, 50);
 
     return () => clearTimeout(timer);
   }, []);

@@ -476,12 +476,12 @@ export default function ModernStudentStories() {
             </button>
 
             {/* Dots */}
-            <div className="flex space-x-2">
+            <div className="flex space-x-1.5">
               {studentStories.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                     index === currentIndex
                       ? "bg-blue-500 scale-125"
                       : "bg-gray-300 hover:bg-gray-400"
@@ -505,37 +505,40 @@ export default function ModernStudentStories() {
             More Success Stories
           </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {studentStories.map((story, index) => (
               <div
                 key={story.id}
-                className="story-card bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                className="story-card bg-white/70 backdrop-blur-sm rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 cursor-pointer group"
                 onClick={() => goToSlide(index)}
               >
-                <div className="flex items-center space-x-3 mb-4">
-                  <img
-                    src={story.avatar}
-                    alt={story.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <h4 className="font-semibold text-gray-900 text-sm">
+                <div className="flex items-center space-x-2 mb-3">
+                  <div className="relative">
+                    <img
+                      src={story.avatar}
+                      alt={story.name}
+                      className="w-8 h-8 rounded-full object-cover ring-2 ring-white shadow-sm"
+                    />
+                    <div className="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border border-white"></div>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-900 text-xs truncate group-hover:text-blue-600 transition-colors">
                       {story.name}
                     </h4>
-                    <p className="text-blue-600 text-xs">{story.course}</p>
+                    <p className="text-blue-600 text-[10px] truncate">{story.course}</p>
                   </div>
                 </div>
 
-                <p className="text-gray-600 text-sm leading-relaxed mb-4 line-clamp-3">
-                  {story.story}
+                <p className="text-gray-600 text-xs leading-relaxed mb-3 line-clamp-2">
+                  {story.story.substring(0, 60)}...
                 </p>
 
-                <div className="flex items-center justify-between">
-                  <div className="flex space-x-1">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex space-x-0.5">
                     {Array.from({ length: 5 }).map((_, i) => (
                       <Star
                         key={i}
-                        className={`w-3 h-3 ${
+                        className={`w-2.5 h-2.5 ${
                           i < story.rating
                             ? "text-yellow-400 fill-current"
                             : "text-gray-300"
@@ -543,8 +546,18 @@ export default function ModernStudentStories() {
                       />
                     ))}
                   </div>
-                  <span className="text-blue-600 text-xs font-medium">
+                  <span className="text-blue-600 text-[10px] font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                     Read More →
+                  </span>
+                </div>
+
+                {/* Mini stats */}
+                <div className="flex items-center justify-between text-[10px] text-gray-500">
+                  <span className="bg-blue-50 px-2 py-1 rounded-full">
+                    GPA: {story.stats.gpa}
+                  </span>
+                  <span className="bg-purple-50 px-2 py-1 rounded-full">
+                    {story.stats.awards} Awards
                   </span>
                 </div>
               </div>

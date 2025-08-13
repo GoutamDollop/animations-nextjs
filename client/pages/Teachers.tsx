@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Users } from "lucide-react";
 import TeacherCard from "../components/ui/cards/TeacherCard";
 import teachersData from "../data/teachers.json";
+import UniversalPageHero from "../components/sections/hero/UniversalPageHero";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,29 +18,18 @@ export default function Teachers() {
   }, []);
 
   return (
-    <div className="min-h-screen pt-20 lg:pt-24">
-      {/* Header Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-green-500 via-emerald-500 to-teal-500 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-          <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-pink-300 rounded-full animate-ping"></div>
-          <div className="absolute top-3/4 right-1/4 w-10 md:w-12 h-10 md:h-12 bg-blue-300 rounded-full animate-pulse"></div>
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="teachers-header">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
-              Meet Our Amazing Teachers 👨‍🏫👩‍🏫
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto leading-relaxed px-2">
-              Our passionate educators are dedicated to nurturing young minds
-              and inspiring the next generation of leaders, innovators, and
-              changemakers! ✨
-            </p>
-          </div>
-        </div>
-      </section>
+    <div className="min-h-screen">
+      {/* Universal Hero Section */}
+      <UniversalPageHero
+        title="Meet Our Amazing Teachers"
+        subtitle="World-Class Educators"
+        description="Our passionate educators are dedicated to nurturing young minds and inspiring the next generation of leaders, innovators, and changemakers."
+        backgroundImage="https://images.unsplash.com/photo-1580582932707-520aed937b7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        badge={{
+          icon: <Users className="w-5 h-5 text-yellow-400" />,
+          text: "Expert Faculty"
+        }}
+      />
 
       {/* Teachers Grid */}
       <section className="py-16 md:py-20 bg-gradient-to-br from-gray-50 to-blue-50">

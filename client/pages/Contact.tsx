@@ -11,7 +11,9 @@ import {
   MessageSquare,
   Calendar,
   CheckCircle,
+  ContactRound,
 } from "lucide-react";
+import UniversalPageHero from "../components/sections/hero/UniversalPageHero";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -165,28 +167,18 @@ export default function Contact() {
   ];
 
   return (
-    <div ref={pageRef} className="min-h-screen pt-16 md:pt-20 lg:pt-24">
-      {/* Hero Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white relative overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-10 left-10 w-20 md:w-32 h-20 md:h-32 bg-white rounded-full animate-pulse"></div>
-          <div className="absolute bottom-20 right-20 w-16 md:w-24 h-16 md:h-24 bg-yellow-300 rounded-full animate-bounce"></div>
-          <div className="absolute top-1/2 left-1/3 w-12 md:w-16 h-12 md:h-16 bg-green-300 rounded-full animate-ping"></div>
-          <div className="absolute bottom-1/3 left-1/4 w-8 md:w-12 h-8 md:h-12 bg-orange-300 rounded-full animate-pulse"></div>
-        </div>
-
-        <div className="container mx-auto px-4 lg:px-8 text-center relative z-10">
-          <div className="contact-header max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-display font-black mb-4 md:mb-6">
-              Get In Touch 📞
-            </h1>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed px-2">
-              Ready to start your educational journey? We're here to help you
-              every step of the way!
-            </p>
-          </div>
-        </div>
-      </section>
+    <div ref={pageRef} className="min-h-screen">
+      {/* Universal Hero Section */}
+      <UniversalPageHero
+        title="Get In Touch"
+        subtitle="Let's Start Your Educational Journey"
+        description="Ready to join EduVerse Academy? We're here to help you every step of the way. Reach out to us for admissions, questions, or to schedule a campus tour."
+        backgroundImage="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
+        badge={{
+          icon: <Phone className="w-5 h-5 text-yellow-400" />,
+          text: "Contact & Admissions"
+        }}
+      />
 
       {/* Main Content */}
       <section className="py-12 md:py-16 lg:py-20 bg-gradient-to-br from-gray-50 to-blue-50">
