@@ -393,17 +393,7 @@ export default function AdvancedCursor() {
         style={{ willChange: "contents" }}
       />
 
-      {/* Section indicator */}
-      <div className="fixed bottom-4 right-4 z-[9995] bg-black/20 backdrop-blur-sm text-white px-3 py-1 rounded-full text-xs opacity-50 transition-opacity duration-300">
-        Cursor: {state.currentSection}
-      </div>
-
-      {/* Scroll indicator */}
-      {state.isScrolling && (
-        <div className="fixed top-4 right-4 z-[9995] bg-gradient-to-r from-purple-500 to-pink-500 text-white px-3 py-1 rounded-full text-sm font-semibold opacity-80">
-          Scrolling ✨
-        </div>
-      )}
+      
     </>
   );
 }

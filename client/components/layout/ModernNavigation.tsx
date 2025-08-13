@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, GraduationCap, ChevronDown, ArrowRight, Sparkles } from 'lucide-react';

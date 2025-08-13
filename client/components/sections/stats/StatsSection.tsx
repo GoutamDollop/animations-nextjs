@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Smile, GraduationCap, BookOpen, TrendingUp } from "lucide-react";
-import AnimatedCounter from "./AnimatedCounter";
-import statsData from "../data/stats.json";
+import AnimatedCounter from "../../../animations/counters/AnimatedCounter";
+import statsData from "../../../data/stats.json";
 
 gsap.registerPlugin(ScrollTrigger);
 

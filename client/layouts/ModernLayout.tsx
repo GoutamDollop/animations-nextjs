@@ -3,8 +3,8 @@ import ModernNavigation from "./ModernNavigation";
 import ModernFooter from "./ModernFooter";
 import AdvancedCursor from "../components/AdvancedCursor";
 import SmoothScrollProvider from "../components/SmoothScrollProvider";
-import Loading from "../components/Loading";
-import ScrollToTop from "../components/ScrollToTop";
+import Loading from "../components/ui/loading/Loading";
+import {scrollToTop} from "../utils/scrollToTop";
 
 interface ModernLayoutProps {
   children: React.ReactNode;
@@ -35,7 +35,7 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
         <main className="flex-grow">{children}</main>
 
         <ModernFooter />
-        <ScrollToTop />
+        {/* <ScrollToTop /> */}
       </div>
     </SmoothScrollProvider>
   );
