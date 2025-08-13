@@ -475,26 +475,6 @@ export default function SchoolImageCards() {
             );
           })}
         </div>
-
-        {/* Bottom CTA */}
-        <div className="text-center mt-20 pt-16 border-t border-gray-200">
-          <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
-            Ready to Experience Our Campus?
-          </h3>
-          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-            Schedule a campus tour and see our world-class facilities in person.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-flex items-center space-x-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              <span>Schedule Tour</span>
-              <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="inline-flex items-center space-x-2 bg-white border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-gray-300 hover:bg-gray-50 transition-all duration-300">
-              <span>Virtual Tour</span>
-              <Globe className="w-5 h-5" />
-            </button>
-          </div>
-        </div>
       </div>
     </section>
   );
