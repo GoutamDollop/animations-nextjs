@@ -15,7 +15,7 @@ import {
   Trophy,
   Rocket,
 } from "lucide-react";
-import ConditionalBreadcrumb from "../components/ui/breadcrumbs/ConditionalBreadcrumb";
+import ConditionalBreadcrumb from "../components/ui/breadcrumbs/SimpleBreadcrumb";
 
 gsap.registerPlugin(ScrollTrigger);
 
