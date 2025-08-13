@@ -253,12 +253,16 @@ export default function AdvancedCursor() {
   );
 
   const handleMouseEnter = useCallback((e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-    const isInteractive =
-      target.closest('a, button, [role="button"], .interactive, .magnetic') !==
-      null;
-
-    setState((prev) => ({ ...prev, isHovering: isInteractive }));
+    const target = e.target;
+    
+    // Check if target is a valid DOM element with the closest method
+    if (target && typeof target === 'object' && 'closest' in target && typeof target.closest === 'function') {
+      const isInteractive =
+        (target as Element).closest('a, button, [role="button"], .interactive, .magnetic') !== null;
+      setState((prev) => ({ ...prev, isHovering: isInteractive }));
+    } else {
+      setState((prev) => ({ ...prev, isHovering: false }));
+    }
   }, []);
 
   const handleMouseLeave = useCallback(() => {
@@ -350,11 +354,13 @@ export default function AdvancedCursor() {
   return (
     <>
       {/* Hide default cursor */}
-      <style jsx global>{`
-        * {
-          cursor: none !important;
-        }
-      `}</style>
+      <style dangerouslySetInnerHTML={{
+        __html: `
+          * {
+            cursor: none !important;
+          }
+        `
+      }} />
 
       {/* Main cursor dot */}
       <div
@@ -392,8 +398,6 @@ export default function AdvancedCursor() {
         className="fixed inset-0 pointer-events-none z-[9996]"
         style={{ willChange: "contents" }}
       />
-
-      
     </>
   );
 }
