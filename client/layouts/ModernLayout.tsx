@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import ModernNavigation from "./ModernNavigation";
 import ModernFooter from "./ModernFooter";
 import AdvancedCursor from "../components/AdvancedCursor";
@@ -12,6 +13,11 @@ interface ModernLayoutProps {
 
 export default function ModernLayout({ children }: ModernLayoutProps) {
   const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  
+  // Check if current route is 404 page
+  const isNotFoundPage = location.pathname === '*' || 
+    !['/', '/about', '/courses', '/teachers', '/events', '/gallery', '/testimonials', '/contact'].includes(location.pathname);
 
   useEffect(() => {
     // Optimized loading time
@@ -34,7 +40,7 @@ export default function ModernLayout({ children }: ModernLayoutProps) {
 
         <main className="flex-grow">{children}</main>
 
-        <ModernFooter />
+        {!isNotFoundPage && <ModernFooter />}
       </div>
     </SmoothScrollProvider>
   );

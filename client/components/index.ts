@@ -1,8 +1,6 @@
-// Layout Components
-export { default as Layout } from './layout/Layout';
+// Core Components - Updated for Modern Architecture
+// All unused legacy components have been removed
+// Active components are imported directly from their respective paths
 
-// Feature Components  
-export { default as StudentStories } from './sections/StudentStories';
-
-// Animation Components
+// Animation Components (if any remaining)
 export * from '../animations';

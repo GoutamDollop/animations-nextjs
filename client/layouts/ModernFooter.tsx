@@ -123,21 +123,30 @@ export default function ModernFooter() {
   useEffect(() => {
     if (!footerRef.current) return;
 
+    // Force immediate visibility
+    const footerSections = footerRef.current.querySelectorAll('.footer-section');
+    footerSections.forEach((section) => {
+      (section as HTMLElement).style.opacity = '1';
+      (section as HTMLElement).style.transform = 'translateY(0)';
+    });
+
     const ctx = gsap.context(() => {
-      // Footer entrance animation
+      // Subtle footer entrance animation with immediate visibility
+      gsap.set(".footer-section", { opacity: 1, y: 0 });
+      
       gsap.fromTo(
         ".footer-section",
-        { y: 60, opacity: 0 },
+        { y: 10, opacity: 0.9 },
         {
           y: 0,
           opacity: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: "power3.out",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power1.out",
           scrollTrigger: {
             trigger: footerRef.current,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
+            start: "top 90%",
+            toggleActions: "play none none none",
           },
         },
       );

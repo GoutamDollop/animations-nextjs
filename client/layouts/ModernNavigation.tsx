@@ -161,57 +161,94 @@ export default function ModernNavigation() {
     }
   }, []);
 
-  // Handle dropdown animations
-  const showDropdown = (itemLabel: string) => {
-    setActiveDropdown(itemLabel);
-    const dropdown = dropdownRefs.current[itemLabel];
-    if (dropdown) {
-      gsap.fromTo(
-        dropdown,
-        {
-          opacity: 0,
-          y: -20,
-          scale: 0.95,
-          rotationX: -15,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          rotationX: 0,
-          duration: 0.3,
-          ease: "back.out(1.7)",
-        },
-      );
+  // Handle dropdown animations with improved timing and state management
+  const showDropdownTimer = useRef<NodeJS.Timeout | null>(null);
+  const hideDropdownTimer = useRef<NodeJS.Timeout | null>(null);
 
-      gsap.fromTo(
-        dropdown.children,
-        { opacity: 0, x: -20 },
-        {
-          opacity: 1,
-          x: 0,
-          duration: 0.2,
-          stagger: 0.05,
-          ease: "power2.out",
-          delay: 0.1,
-        },
-      );
+  const showDropdown = (itemLabel: string) => {
+    // Clear any pending hide timer
+    if (hideDropdownTimer.current) {
+      clearTimeout(hideDropdownTimer.current);
+      hideDropdownTimer.current = null;
     }
+
+    // If already showing this dropdown, don't restart animation
+    if (activeDropdown === itemLabel) return;
+
+    setActiveDropdown(itemLabel);
+    
+    // Small delay to ensure state update
+    showDropdownTimer.current = setTimeout(() => {
+      const dropdown = dropdownRefs.current[itemLabel];
+      if (dropdown && activeDropdown === itemLabel) {
+        gsap.fromTo(
+          dropdown,
+          {
+            opacity: 0,
+            y: -15,
+            scale: 0.96,
+            rotationX: -10,
+          },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            rotationX: 0,
+            duration: 0.25,
+            ease: "power3.out",
+          },
+        );
+
+        gsap.fromTo(
+          dropdown.children,
+          { opacity: 0, x: -15 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.2,
+            stagger: 0.04,
+            ease: "power2.out",
+            delay: 0.08,
+          },
+        );
+      }
+    }, 10);
   };
 
   const hideDropdown = (itemLabel: string) => {
-    const dropdown = dropdownRefs.current[itemLabel];
-    if (dropdown) {
-      gsap.to(dropdown, {
-        opacity: 0,
-        y: -10,
-        scale: 0.95,
-        duration: 0.2,
-        ease: "power2.in",
-        onComplete: () => setActiveDropdown(null),
-      });
+    // Clear any pending show timer
+    if (showDropdownTimer.current) {
+      clearTimeout(showDropdownTimer.current);
+      showDropdownTimer.current = null;
     }
+
+    // Add slight delay before hiding to prevent flickering when moving between elements
+    hideDropdownTimer.current = setTimeout(() => {
+      const dropdown = dropdownRefs.current[itemLabel];
+      if (dropdown && activeDropdown === itemLabel) {
+        gsap.to(dropdown, {
+          opacity: 0,
+          y: -8,
+          scale: 0.97,
+          duration: 0.15,
+          ease: "power2.in",
+          onComplete: () => {
+            if (activeDropdown === itemLabel) {
+              setActiveDropdown(null);
+            }
+          },
+        });
+      }
+    }, 50);
   };
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (showDropdownTimer.current) clearTimeout(showDropdownTimer.current);
+      if (hideDropdownTimer.current) clearTimeout(hideDropdownTimer.current);
+    };
+  }, []);
 
   // Handle mobile menu toggle
   const toggleMobileMenu = () => {
@@ -349,6 +386,8 @@ export default function ModernNavigation() {
                       ref={(el) => (dropdownRefs.current[item.label] = el)}
                       className="absolute top-full left-0 mt-2 w-72 bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/20 py-2 opacity-0"
                       style={{ perspective: "1000px" }}
+                      onMouseEnter={() => showDropdown(item.label)}
+                      onMouseLeave={() => hideDropdown(item.label)}
                     >
                       {item.dropdown.map((subItem) => (
                         <Link

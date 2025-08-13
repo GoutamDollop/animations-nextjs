@@ -174,15 +174,15 @@ export default function HeroSlider() {
         </button>
 
         {/* Dots Indicator */}
-        <div className="flex space-x-1.5 md:space-x-2">
+        <div className="flex space-x-1 sm:space-x-1.5">
           {slides.map((_, index) => (
             <button
               key={index}
               onClick={() => changeSlide(index)}
-              className={`w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
+              className={`w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
                 index === currentSlide
-                  ? "bg-gradient-to-r from-orange-500 to-red-500 scale-125"
-                  : "bg-white/50 hover:bg-white/80"
+                  ? "bg-gradient-to-r from-orange-500 to-red-500 scale-110 sm:scale-125"
+                  : "bg-white/60 hover:bg-white/80"
               }`}
               aria-label={`Go to slide ${index + 1}`}
             />
